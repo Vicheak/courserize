@@ -7,23 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */; };
+		526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA602C563923005F54DA /* UIColor + Ext.swift */; };
+		526EBA632C564723005F54DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA622C564723005F54DA /* LoginViewController.swift */; };
+		526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA652C5659CD005F54DA /* AuthAPIService.swift */; };
+		526EBA682C565CB6005F54DA /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA672C565CB6005F54DA /* RegisterViewController.swift */; };
+		526EBA6A2C5660FE005F54DA /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA692C5660FE005F54DA /* ForgetPasswordViewController.swift */; };
+		526EBA6C2C56640F005F54DA /* VerifyCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA6B2C56640F005F54DA /* VerifyCodeViewController.swift */; };
+		526EBA6F2C566471005F54DA /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA6E2C566471005F54DA /* ResetPasswordViewController.swift */; };
+		526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA712C5664BC005F54DA /* SettingViewController.swift */; };
 		528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C63D92C55E72B009FD199 /* AppDelegate.swift */; };
 		528C63E32C55E72D009FD199 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 528C63E22C55E72D009FD199 /* Assets.xcassets */; };
 		528C63E62C55E72D009FD199 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 528C63E52C55E72D009FD199 /* Base */; };
 		528C63F32C55E8D5009FD199 /* AuthScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */; };
-		528C63F52C55E919009FD199 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C63F42C55E919009FD199 /* LoginViewController.swift */; };
 		528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F62C55EAAA009FD199 /* Main.storyboard */; };
+		EFAC3B2C2408D091C6F1C64B /* Pods_online_course_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtil.swift; sourceTree = "<group>"; };
+		526EBA602C563923005F54DA /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
+		526EBA622C564723005F54DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		526EBA652C5659CD005F54DA /* AuthAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPIService.swift; sourceTree = "<group>"; };
+		526EBA672C565CB6005F54DA /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		526EBA692C5660FE005F54DA /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		526EBA6B2C56640F005F54DA /* VerifyCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewController.swift; sourceTree = "<group>"; };
+		526EBA6E2C566471005F54DA /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		526EBA712C5664BC005F54DA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		528C63D62C55E72B009FD199 /* online-course-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "online-course-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		528C63D92C55E72B009FD199 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		528C63E22C55E72D009FD199 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		528C63E52C55E72D009FD199 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		528C63E72C55E72D009FD199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthScreen.storyboard; sourceTree = "<group>"; };
-		528C63F42C55E919009FD199 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		528C63F62C55EAAA009FD199 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6D775617AA3B7A6C2FD0AABB /* Pods-online-course-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-online-course-app.debug.xcconfig"; path = "Target Support Files/Pods-online-course-app/Pods-online-course-app.debug.xcconfig"; sourceTree = "<group>"; };
+		9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_online_course_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE95B5D8139851594791A6A9 /* Pods-online-course-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-online-course-app.release.xcconfig"; path = "Target Support Files/Pods-online-course-app/Pods-online-course-app.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +51,56 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFAC3B2C2408D091C6F1C64B /* Pods_online_course_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		526EBA5F2C563914005F54DA /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				526EBA602C563923005F54DA /* UIColor + Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		526EBA642C5659AD005F54DA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				526EBA652C5659CD005F54DA /* AuthAPIService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		526EBA6D2C566417005F54DA /* AuthController */ = {
+			isa = PBXGroup;
+			children = (
+				526EBA622C564723005F54DA /* LoginViewController.swift */,
+				526EBA672C565CB6005F54DA /* RegisterViewController.swift */,
+				526EBA692C5660FE005F54DA /* ForgetPasswordViewController.swift */,
+				526EBA6B2C56640F005F54DA /* VerifyCodeViewController.swift */,
+				526EBA6E2C566471005F54DA /* ResetPasswordViewController.swift */,
+			);
+			path = AuthController;
+			sourceTree = "<group>";
+		};
+		526EBA702C5664A6005F54DA /* GeneralController */ = {
+			isa = PBXGroup;
+			children = (
+				526EBA712C5664BC005F54DA /* SettingViewController.swift */,
+			);
+			path = GeneralController;
+			sourceTree = "<group>";
+		};
 		528C63CD2C55E72B009FD199 = {
 			isa = PBXGroup;
 			children = (
 				528C63D82C55E72B009FD199 /* online-course-app */,
 				528C63D72C55E72B009FD199 /* Products */,
+				ACAE0637094B90330EBF0EFA /* Pods */,
+				EBFC2109DF429E96C8EE8C74 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +115,8 @@
 		528C63D82C55E72B009FD199 /* online-course-app */ = {
 			isa = PBXGroup;
 			children = (
+				526EBA642C5659AD005F54DA /* Service */,
+				526EBA5F2C563914005F54DA /* Extension */,
 				528C63F12C55E899009FD199 /* Storyboard */,
 				528C63F02C55E886009FD199 /* Resources */,
 				528C63EF2C55E87F009FD199 /* Util */,
@@ -73,7 +134,8 @@
 		528C63ED2C55E862009FD199 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				528C63F42C55E919009FD199 /* LoginViewController.swift */,
+				526EBA702C5664A6005F54DA /* GeneralController */,
+				526EBA6D2C566417005F54DA /* AuthController */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -88,6 +150,7 @@
 		528C63EF2C55E87F009FD199 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -107,6 +170,23 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		ACAE0637094B90330EBF0EFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6D775617AA3B7A6C2FD0AABB /* Pods-online-course-app.debug.xcconfig */,
+				FE95B5D8139851594791A6A9 /* Pods-online-course-app.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EBFC2109DF429E96C8EE8C74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -114,9 +194,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 528C63EA2C55E72D009FD199 /* Build configuration list for PBXNativeTarget "online-course-app" */;
 			buildPhases = (
+				7FBD740004443589B29CB4D3 /* [CP] Check Pods Manifest.lock */,
 				528C63D22C55E72B009FD199 /* Sources */,
 				528C63D32C55E72B009FD199 /* Frameworks */,
 				528C63D42C55E72B009FD199 /* Resources */,
+				959F7E10D4C4F31805DE8537 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -174,13 +256,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7FBD740004443589B29CB4D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-online-course-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		959F7E10D4C4F31805DE8537 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-online-course-app/Pods-online-course-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-online-course-app/Pods-online-course-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-online-course-app/Pods-online-course-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		528C63D22C55E72B009FD199 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528C63F52C55E919009FD199 /* LoginViewController.swift in Sources */,
+				526EBA6F2C566471005F54DA /* ResetPasswordViewController.swift in Sources */,
+				526EBA6C2C56640F005F54DA /* VerifyCodeViewController.swift in Sources */,
+				526EBA632C564723005F54DA /* LoginViewController.swift in Sources */,
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
+				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
+				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,
+				526EBA682C565CB6005F54DA /* RegisterViewController.swift in Sources */,
+				526EBA6A2C5660FE005F54DA /* ForgetPasswordViewController.swift in Sources */,
+				526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */,
+				526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,12 +451,14 @@
 		};
 		528C63EB2C55E72D009FD199 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6D775617AA3B7A6C2FD0AABB /* Pods-online-course-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HG7TQ755V4;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "online-course-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Courserize;
@@ -350,12 +484,14 @@
 		};
 		528C63EC2C55E72D009FD199 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE95B5D8139851594791A6A9 /* Pods-online-course-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = HG7TQ755V4;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "online-course-app/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Courserize;

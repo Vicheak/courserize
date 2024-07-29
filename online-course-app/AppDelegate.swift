@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
-        let loginViewController = storyboard.instantiateViewController(identifier: "LoginViewController")
+        let loginViewController = storyboard.instantiateInitialViewController()
         window?.rootViewController = loginViewController
         window?.makeKeyAndVisible()
         
