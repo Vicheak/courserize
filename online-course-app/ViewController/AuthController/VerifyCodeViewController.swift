@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class VerifyCodeViewController: UIViewController {
 
@@ -21,6 +22,7 @@ class VerifyCodeViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var keyboardUtil: KeyboardUtil!
     
@@ -28,6 +30,8 @@ class VerifyCodeViewController: UIViewController {
         super.viewDidLoad()
 
         setUpViews()
+        
+        self.setText()
         
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
@@ -44,7 +48,27 @@ class VerifyCodeViewController: UIViewController {
         confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func setText(){
+        titleLabel.text = "Please enter 6 digit OTP code".localized(using: "ScreenTitles")
+        confirmButton.setTitle("Confirm".localized(using: "ButtonTitles"), for: .normal)
+        sendCodeButton.setTitle("Resend Code".localized(using: "ButtonTitles"), for: .normal)
+    }
+    
     func setUpViews(){
+        titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 18)
+        confirmButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        sendCodeButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
+        
         confirmButton.layer.cornerRadius = 5
     }
     

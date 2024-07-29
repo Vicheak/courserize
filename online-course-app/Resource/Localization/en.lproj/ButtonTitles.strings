@@ -1,0 +1,15 @@
+/* 
+  ButtonTitles.strings
+  online-course-app
+
+  Created by @suonvicheakdev on 29/7/24.
+  
+*/
+
+"Login" = "Login";
+"Forget password?" = "Forget password?"; 
+"Don't have an account? sign up now" = "Don't have an account? sign up now";
+"Sign Up" = "Sign Up";
+"Continue" = "Continue";
+"Confirm" = "Confirm";
+"Resend Code" = "Resend Code";

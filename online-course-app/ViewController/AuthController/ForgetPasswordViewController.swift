@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class ForgetPasswordViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class ForgetPasswordViewController: UIViewController {
         super.viewDidLoad()
         
         setUpViews()
+        
+        self.setText()
 
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
@@ -31,7 +34,27 @@ class ForgetPasswordViewController: UIViewController {
         continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func setText(){
+        titleLabel.text = "Forget Password".localized(using: "ScreenTitles")
+        emailTextField.placeholder = "Enter your own email".localized(using: "InputFields")
+        continueButton.setTitle("Continue".localized(using: "ButtonTitles"), for: .normal)
+    }
+    
     func setUpViews(){
+        titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 24)
+        emailTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        continueButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         emailTextField.layer.cornerRadius = 5

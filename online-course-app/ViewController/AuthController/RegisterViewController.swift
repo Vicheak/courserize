@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class RegisterViewController: UIViewController {
     
@@ -23,6 +24,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
+    @IBOutlet weak var chooseGenderLabel: UILabel!
+    @IBOutlet weak var chooseBirthDateLabel: UILabel!
     
     var keyboardUtil: KeyboardUtil!
     
@@ -33,8 +36,10 @@ class RegisterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setUpViews()
+        
+        self.setText()
 
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
@@ -56,7 +61,39 @@ class RegisterViewController: UIViewController {
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func setText(){
+        titleLabel.text = "Register New Account".localized(using: "ScreenTitles")
+        usernameTextField.placeholder = "Enter your username".localized(using: "InputFields")
+        emailTextField.placeholder = "Enter your email".localized(using: "InputFields")
+        phoneNumberTextField.placeholder = "Enter phone number".localized(using: "InputFields")
+        chooseGenderLabel.text = "Choose your gender".localized(using: "InputFields")
+        chooseBirthDateLabel.text = "Choose your birth date".localized(using: "InputFields")
+        passwordTextField.placeholder = "Enter password".localized(using: "InputFields")
+        passwordConfirmTextField.placeholder = "Enter password confirmation".localized(using: "InputFields")
+        registerButton.setTitle("Sign Up".localized(using: "ButtonTitles"), for: .normal)
+    }
+    
     func setUpViews(){
+        titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 24)
+        usernameTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        emailTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        phoneNumberTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        chooseGenderLabel.font = UIFont(name: "KhmerOSBattambang-Regular", size: 16)
+        chooseBirthDateLabel.font = UIFont(name: "KhmerOSBattambang-Regular", size: 16)
+        passwordTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        passwordConfirmTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        registerButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         usernameTextField.layer.cornerRadius = 5
@@ -129,7 +166,8 @@ extension RegisterViewController: UITextFieldDelegate, UIPickerViewDelegate, UIP
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return genders[row]
+        let khmerLanguageCode = "km"
+        return Localize.currentLanguage() == khmerLanguageCode ? row == 0 ? "ប្រុស" : "ស្រី" : genders[row];
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

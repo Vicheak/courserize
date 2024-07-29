@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loginViewController = storyboard.instantiateInitialViewController()
         window?.rootViewController = loginViewController
         window?.makeKeyAndVisible()
+        
+        let khmerLanguageCode = "km"
+        if Localize.currentLanguage() != khmerLanguageCode {
+            Localize.setCurrentLanguage(khmerLanguageCode)
+        }
+        
+        UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Regular.ttf", bundle: Bundle.main)
+        UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Bold.ttf", bundle: Bundle.main)
+        
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
         
         return true
     }

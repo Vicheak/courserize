@@ -1,0 +1,15 @@
+/* 
+  ButtonTitles.strings
+  online-course-app
+
+  Created by @suonvicheakdev on 29/7/24.
+  
+*/
+
+"Login" = "ចូលគណនី";
+"Forget password?" = "ភ្លេចលេខសំងាត់?";
+"Don't have an account? sign up now" = "មិនទាន់មានគណនីឬ?​ ចុះឈ្មោះទីនេះ";
+"Sign Up" = "ចុះឈ្មោះគណនីថ្មី";
+"Continue" = "បន្ត";
+"Confirm" = "យល់ព្រម";
+"Resend Code" = "ផ្ញើកូដម្តងទៀត";

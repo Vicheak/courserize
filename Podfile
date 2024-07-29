@@ -12,5 +12,6 @@ target 'online-course-app' do
   pod 'Alamofire'
   source 'https://github.com/CocoaPods/Specs.git'
   pod 'Localize-Swift', '~> 3.2'
+  pod 'SwiftEntryKit', '2.0.0'
 
 end

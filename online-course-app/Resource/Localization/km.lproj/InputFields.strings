@@ -1,0 +1,19 @@
+/* 
+  InputFields.strings
+  online-course-app
+
+  Created by @suonvicheakdev on 29/7/24.
+  
+*/
+
+"Email" = "អ៉ីម៉ែល";
+"Password" = "លេខសំងាត់";
+"Enter your username" = "វាយបញ្ចូលឈ្មោះរបស់អ្នក";
+"Enter your email" = "វាយបញ្ចូលអ៉ីម៉ែល";
+"Enter phone number" = "វាយបញ្ចូលលេខទូរស័ព្ទ";
+"Choose your gender" = "ជ្រើសរើសភេទរបស់អ្នក";
+"Choose your birth date" = "ជ្រើសរើសថ្ងៃខែឆ្នាំកំណើតរបស់អ្នក";
+"Enter password" = "វាយបញ្ចូលលេខសំងាត់";
+"Enter password confirmation" = "វាយបញ្ចូលលេខសំងាត់ម្តងទៀត";
+"Enter your own email" = "វាយបញ្ចូលអ៉ីម៉ែលរបស់អ្នក";
+"Please verify your email" = "ផ្ទៀងផ្ទាត់អ៉ីម៉ែលរបស់អ្នក";

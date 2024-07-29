@@ -1,0 +1,19 @@
+/* 
+  InputFields.strings
+  online-course-app
+
+  Created by @suonvicheakdev on 29/7/24.
+  
+*/
+
+"Email" = "Email";
+"Password" = "Password";
+"Enter your username" = "Enter your username";
+"Enter your email" = "Enter your email"; 
+"Enter phone number" = "Enter phone number";
+"Choose your gender" = "Choose your gender";
+"Choose your birth date" = "Choose your birth date";
+"Enter password" = "Enter password";
+"Enter password confirmation" = "Enter password confirmation";
+"Enter your own email" = "Enter your own email";
+"Please verify your email" = "Please verify your email";

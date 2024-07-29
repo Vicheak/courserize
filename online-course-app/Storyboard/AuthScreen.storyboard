@@ -25,38 +25,44 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sxH-QW-QHG">
-                                                <rect key="frame" x="10" y="122.66666666666666" width="373" height="469.66666666666674"/>
+                                                <rect key="frame" x="10" y="120" width="373" height="475"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ចូលគណនី" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GvQ-Ls-WW2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="28.666666666666668"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="28"/>
+                                                        <fontDescription key="fontDescription" name="KhmerOSmuol" family="Khmer OS Muol" pointSize="24"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-form-background" translatesAutoresizingMaskIntoConstraints="NO" id="33h-su-bsk">
-                                                        <rect key="frame" x="0.0" y="48.666666666666657" width="373" height="150"/>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-form-bg2" translatesAutoresizingMaskIntoConstraints="NO" id="33h-su-bsk">
+                                                        <rect key="frame" x="0.0" y="48" width="373" height="150"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="150" id="9Ul-fg-VLC"/>
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mxf-Oj-eOE" userLabel="Stack View">
-                                                        <rect key="frame" x="0.0" y="218.66666666666663" width="373" height="78"/>
+                                                        <rect key="frame" x="0.0" y="218" width="373" height="84"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="អ៉ីម៉ែល" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Jo-Se-5KU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="38" id="WzL-QH-4Cy"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9tP-NZ-9kr" userLabel="Inner View">
-                                                                <rect key="frame" x="0.0" y="44" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="48" width="373" height="36"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="លេខសំងាត់" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qnf-qw-ckX">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="38" id="h8u-Fl-fJb"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaD-1G-kZA">
-                                                                        <rect key="frame" x="343" y="9" width="20" height="15"/>
+                                                                        <rect key="frame" x="343" y="11" width="20" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="15" id="dDC-as-oke"/>
                                                                             <constraint firstAttribute="width" constant="20" id="pbk-KM-FrW"/>
@@ -72,14 +78,14 @@
                                                                     <constraint firstItem="qnf-qw-ckX" firstAttribute="leading" secondItem="9tP-NZ-9kr" secondAttribute="leading" id="JSu-Tv-WJT"/>
                                                                     <constraint firstAttribute="bottom" secondItem="kaD-1G-kZA" secondAttribute="bottom" constant="10" id="Jlb-nm-GxK"/>
                                                                     <constraint firstItem="qnf-qw-ckX" firstAttribute="top" secondItem="9tP-NZ-9kr" secondAttribute="top" id="Nzl-xC-nzb"/>
-                                                                    <constraint firstItem="kaD-1G-kZA" firstAttribute="top" secondItem="9tP-NZ-9kr" secondAttribute="top" constant="9" id="fOn-dP-bAb"/>
+                                                                    <constraint firstItem="kaD-1G-kZA" firstAttribute="top" secondItem="9tP-NZ-9kr" secondAttribute="top" constant="11" id="fOn-dP-bAb"/>
                                                                     <constraint firstAttribute="trailing" secondItem="kaD-1G-kZA" secondAttribute="trailing" constant="10" id="jjE-TU-yx0"/>
                                                                 </constraints>
                                                             </view>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pPD-GB-7Y6">
-                                                        <rect key="frame" x="0.0" y="316.66666666666674" width="373" height="153"/>
+                                                        <rect key="frame" x="0.0" y="322" width="373" height="153"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVc-Q3-Nl5">
                                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="34.333333333333336"/>
@@ -90,7 +96,7 @@
                                                                 </buttonConfiguration>
                                                             </button>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GTS-YG-LQ6">
-                                                                <rect key="frame" x="0.0" y="64.333333333333258" width="373" height="88.666666666666686"/>
+                                                                <rect key="frame" x="0.0" y="64.333333333333371" width="373" height="88.666666666666686"/>
                                                                 <subviews>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EuQ-O4-V61">
                                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="34.333333333333336"/>
@@ -104,7 +110,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8MC-8k-yxP">
-                                                                        <rect key="frame" x="0.0" y="54.333333333333371" width="373" height="34.333333333333343"/>
+                                                                        <rect key="frame" x="0.0" y="54.333333333333258" width="373" height="34.333333333333343"/>
                                                                         <state key="normal" title="Button"/>
                                                                         <buttonConfiguration key="configuration" style="plain" title="មិនទាន់មានគណនីឬ?​ ចុចទីនេះដើម្បីចុះឈ្មោះ">
                                                                             <color key="baseForegroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -120,10 +126,10 @@
                                                 </subviews>
                                             </stackView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfM-Xk-Ahe">
-                                                <rect key="frame" x="328" y="675" width="50" height="30"/>
+                                                <rect key="frame" x="338" y="685" width="40" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="37e-dE-gAJ"/>
-                                                    <constraint firstAttribute="width" constant="50" id="dHK-IK-jFP"/>
+                                                    <constraint firstAttribute="height" constant="20" id="37e-dE-gAJ"/>
+                                                    <constraint firstAttribute="width" constant="40" id="dHK-IK-jFP"/>
                                                 </constraints>
                                                 <state key="normal" title="Button" image="cambodia-logo">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -196,6 +202,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="FWP-Kf-5GS">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="QEo-7k-FF3"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="OdJ-D0-J1O">
                             <connections>
                                 <segue destination="9Ie-Uy-6uK" kind="show" id="RHc-tX-NNw"/>
@@ -209,7 +216,9 @@
                         <outlet property="eyeToggleButton" destination="kaD-1G-kZA" id="Qrq-BE-4uU"/>
                         <outlet property="forgetPasswordButton" destination="EuQ-O4-V61" id="9oC-Qq-yer"/>
                         <outlet property="gesture" destination="qez-8Z-1X8" id="z0B-JK-7Y0"/>
+                        <outlet property="guestUserButton" destination="QEo-7k-FF3" id="F56-X9-HqL"/>
                         <outlet property="loginButton" destination="aVc-Q3-Nl5" id="Z55-Hb-bmj"/>
+                        <outlet property="loginImageView" destination="33h-su-bsk" id="bnI-1m-IX8"/>
                         <outlet property="passwordTextField" destination="qnf-qw-ckX" id="gtl-FF-gnn"/>
                         <outlet property="registerButton" destination="8MC-8k-yxP" id="Oeb-9n-i8K"/>
                         <outlet property="scrollView" destination="4fJ-f5-AlQ" id="4Xw-Kk-4O2"/>
@@ -253,7 +262,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="33o-F2-LNJ">
-                                                <rect key="frame" x="10" y="48" width="373" height="619"/>
+                                                <rect key="frame" x="10" y="32" width="373" height="651"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ចុះឈ្មោះគណនីថ្មី" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUs-b8-jrf">
                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="28.666666666666668"/>
@@ -268,57 +277,69 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Dv0-bN-vIF" userLabel="Stack View">
-                                                        <rect key="frame" x="0.0" y="168.66666666666669" width="373" height="396.00000000000006"/>
+                                                        <rect key="frame" x="0.0" y="168.66666666666669" width="373" height="428.00000000000006"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលឈ្មោះរបស់អ្នក" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mlr-eO-1iO">
-                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="38" id="Ksr-Py-btb"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលអ៉ីម៉ែល" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgv-lk-UMs">
-                                                                <rect key="frame" x="0.0" y="44" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="48" width="373" height="38"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="38" id="Q0q-Sh-yyE"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                                             </textField>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលលេខទូរស័ព្ទ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hkx-wr-1Sw">
-                                                                <rect key="frame" x="0.0" y="88" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="96" width="373" height="38"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="38" id="4sc-CP-YBy"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ជ្រើសរើសភេទរបស់អ្នក" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHG-fU-MtB">
-                                                                <rect key="frame" x="0.0" y="132" width="373" height="18"/>
+                                                                <rect key="frame" x="0.0" y="144" width="373" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dft-ZN-0OB">
-                                                                <rect key="frame" x="0.0" y="160" width="373" height="55"/>
+                                                                <rect key="frame" x="0.0" y="172" width="373" height="70"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="55" id="lHS-QF-eks"/>
+                                                                    <constraint firstAttribute="height" constant="70" id="lHS-QF-eks"/>
                                                                 </constraints>
                                                             </pickerView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ជ្រើសរើសថ្ងៃខែឆ្នាំកំណើតរបស់អ្នក" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oSS-nd-XKx">
-                                                                <rect key="frame" x="0.0" y="224.99999999999994" width="373" height="18"/>
+                                                                <rect key="frame" x="0.0" y="251.99999999999994" width="373" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Jd5-95-PMm">
-                                                                <rect key="frame" x="0.0" y="252.99999999999994" width="373" height="55"/>
+                                                                <rect key="frame" x="0.0" y="279.99999999999994" width="373" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="HcD-5W-u4W"/>
                                                                 </constraints>
                                                             </datePicker>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh4-0S-nk7" userLabel="Inner View">
-                                                                <rect key="frame" x="0.0" y="317.99999999999994" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="344.99999999999994" width="373" height="36"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលលេខសំងាត់" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hDW-o2-ekg">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="38" id="kxZ-nb-CJW"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n8h-Xm-6Uk">
-                                                                        <rect key="frame" x="343" y="9" width="20" height="15"/>
+                                                                        <rect key="frame" x="343" y="11" width="20" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="8Xj-lV-y16"/>
                                                                             <constraint firstAttribute="height" constant="15" id="QVS-0O-AKi"/>
@@ -332,22 +353,25 @@
                                                                 <constraints>
                                                                     <constraint firstItem="hDW-o2-ekg" firstAttribute="top" secondItem="lh4-0S-nk7" secondAttribute="top" id="C0q-w0-TTu"/>
                                                                     <constraint firstAttribute="trailing" secondItem="hDW-o2-ekg" secondAttribute="trailing" id="M80-mu-bGT"/>
-                                                                    <constraint firstItem="n8h-Xm-6Uk" firstAttribute="top" secondItem="lh4-0S-nk7" secondAttribute="top" constant="9" id="Sx5-T5-zDc"/>
+                                                                    <constraint firstItem="n8h-Xm-6Uk" firstAttribute="top" secondItem="lh4-0S-nk7" secondAttribute="top" constant="11" id="Sx5-T5-zDc"/>
                                                                     <constraint firstAttribute="bottom" secondItem="n8h-Xm-6Uk" secondAttribute="bottom" constant="10" id="bOK-nU-0By"/>
                                                                     <constraint firstItem="hDW-o2-ekg" firstAttribute="leading" secondItem="lh4-0S-nk7" secondAttribute="leading" id="cdq-xG-ztX"/>
                                                                     <constraint firstAttribute="trailing" secondItem="n8h-Xm-6Uk" secondAttribute="trailing" constant="10" id="rhC-4R-XnL"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YJC-Ei-p1g" userLabel="Inner View">
-                                                                <rect key="frame" x="0.0" y="361.99999999999994" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="390.99999999999994" width="373" height="37"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលលេខសំងាត់ម្តងទៀត" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YVn-bE-SCa">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="38" id="hJY-3F-NCw"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sQp-ge-Dea">
-                                                                        <rect key="frame" x="343" y="9" width="20" height="15"/>
+                                                                        <rect key="frame" x="343" y="12" width="20" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="15" id="5O4-fb-h5l"/>
                                                                             <constraint firstAttribute="width" constant="20" id="B8p-jU-Fba"/>
@@ -362,7 +386,7 @@
                                                                     <constraint firstAttribute="bottom" secondItem="sQp-ge-Dea" secondAttribute="bottom" constant="10" id="5v5-sV-OOm"/>
                                                                     <constraint firstItem="YVn-bE-SCa" firstAttribute="leading" secondItem="YJC-Ei-p1g" secondAttribute="leading" id="RIq-or-28d"/>
                                                                     <constraint firstAttribute="trailing" secondItem="sQp-ge-Dea" secondAttribute="trailing" constant="10" id="dTv-0J-2w1"/>
-                                                                    <constraint firstItem="sQp-ge-Dea" firstAttribute="top" secondItem="YJC-Ei-p1g" secondAttribute="top" constant="9" id="nrn-z6-rAD"/>
+                                                                    <constraint firstItem="sQp-ge-Dea" firstAttribute="top" secondItem="YJC-Ei-p1g" secondAttribute="top" constant="12" id="nrn-z6-rAD"/>
                                                                     <constraint firstItem="YVn-bE-SCa" firstAttribute="top" secondItem="YJC-Ei-p1g" secondAttribute="top" id="pZl-Xp-yCT"/>
                                                                     <constraint firstAttribute="trailing" secondItem="YVn-bE-SCa" secondAttribute="trailing" id="uoC-SO-Hkw"/>
                                                                 </constraints>
@@ -370,7 +394,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="chm-rR-PxC">
-                                                        <rect key="frame" x="0.0" y="584.66666666666663" width="373" height="34.333333333333371"/>
+                                                        <rect key="frame" x="0.0" y="616.66666666666663" width="373" height="34.333333333333371"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iR3-kT-g97">
                                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="34.333333333333336"/>
@@ -452,6 +476,8 @@
                     <connections>
                         <outlet property="birthDatePicker" destination="Jd5-95-PMm" id="UDk-Om-8Bo"/>
                         <outlet property="bottomConstraint" destination="Le5-3V-R0h" id="EbF-UR-DKa"/>
+                        <outlet property="chooseBirthDateLabel" destination="oSS-nd-XKx" id="aRB-ss-ZDJ"/>
+                        <outlet property="chooseGenderLabel" destination="qHG-fU-MtB" id="doZ-nR-rFe"/>
                         <outlet property="emailTextField" destination="mgv-lk-UMs" id="Y1w-1k-Fso"/>
                         <outlet property="eyeToggleButton" destination="n8h-Xm-6Uk" id="WML-yn-oEJ"/>
                         <outlet property="eyeToggleConfirmButton" destination="sQp-ge-Dea" id="W03-Cc-MvG"/>
@@ -504,7 +530,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="z6K-Pl-oss">
-                                                <rect key="frame" x="10" y="204" width="373" height="307"/>
+                                                <rect key="frame" x="10" y="202" width="373" height="311"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ភ្លេចលេខសំងាត់" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="orr-rq-WkK">
                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="28.666666666666668"/>
@@ -519,10 +545,13 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7dZ-eO-I4e" userLabel="Stack View">
-                                                        <rect key="frame" x="0.0" y="218.66666666666663" width="373" height="34"/>
+                                                        <rect key="frame" x="0.0" y="218.66666666666663" width="373" height="38"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fXz-aq-Ntw">
-                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="38" id="eM6-pz-5MK"/>
+                                                                </constraints>
                                                                 <string key="placeholder" base64-UTF8="YES">
 4Z6c4Z624Z6Z4Z6U4Z6J4Z+S4Z6F4Z684Z6b4Z6i4Z+J4Z644Z6Y4Z+J4Z+C4Z6bAOGemuGelOGen+Gf
 i+GeouGfkuGek+GegA
@@ -533,7 +562,7 @@ i+GeouGfkuGek+GegA
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="BWF-4F-tY1">
-                                                        <rect key="frame" x="0.0" y="272.66666666666663" width="373" height="34.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="276.66666666666663" width="373" height="34.333333333333314"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhL-mw-eWM">
                                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="34.333333333333336"/>
@@ -542,6 +571,9 @@ i+GeouGfkuGek+GegA
                                                                 <buttonConfiguration key="configuration" style="plain" title="បន្ត">
                                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
+                                                                <connections>
+                                                                    <segue destination="9vQ-18-gvP" kind="show" id="U0X-PR-eT7"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -635,13 +667,13 @@ i+GeouGfkuGek+GegA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5j-rs-lTe">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lKP-mq-RpI" userLabel="Main View">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="759"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Mjk-JZ-krt">
-                                                <rect key="frame" x="10" y="167.66666666666663" width="373" height="424"/>
+                                                <rect key="frame" x="10" y="135.66666666666663" width="373" height="444"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="កំណត់លេខសំងាត់គណនី" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IML-cw-HIq">
                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="28.666666666666668"/>
@@ -656,32 +688,38 @@ i+GeouGfkuGek+GegA
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Pi-ly-Fub" userLabel="Stack View">
-                                                        <rect key="frame" x="0.0" y="218.66666666666663" width="373" height="151"/>
+                                                        <rect key="frame" x="0.0" y="218.66666666666663" width="373" height="171"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ផ្ទៀងផ្ទាត់អ៉ីម៉ែលរបស់អ្នក" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIH-c8-bMk">
-                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="25"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="373" height="35"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="Cb2-Xz-FNI"/>
+                                                                    <constraint firstAttribute="height" constant="35" id="Cb2-Xz-FNI"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="អ៉ីម៉ែល" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8fo-TU-0Yz">
-                                                                <rect key="frame" x="0.0" y="33" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="43" width="373" height="38"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="38" id="BbK-kd-coH"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Sh-6o-KLe" userLabel="Inner View">
-                                                                <rect key="frame" x="0.0" y="75.000000000000057" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="89.000000000000057" width="373" height="37"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលលេខសំងាត់" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Ed-Wh-Iuy">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="38" id="wma-Yq-UpZ"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dK3-IL-bDR">
-                                                                        <rect key="frame" x="343" y="9" width="20" height="15"/>
+                                                                        <rect key="frame" x="343" y="12" width="20" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="15" id="DFw-VT-Fum"/>
                                                                             <constraint firstAttribute="width" constant="20" id="P5M-6t-pH8"/>
@@ -698,19 +736,22 @@ i+GeouGfkuGek+GegA
                                                                     <constraint firstAttribute="trailing" secondItem="dK3-IL-bDR" secondAttribute="trailing" constant="10" id="Fsj-7j-m5W"/>
                                                                     <constraint firstItem="3Ed-Wh-Iuy" firstAttribute="leading" secondItem="4Sh-6o-KLe" secondAttribute="leading" id="JAU-Ub-JbP"/>
                                                                     <constraint firstItem="3Ed-Wh-Iuy" firstAttribute="top" secondItem="4Sh-6o-KLe" secondAttribute="top" id="SIn-cz-73G"/>
-                                                                    <constraint firstItem="dK3-IL-bDR" firstAttribute="top" secondItem="4Sh-6o-KLe" secondAttribute="top" constant="9" id="f1v-KQ-Qsu"/>
+                                                                    <constraint firstItem="dK3-IL-bDR" firstAttribute="top" secondItem="4Sh-6o-KLe" secondAttribute="top" constant="12" id="f1v-KQ-Qsu"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7IA-cx-CIn" userLabel="Inner View">
-                                                                <rect key="frame" x="0.0" y="117.00000000000006" width="373" height="34"/>
+                                                                <rect key="frame" x="0.0" y="134.00000000000006" width="373" height="37"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="វាយបញ្ចូលលេខសំងាត់ម្តងទៀត" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sgs-I5-9G8">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="373" height="38"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="38" id="Aty-mL-MLT"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                                     </textField>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFi-4n-sz9">
-                                                                        <rect key="frame" x="343" y="9" width="20" height="15"/>
+                                                                        <rect key="frame" x="343" y="12" width="20" height="15"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="PFO-uT-K1X"/>
                                                                             <constraint firstAttribute="height" constant="15" id="xag-b7-OyD"/>
@@ -725,7 +766,7 @@ i+GeouGfkuGek+GegA
                                                                     <constraint firstAttribute="trailing" secondItem="YFi-4n-sz9" secondAttribute="trailing" constant="10" id="Idf-VN-2MA"/>
                                                                     <constraint firstAttribute="bottom" secondItem="YFi-4n-sz9" secondAttribute="bottom" constant="10" id="YA6-t5-PMy"/>
                                                                     <constraint firstAttribute="trailing" secondItem="sgs-I5-9G8" secondAttribute="trailing" id="Yvt-sl-1n7"/>
-                                                                    <constraint firstItem="YFi-4n-sz9" firstAttribute="top" secondItem="7IA-cx-CIn" secondAttribute="top" constant="9" id="gcX-zs-3m6"/>
+                                                                    <constraint firstItem="YFi-4n-sz9" firstAttribute="top" secondItem="7IA-cx-CIn" secondAttribute="top" constant="12" id="gcX-zs-3m6"/>
                                                                     <constraint firstItem="sgs-I5-9G8" firstAttribute="leading" secondItem="7IA-cx-CIn" secondAttribute="leading" id="lhP-oS-44H"/>
                                                                     <constraint firstItem="sgs-I5-9G8" firstAttribute="top" secondItem="7IA-cx-CIn" secondAttribute="top" id="rsg-dY-ddw"/>
                                                                 </constraints>
@@ -733,13 +774,13 @@ i+GeouGfkuGek+GegA
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="1TS-3V-267">
-                                                        <rect key="frame" x="0.0" y="389.66666666666674" width="373" height="34.333333333333314"/>
+                                                        <rect key="frame" x="0.0" y="409.66666666666674" width="373" height="34.333333333333314"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGY-g5-8qU">
                                                                 <rect key="frame" x="0.0" y="0.0" width="373" height="34.333333333333336"/>
                                                                 <color key="backgroundColor" red="0.062745098040000002" green="0.26274509800000001" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" title="ចុះឈ្មោះគណនីថ្មី">
+                                                                <buttonConfiguration key="configuration" style="plain" title="យល់ព្រម">
                                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </buttonConfiguration>
                                                             </button>
@@ -823,6 +864,7 @@ i+GeouGfkuGek+GegA
                         <outlet property="resetPasswordButton" destination="cGY-g5-8qU" id="52b-Kh-WEe"/>
                         <outlet property="scrollView" destination="a5j-rs-lTe" id="F0Z-pR-TOl"/>
                         <outlet property="titleLabel" destination="IML-cw-HIq" id="9J7-zN-NOS"/>
+                        <outlet property="verifyEmailLabel" destination="qIH-c8-bMk" id="BoW-kK-Sah"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uX4-YK-uVG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -877,7 +919,7 @@ i+GeouGfkuGek+GegA
                                                                             <constraint firstAttribute="width" constant="42" id="Ngd-G0-0p6"/>
                                                                             <constraint firstAttribute="height" constant="42" id="jAv-vd-JLW"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -920,7 +962,7 @@ i+GeouGfkuGek+GegA
                                                                             <constraint firstAttribute="width" constant="42" id="6uN-Cr-6ya"/>
                                                                             <constraint firstAttribute="height" constant="42" id="dBn-Wu-V7g"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -963,7 +1005,7 @@ i+GeouGfkuGek+GegA
                                                                             <constraint firstAttribute="width" constant="50" id="LyJ-xX-Zh4"/>
                                                                             <constraint firstAttribute="width" constant="42" id="kys-dC-FKr"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -1006,7 +1048,7 @@ i+GeouGfkuGek+GegA
                                                                             <constraint firstAttribute="width" constant="42" id="hFA-SO-Teb"/>
                                                                             <constraint firstAttribute="height" constant="50" id="uBK-gu-rlO"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -1049,7 +1091,7 @@ i+GeouGfkuGek+GegA
                                                                             <constraint firstAttribute="height" constant="42" id="XbC-Jn-Fb7"/>
                                                                             <constraint firstAttribute="height" constant="50" id="mr6-aH-2k5"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -1092,7 +1134,7 @@ i+GeouGfkuGek+GegA
                                                                             <constraint firstAttribute="width" constant="42" id="mtp-ZW-nf1"/>
                                                                             <constraint firstAttribute="width" constant="50" id="sNl-SP-b2F"/>
                                                                         </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                                         <variation key="default">
                                                                             <mask key="constraints">
@@ -1302,6 +1344,7 @@ i+GeouGfkuGek+GegA
                         <outlet property="gesture" destination="pBW-PC-2Pq" id="Lmb-d9-lgn"/>
                         <outlet property="scrollView" destination="0b4-IG-iP4" id="AoK-Y9-kQn"/>
                         <outlet property="sendCodeButton" destination="BKh-Ko-rnh" id="aey-QM-hYh"/>
+                        <outlet property="titleLabel" destination="SYk-yU-Xnb" id="ee5-vk-hqN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="488-Ae-nGa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1313,7 +1356,7 @@ i+GeouGfkuGek+GegA
     <resources>
         <image name="cambodia-logo" width="300" height="200"/>
         <image name="eye-show-icon" width="1024" height="769"/>
-        <image name="login-form-background" width="547" height="461"/>
+        <image name="login-form-bg2" width="450" height="450"/>
         <image name="preview-screen-background" width="360" height="640"/>
         <image name="register-form-background" width="256" height="256"/>
         <systemColor name="systemBackgroundColor">

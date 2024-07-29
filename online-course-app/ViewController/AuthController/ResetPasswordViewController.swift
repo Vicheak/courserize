@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class ResetPasswordViewController: UIViewController {
 
@@ -19,6 +20,7 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var resetPasswordButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
+    @IBOutlet weak var verifyEmailLabel: UILabel!
     
     var keyboardUtil: KeyboardUtil!
     
@@ -29,6 +31,8 @@ class ResetPasswordViewController: UIViewController {
         super.viewDidLoad()
         
         setUpViews()
+        
+        self.setText()
 
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
@@ -41,7 +45,33 @@ class ResetPasswordViewController: UIViewController {
         resetPasswordButton.addTarget(self, action: #selector(resetPasswordButtonTapped), for: .touchUpInside)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func setText(){
+        titleLabel.text = "Reset Account Password".localized(using: "ScreenTitles")
+        verifyEmailLabel.text = "Please verify your email".localized(using: "InputFields")
+        emailTextField.placeholder = "Email".localized(using: "InputFields")
+        passwordTextField.placeholder = "Enter password".localized(using: "InputFields")
+        passwordConfirmationTextField.placeholder = "Enter password confirmation".localized(using: "InputFields")
+        resetPasswordButton.setTitle("Confirm".localized(using: "ButtonTitles"), for: .normal)
+    }
+    
     func setUpViews(){
+        titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 24)
+        verifyEmailLabel.font = UIFont(name: "KhmerOSBattambang-Regular", size: 16)
+        emailTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        passwordTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        passwordConfirmationTextField.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        resetPasswordButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
+        
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         emailTextField.isEnabled = false
@@ -96,4 +126,3 @@ extension ResetPasswordViewController: UITextFieldDelegate {
     }
     
 }
-

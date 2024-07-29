@@ -7,6 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5255C90F2C57ECFD007FE420 /* InputFields.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5255C90D2C57ECFD007FE420 /* InputFields.strings */; };
+		5255C9122C57ED16007FE420 /* ButtonTitles.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9102C57ED16007FE420 /* ButtonTitles.strings */; };
+		5255C9172C58017D007FE420 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9162C58017D007FE420 /* LoadingView.swift */; };
+		5255C9192C58019B007FE420 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9182C58019B007FE420 /* LoadingViewController.swift */; };
+		5255C91C2C5804B9007FE420 /* Generals.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5255C91A2C5804B9007FE420 /* Generals.strings */; };
+		5255C9222C580AAF007FE420 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9212C580AAF007FE420 /* Alert.swift */; };
+		5255C9262C580F4E007FE420 /* NSNotification.Name + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9252C580F4E007FE420 /* NSNotification.Name + Ext.swift */; };
+		5255C9282C581833007FE420 /* PopUpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9272C581833007FE420 /* PopUpUtil.swift */; };
+		5255C93D2C582225007FE420 /* KhmerOS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C92B2C582222007FE420 /* KhmerOS.ttf */; };
+		5255C93E2C582225007FE420 /* KhmerOSNew-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C92C2C582222007FE420 /* KhmerOSNew-Regular.ttf */; };
+		5255C93F2C582225007FE420 /* KhmerOSNew-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C92D2C582222007FE420 /* KhmerOSNew-Bold.ttf */; };
+		5255C9402C582225007FE420 /* KhmerOSContent-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C92E2C582223007FE420 /* KhmerOSContent-Bold.ttf */; };
+		5255C9412C582225007FE420 /* KhmerOSDangrek.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C92F2C582223007FE420 /* KhmerOSDangrek.ttf */; };
+		5255C9422C582225007FE420 /* KhmerOSMetalchrieng.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9302C582223007FE420 /* KhmerOSMetalchrieng.ttf */; };
+		5255C9432C582225007FE420 /* KhmerOSKoulen.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9312C582223007FE420 /* KhmerOSKoulen.ttf */; };
+		5255C9442C582225007FE420 /* KhmerOSMoulLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9322C582223007FE420 /* KhmerOSMoulLight.ttf */; };
+		5255C9452C582225007FE420 /* KhmerOSSiemreap.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9332C582223007FE420 /* KhmerOSSiemreap.ttf */; };
+		5255C9462C582225007FE420 /* KhmerOSFasthand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9342C582223007FE420 /* KhmerOSFasthand.ttf */; };
+		5255C9472C582225007FE420 /* KhmerOSKangrey.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9352C582224007FE420 /* KhmerOSKangrey.ttf */; };
+		5255C9482C582225007FE420 /* KhmerOSBattambang-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9362C582224007FE420 /* KhmerOSBattambang-Bold.ttf */; };
+		5255C9492C582225007FE420 /* KhmerOSBassac.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9372C582224007FE420 /* KhmerOSBassac.ttf */; };
+		5255C94A2C582225007FE420 /* KhmerOSMoulpali.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9382C582224007FE420 /* KhmerOSMoulpali.ttf */; };
+		5255C94B2C582225007FE420 /* KhmerOSFreehand.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9392C582224007FE420 /* KhmerOSFreehand.ttf */; };
+		5255C94C2C582225007FE420 /* KhmerOSBattambang-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C93A2C582224007FE420 /* KhmerOSBattambang-Regular.ttf */; };
+		5255C94D2C582225007FE420 /* KhmerOSContent-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C93B2C582225007FE420 /* KhmerOSContent-Regular.ttf */; };
+		5255C94E2C582225007FE420 /* KhmerOSBokor.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C93C2C582225007FE420 /* KhmerOSBokor.ttf */; };
+		5255C9502C58224F007FE420 /* UIFont + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C94F2C58224F007FE420 /* UIFont + Ext.swift */; };
 		526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */; };
 		526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA602C563923005F54DA /* UIColor + Ext.swift */; };
 		526EBA632C564723005F54DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA622C564723005F54DA /* LoginViewController.swift */; };
@@ -21,10 +48,41 @@
 		528C63E62C55E72D009FD199 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 528C63E52C55E72D009FD199 /* Base */; };
 		528C63F32C55E8D5009FD199 /* AuthScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */; };
 		528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F62C55EAAA009FD199 /* Main.storyboard */; };
+		52DEE79E2C57E9E200E0BC60 /* ScreenTitles.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52DEE79C2C57E9E200E0BC60 /* ScreenTitles.strings */; };
 		EFAC3B2C2408D091C6F1C64B /* Pods_online_course_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5255C90E2C57ECFD007FE420 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/InputFields.strings; sourceTree = "<group>"; };
+		5255C9112C57ED16007FE420 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/ButtonTitles.strings; sourceTree = "<group>"; };
+		5255C9132C57ED1C007FE420 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InputFields.strings; sourceTree = "<group>"; };
+		5255C9142C57ED1E007FE420 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ButtonTitles.strings; sourceTree = "<group>"; };
+		5255C9162C58017D007FE420 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		5255C9182C58019B007FE420 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		5255C91B2C5804B9007FE420 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/Generals.strings; sourceTree = "<group>"; };
+		5255C91D2C5804BC007FE420 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Generals.strings; sourceTree = "<group>"; };
+		5255C9212C580AAF007FE420 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = ../../../../../../Alert.swift; sourceTree = "<group>"; };
+		5255C9252C580F4E007FE420 /* NSNotification.Name + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name + Ext.swift"; sourceTree = "<group>"; };
+		5255C9272C581833007FE420 /* PopUpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpUtil.swift; sourceTree = "<group>"; };
+		5255C92B2C582222007FE420 /* KhmerOS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOS.ttf; sourceTree = "<group>"; };
+		5255C92C2C582222007FE420 /* KhmerOSNew-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSNew-Regular.ttf"; sourceTree = "<group>"; };
+		5255C92D2C582222007FE420 /* KhmerOSNew-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSNew-Bold.ttf"; sourceTree = "<group>"; };
+		5255C92E2C582223007FE420 /* KhmerOSContent-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSContent-Bold.ttf"; sourceTree = "<group>"; };
+		5255C92F2C582223007FE420 /* KhmerOSDangrek.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSDangrek.ttf; sourceTree = "<group>"; };
+		5255C9302C582223007FE420 /* KhmerOSMetalchrieng.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSMetalchrieng.ttf; sourceTree = "<group>"; };
+		5255C9312C582223007FE420 /* KhmerOSKoulen.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSKoulen.ttf; sourceTree = "<group>"; };
+		5255C9322C582223007FE420 /* KhmerOSMoulLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSMoulLight.ttf; sourceTree = "<group>"; };
+		5255C9332C582223007FE420 /* KhmerOSSiemreap.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSSiemreap.ttf; sourceTree = "<group>"; };
+		5255C9342C582223007FE420 /* KhmerOSFasthand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSFasthand.ttf; sourceTree = "<group>"; };
+		5255C9352C582224007FE420 /* KhmerOSKangrey.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSKangrey.ttf; sourceTree = "<group>"; };
+		5255C9362C582224007FE420 /* KhmerOSBattambang-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSBattambang-Bold.ttf"; sourceTree = "<group>"; };
+		5255C9372C582224007FE420 /* KhmerOSBassac.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSBassac.ttf; sourceTree = "<group>"; };
+		5255C9382C582224007FE420 /* KhmerOSMoulpali.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSMoulpali.ttf; sourceTree = "<group>"; };
+		5255C9392C582224007FE420 /* KhmerOSFreehand.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSFreehand.ttf; sourceTree = "<group>"; };
+		5255C93A2C582224007FE420 /* KhmerOSBattambang-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSBattambang-Regular.ttf"; sourceTree = "<group>"; };
+		5255C93B2C582225007FE420 /* KhmerOSContent-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSContent-Regular.ttf"; sourceTree = "<group>"; };
+		5255C93C2C582225007FE420 /* KhmerOSBokor.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSBokor.ttf; sourceTree = "<group>"; };
+		5255C94F2C58224F007FE420 /* UIFont + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Ext.swift"; sourceTree = "<group>"; };
 		526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtil.swift; sourceTree = "<group>"; };
 		526EBA602C563923005F54DA /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		526EBA622C564723005F54DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +99,8 @@
 		528C63E72C55E72D009FD199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthScreen.storyboard; sourceTree = "<group>"; };
 		528C63F62C55EAAA009FD199 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		52DEE79D2C57E9E200E0BC60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
+		52DEE79F2C57E9E700E0BC60 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
 		6D775617AA3B7A6C2FD0AABB /* Pods-online-course-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-online-course-app.debug.xcconfig"; path = "Target Support Files/Pods-online-course-app/Pods-online-course-app.debug.xcconfig"; sourceTree = "<group>"; };
 		9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_online_course_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE95B5D8139851594791A6A9 /* Pods-online-course-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-online-course-app.release.xcconfig"; path = "Target Support Files/Pods-online-course-app/Pods-online-course-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -58,10 +118,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5255C9152C580171007FE420 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5255C9162C58017D007FE420 /* LoadingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5255C9202C580A7E007FE420 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		5255C9292C5821DD007FE420 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				52DEE79C2C57E9E200E0BC60 /* ScreenTitles.strings */,
+				5255C90D2C57ECFD007FE420 /* InputFields.strings */,
+				5255C9102C57ED16007FE420 /* ButtonTitles.strings */,
+				5255C91A2C5804B9007FE420 /* Generals.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		5255C92A2C5821FD007FE420 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				5255C92B2C582222007FE420 /* KhmerOS.ttf */,
+				5255C9372C582224007FE420 /* KhmerOSBassac.ttf */,
+				5255C9362C582224007FE420 /* KhmerOSBattambang-Bold.ttf */,
+				5255C93A2C582224007FE420 /* KhmerOSBattambang-Regular.ttf */,
+				5255C93C2C582225007FE420 /* KhmerOSBokor.ttf */,
+				5255C92E2C582223007FE420 /* KhmerOSContent-Bold.ttf */,
+				5255C93B2C582225007FE420 /* KhmerOSContent-Regular.ttf */,
+				5255C92F2C582223007FE420 /* KhmerOSDangrek.ttf */,
+				5255C9342C582223007FE420 /* KhmerOSFasthand.ttf */,
+				5255C9392C582224007FE420 /* KhmerOSFreehand.ttf */,
+				5255C9352C582224007FE420 /* KhmerOSKangrey.ttf */,
+				5255C9312C582223007FE420 /* KhmerOSKoulen.ttf */,
+				5255C9302C582223007FE420 /* KhmerOSMetalchrieng.ttf */,
+				5255C9322C582223007FE420 /* KhmerOSMoulLight.ttf */,
+				5255C9382C582224007FE420 /* KhmerOSMoulpali.ttf */,
+				5255C92D2C582222007FE420 /* KhmerOSNew-Bold.ttf */,
+				5255C92C2C582222007FE420 /* KhmerOSNew-Regular.ttf */,
+				5255C9332C582223007FE420 /* KhmerOSSiemreap.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		526EBA5F2C563914005F54DA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				526EBA602C563923005F54DA /* UIColor + Ext.swift */,
+				5255C9252C580F4E007FE420 /* NSNotification.Name + Ext.swift */,
+				5255C94F2C58224F007FE420 /* UIFont + Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -90,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				526EBA712C5664BC005F54DA /* SettingViewController.swift */,
+				5255C9182C58019B007FE420 /* LoadingViewController.swift */,
 			);
 			path = GeneralController;
 			sourceTree = "<group>";
@@ -115,12 +229,14 @@
 		528C63D82C55E72B009FD199 /* online-course-app */ = {
 			isa = PBXGroup;
 			children = (
+				5255C9202C580A7E007FE420 /* Validation */,
+				5255C9152C580171007FE420 /* View */,
+				52DEE79B2C57E9AE00E0BC60 /* Model */,
+				52DEE79A2C57E9A300E0BC60 /* Resource */,
 				526EBA642C5659AD005F54DA /* Service */,
 				526EBA5F2C563914005F54DA /* Extension */,
 				528C63F12C55E899009FD199 /* Storyboard */,
-				528C63F02C55E886009FD199 /* Resources */,
 				528C63EF2C55E87F009FD199 /* Util */,
-				528C63EE2C55E879009FD199 /* Model */,
 				528C63ED2C55E862009FD199 /* ViewController */,
 				528C63D92C55E72B009FD199 /* AppDelegate.swift */,
 				528C63F62C55EAAA009FD199 /* Main.storyboard */,
@@ -140,26 +256,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		528C63EE2C55E879009FD199 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		528C63EF2C55E87F009FD199 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */,
+				5255C9212C580AAF007FE420 /* Alert.swift */,
+				5255C9272C581833007FE420 /* PopUpUtil.swift */,
 			);
 			path = Util;
-			sourceTree = "<group>";
-		};
-		528C63F02C55E886009FD199 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		528C63F12C55E899009FD199 /* Storyboard */ = {
@@ -168,6 +272,22 @@
 				528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		52DEE79A2C57E9A300E0BC60 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				5255C92A2C5821FD007FE420 /* Font */,
+				5255C9292C5821DD007FE420 /* Localization */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		52DEE79B2C57E9AE00E0BC60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		ACAE0637094B90330EBF0EFA /* Pods */ = {
@@ -226,11 +346,12 @@
 			};
 			buildConfigurationList = 528C63D12C55E72B009FD199 /* Build configuration list for PBXProject "online-course-app" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = km;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				km,
 			);
 			mainGroup = 528C63CD2C55E72B009FD199;
 			productRefGroup = 528C63D72C55E72B009FD199 /* Products */;
@@ -247,10 +368,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5255C93E2C582225007FE420 /* KhmerOSNew-Regular.ttf in Resources */,
+				5255C94A2C582225007FE420 /* KhmerOSMoulpali.ttf in Resources */,
+				5255C9452C582225007FE420 /* KhmerOSSiemreap.ttf in Resources */,
+				5255C9422C582225007FE420 /* KhmerOSMetalchrieng.ttf in Resources */,
+				5255C94D2C582225007FE420 /* KhmerOSContent-Regular.ttf in Resources */,
+				5255C9412C582225007FE420 /* KhmerOSDangrek.ttf in Resources */,
 				528C63E32C55E72D009FD199 /* Assets.xcassets in Resources */,
+				5255C91C2C5804B9007FE420 /* Generals.strings in Resources */,
+				5255C93F2C582225007FE420 /* KhmerOSNew-Bold.ttf in Resources */,
+				5255C9472C582225007FE420 /* KhmerOSKangrey.ttf in Resources */,
 				528C63E62C55E72D009FD199 /* Base in Resources */,
+				5255C9402C582225007FE420 /* KhmerOSContent-Bold.ttf in Resources */,
+				5255C94E2C582225007FE420 /* KhmerOSBokor.ttf in Resources */,
+				5255C9432C582225007FE420 /* KhmerOSKoulen.ttf in Resources */,
 				528C63F32C55E8D5009FD199 /* AuthScreen.storyboard in Resources */,
+				5255C9462C582225007FE420 /* KhmerOSFasthand.ttf in Resources */,
+				5255C9122C57ED16007FE420 /* ButtonTitles.strings in Resources */,
+				5255C9492C582225007FE420 /* KhmerOSBassac.ttf in Resources */,
+				5255C93D2C582225007FE420 /* KhmerOS.ttf in Resources */,
 				528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */,
+				5255C94C2C582225007FE420 /* KhmerOSBattambang-Regular.ttf in Resources */,
+				5255C90F2C57ECFD007FE420 /* InputFields.strings in Resources */,
+				5255C9442C582225007FE420 /* KhmerOSMoulLight.ttf in Resources */,
+				5255C9482C582225007FE420 /* KhmerOSBattambang-Bold.ttf in Resources */,
+				52DEE79E2C57E9E200E0BC60 /* ScreenTitles.strings in Resources */,
+				5255C94B2C582225007FE420 /* KhmerOSFreehand.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,25 +449,67 @@
 				526EBA6F2C566471005F54DA /* ResetPasswordViewController.swift in Sources */,
 				526EBA6C2C56640F005F54DA /* VerifyCodeViewController.swift in Sources */,
 				526EBA632C564723005F54DA /* LoginViewController.swift in Sources */,
+				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
 				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
+				5255C9222C580AAF007FE420 /* Alert.swift in Sources */,
 				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,
 				526EBA682C565CB6005F54DA /* RegisterViewController.swift in Sources */,
 				526EBA6A2C5660FE005F54DA /* ForgetPasswordViewController.swift in Sources */,
 				526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */,
 				526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */,
+				5255C9262C580F4E007FE420 /* NSNotification.Name + Ext.swift in Sources */,
+				5255C9282C581833007FE420 /* PopUpUtil.swift in Sources */,
+				5255C9502C58224F007FE420 /* UIFont + Ext.swift in Sources */,
+				5255C9192C58019B007FE420 /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		5255C90D2C57ECFD007FE420 /* InputFields.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5255C90E2C57ECFD007FE420 /* km */,
+				5255C9132C57ED1C007FE420 /* en */,
+			);
+			name = InputFields.strings;
+			sourceTree = "<group>";
+		};
+		5255C9102C57ED16007FE420 /* ButtonTitles.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5255C9112C57ED16007FE420 /* km */,
+				5255C9142C57ED1E007FE420 /* en */,
+			);
+			name = ButtonTitles.strings;
+			sourceTree = "<group>";
+		};
+		5255C91A2C5804B9007FE420 /* Generals.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5255C91B2C5804B9007FE420 /* km */,
+				5255C91D2C5804BC007FE420 /* en */,
+			);
+			name = Generals.strings;
+			sourceTree = "<group>";
+		};
 		528C63E42C55E72D009FD199 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				528C63E52C55E72D009FD199 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		52DEE79C2C57E9E200E0BC60 /* ScreenTitles.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52DEE79D2C57E9E200E0BC60 /* en */,
+				52DEE79F2C57E9E700E0BC60 /* km */,
+			);
+			name = ScreenTitles.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -335,6 +520,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -398,6 +584,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

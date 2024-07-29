@@ -1,0 +1,13 @@
+/* 
+  ScreenTitles.strings
+  online-course-app
+
+  Created by @suonvicheakdev on 29/7/24.
+  
+*/
+
+"Login" = "ចូលគណនី";
+"Register New Account" = "ចុះឈ្មោះគណនីថ្មី";
+"Forget Password" = "ភ្លេចលេខសំងាត់";
+"Please enter 6 digit OTP code" = "សូមបញ្ចូលលេខកូដ OTP ចំនួន​ ៦ ខ្ទង់";
+"Reset Account Password" = "កំណត់លេខសំងាត់គណនី";
