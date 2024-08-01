@@ -12,7 +12,6 @@
 		5255C9172C58017D007FE420 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9162C58017D007FE420 /* LoadingView.swift */; };
 		5255C9192C58019B007FE420 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9182C58019B007FE420 /* LoadingViewController.swift */; };
 		5255C91C2C5804B9007FE420 /* Generals.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5255C91A2C5804B9007FE420 /* Generals.strings */; };
-		5255C9222C580AAF007FE420 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9212C580AAF007FE420 /* Alert.swift */; };
 		5255C9262C580F4E007FE420 /* NSNotification.Name + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9252C580F4E007FE420 /* NSNotification.Name + Ext.swift */; };
 		5255C9282C581833007FE420 /* PopUpUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9272C581833007FE420 /* PopUpUtil.swift */; };
 		5255C93D2C582225007FE420 /* KhmerOS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C92B2C582222007FE420 /* KhmerOS.ttf */; };
@@ -48,6 +47,7 @@
 		528C63E62C55E72D009FD199 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 528C63E52C55E72D009FD199 /* Base */; };
 		528C63F32C55E8D5009FD199 /* AuthScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */; };
 		528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F62C55EAAA009FD199 /* Main.storyboard */; };
+		52C11F092C5B4A4A00986229 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C11F082C5B4A4A00986229 /* Alert.swift */; };
 		52DEE79E2C57E9E200E0BC60 /* ScreenTitles.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52DEE79C2C57E9E200E0BC60 /* ScreenTitles.strings */; };
 		52EEB9532C58A35D004354DD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9522C58A35D004354DD /* Endpoint.swift */; };
 		52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9552C58A44B004354DD /* AuthResponseData.swift */; };
@@ -68,7 +68,6 @@
 		5255C9182C58019B007FE420 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		5255C91B2C5804B9007FE420 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/Generals.strings; sourceTree = "<group>"; };
 		5255C91D2C5804BC007FE420 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Generals.strings; sourceTree = "<group>"; };
-		5255C9212C580AAF007FE420 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Alert.swift; path = ../../../../../../Alert.swift; sourceTree = "<group>"; };
 		5255C9252C580F4E007FE420 /* NSNotification.Name + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification.Name + Ext.swift"; sourceTree = "<group>"; };
 		5255C9272C581833007FE420 /* PopUpUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpUtil.swift; sourceTree = "<group>"; };
 		5255C92B2C582222007FE420 /* KhmerOS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOS.ttf; sourceTree = "<group>"; };
@@ -106,6 +105,7 @@
 		528C63E72C55E72D009FD199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthScreen.storyboard; sourceTree = "<group>"; };
 		528C63F62C55EAAA009FD199 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		52C11F082C5B4A4A00986229 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		52DEE79D2C57E9E200E0BC60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
 		52DEE79F2C57E9E700E0BC60 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
 		52EEB9522C58A35D004354DD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -280,8 +280,8 @@
 			isa = PBXGroup;
 			children = (
 				526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */,
-				5255C9212C580AAF007FE420 /* Alert.swift */,
 				5255C9272C581833007FE420 /* PopUpUtil.swift */,
+				52C11F082C5B4A4A00986229 /* Alert.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -492,8 +492,8 @@
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
 				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
 				52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */,
+				52C11F092C5B4A4A00986229 /* Alert.swift in Sources */,
 				52EEB9592C590E98004354DD /* DataValidation .swift in Sources */,
-				5255C9222C580AAF007FE420 /* Alert.swift in Sources */,
 				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,
 				526EBA682C565CB6005F54DA /* RegisterViewController.swift in Sources */,
 				526EBA6A2C5660FE005F54DA /* ForgetPasswordViewController.swift in Sources */,
