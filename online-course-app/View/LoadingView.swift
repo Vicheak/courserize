@@ -51,7 +51,7 @@ class LoadingView: UIView {
         textLabel.snp.makeConstraints { make in
             make.top.right.bottom.equalToSuperview().inset(10)
             make.left.equalTo(indicatorView.snp.right).inset(-10)
-            make.height.greaterThanOrEqualTo(60)
+            make.height.equalTo(60)
         }
 
         layoutIfNeeded()

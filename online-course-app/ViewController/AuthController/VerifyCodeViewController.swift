@@ -26,6 +26,8 @@ class VerifyCodeViewController: UIViewController {
     
     var keyboardUtil: KeyboardUtil!
     
+    var email: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -85,7 +87,52 @@ class VerifyCodeViewController: UIViewController {
     }
     
     @objc func confirmButtonTapped(){
+        let code1 = codeTextField1.text ?? ""
+        let code2 = codeTextField2.text ?? ""
+        let code3 = codeTextField3.text ?? ""
+        let code4 = codeTextField4.text ?? ""
+        let code5 = codeTextField5.text ?? ""
+        let code6 = codeTextField6.text ?? ""
         
+        let message = "Please fill in OTP Code"
+        
+        //validate OTP code
+        if DataValidation.validateRequired(field: code1, fieldName: "", message: message) &&
+            DataValidation.validateRequired(field: code2, fieldName: "", message: message) &&
+            DataValidation.validateRequired(field: code3, fieldName: "", message: message) &&
+            DataValidation.validateRequired(field: code4, fieldName: "", message: message) &&
+            DataValidation.validateRequired(field: code5, fieldName: "", message: message) &&
+            DataValidation.validateRequired(field: code6, fieldName: "", message: message){
+            let otpCode = code1 + code2 + code3 + code4 + code5 + code6
+            print("OTP Code : \(otpCode)")
+            
+            let alertController = LoadingViewController()
+            present(alertController, animated: true) {
+                AuthAPIService.shared.verifyCode(email: self.email, verifiedCode: otpCode) { response in
+                    alertController.dismiss(animated: true) {
+                        switch response {
+                        case .success(let result):
+                            print("Response success :", result)
+                            PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { [weak self] in
+                                guard let self = self else { return }
+                                dismiss(animated: true)
+                            }
+                        case .failure(let error):
+                            print("Response failure :", error)
+                            if let errorResponseData = error as? ErrorResponseData {
+                                if errorResponseData.code == 400 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseData.errors[0].message, withAlert: .warning) {}
+                                }
+                            } else if let errorResponseMessage = error as? ErrorResponseMessage {
+                                if errorResponseMessage.code == 401 {
+                                    PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: errorResponseMessage.errors, withAlert: .cross) {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

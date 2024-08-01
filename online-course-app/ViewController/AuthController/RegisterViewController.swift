@@ -33,6 +33,7 @@ class RegisterViewController: UIViewController {
     let eyeHideIcon = UIImage(named: "eye-hide-icon")!
     
     let genders = ["male", "female"]
+    var selectedGender: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,11 +120,62 @@ class RegisterViewController: UIViewController {
     }
     
     @objc func registerButtonTapped(){
-        let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(identifier: "VerifyCodeViewController")
-        viewController.modalPresentationStyle = .fullScreen
-        viewController.modalTransitionStyle = .coverVertical
-        present(viewController, animated: true)
+        let username = usernameTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let phoneNumber = phoneNumberTextField.text ?? ""
+        let gender = selectedGender ?? genders[0]
+        let birthDate = RegisterViewController.dateFormatter.string(from: birthDatePicker.date)
+        let password = passwordTextField.text ?? ""
+        let passwordConfirmation = passwordConfirmTextField.text ?? ""
+        
+        if DataValidation.validateRequired(field: username, fieldName: "Username") &&
+            DataValidation.validateRequired(field: email, fieldName: "Email") &&
+            DataValidation.validateRequired(field: phoneNumber, fieldName: "Phone number") &&
+            DataValidation.validateRequired(field: password, fieldName: "Password") &&
+            DataValidation.validateRequired(field: passwordConfirmation, fieldName: "Password Confirmation"){
+            if password.count < 8 {
+                PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: "The password must be at least 8 characters!", withAlert: .warning) {}
+                return
+            }
+            if password != passwordConfirmation {
+                PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: "The password confirmation does not match", withAlert: .warning) {}
+                return
+            }
+            
+            let alertController = LoadingViewController()
+            present(alertController, animated: true) {
+                AuthAPIService.shared.register(username: username, email: email, phoneNumber: phoneNumber, gender: gender, birthDate: birthDate, password: password) { response in
+                    alertController.dismiss(animated: true) {
+                        switch response {
+                        case .success(let result):
+                            print("Response success :", result)
+                            PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { [weak self] in
+                                guard let self = self else { return }
+                                //verify code screen
+                                let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
+                                let verifyCodeViewController = storyboard.instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
+                                verifyCodeViewController.modalPresentationStyle = .fullScreen
+                                verifyCodeViewController.email = email
+                                present(verifyCodeViewController, animated: true)
+                            }
+                        case .failure(let error):
+                            print("Response failure :", error)
+                            if let errorResponseData = error as? ErrorResponseData {
+                                if errorResponseData.code == 400 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseData.errors[0].message, withAlert: .warning) {}
+                                } else if errorResponseData.code == 401 {
+                                    PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .cross) {}
+                                }
+                            } else if let errorResponseMessage = error as? ErrorResponseMessage {
+                                if errorResponseMessage.code == 409 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseMessage.errors, withAlert: .warning) {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
@@ -172,15 +224,20 @@ extension RegisterViewController: UITextFieldDelegate, UIPickerViewDelegate, UIP
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 //        print(genders[row])
+        selectedGender = genders[row]
     }
     
     @objc func dateChanged(){
+        //get the date from datePicker
+        let birthDate = RegisterViewController.dateFormatter.string(from: birthDatePicker.date)
+//        print(birthDate)
+        
+    }
+    
+    static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-               
-        //get the date from datePicker
-        let birthDate = dateFormatter.string(from: birthDatePicker.date)
-        print(birthDate)
-    }
+        return dateFormatter
+    }()
     
 }

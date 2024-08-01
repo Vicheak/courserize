@@ -7,6 +7,7 @@
 
 import UIKit
 import Localize_Swift
+import KeychainSwift
 
 class LoginViewController: UIViewController {
 
@@ -52,8 +53,6 @@ class LoginViewController: UIViewController {
         gesture.addTarget(self, action: #selector(tapGestureRecognizerTapped))
         eyeToggleButton.addTarget(self, action: #selector(togglePasswordShow), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
-        forgetPasswordButton.addTarget(self, action: #selector(forgetPasswordButtonTapped), for: .touchUpInside)
-        registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         changeLocalizeButton.addTarget(self, action: #selector(changeLocalizeButtonTapped), for: .touchUpInside)
     }
     
@@ -117,21 +116,55 @@ class LoginViewController: UIViewController {
     }
     
     @objc func loginButtonTapped(){
-//        let email = emailTextField.text ?? ""
-//        let password = passwordTextField.text ?? ""
+        let email = emailTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
         
-//        let viewController = AlertViewController(title: .warning, message: "Invalid email address")
-//        present(viewController, animated: true)
+        let alertController = LoadingViewController()
         
-        PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: "Invalid Email Address", withAlert: .warning)
+        if DataValidation.validateRequired(field: email, fieldName: "Email") &&
+            DataValidation.validateRequired(field: password, fieldName: "Password") {
+            present(alertController, animated: true) {
+                AuthAPIService.shared.login(email: email, password: password) { response in
+                    alertController.dismiss(animated: true) { [weak self] in
+                        guard let self = self else { return }
+                        switch response {
+                        case .success(let result):
+                            print("Response success :", result)
+                            proceedHomeScreen(email: email, accessToken: result.accessToken, refreshToken: result.refreshToken)
+                        case .failure(let error):
+                            print("Response failure :", error)
+                            if error.code == 400 {
+                                PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors[0].message, withAlert: .warning) {}
+                            } else if error.code == 401 {
+                                PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: error.message, withAlert: .cross) {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
-    @objc func forgetPasswordButtonTapped(){
+    func proceedHomeScreen(email: String, accessToken: String, refreshToken: String) {
+        let tabBarController = UITabBarController()
+        let storyboard = UIStoryboard(name: "HomeScreen", bundle: nil)
+        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
+        let navController = UINavigationController(rootViewController: homeViewController)
+        navController.tabBarItem.title = "Course"
+        navController.tabBarItem.image = UIImage(systemName: "book.fill")
+        tabBarController.viewControllers = [navController]
+        tabBarController.modalPresentationStyle = .fullScreen
         
-    }
-    
-    @objc func registerButtonTapped(){
+        emailTextField.text = ""
+        passwordTextField.text = ""
         
+        UserDefaults.standard.setValue(true, forKey: "isLogin")
+        UserDefaults.standard.setValue(email, forKey: "email")
+        let keychain = KeychainSwift()
+        keychain.set(accessToken, forKey: "accessToken")
+        keychain.set(refreshToken, forKey: "refreshToken")
+        
+        UIApplication.shared.showPresent(viewController: tabBarController, animation: true)
     }
     
     @objc func changeLocalizeButtonTapped(){

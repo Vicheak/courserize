@@ -10,10 +10,13 @@ import SwiftEntryKit
 
 class PopUpUtil {
     
+    static let successImage = UIImage(named: "logo")!
     static let warningImage = UIImage(named: "warning")!
     static let crossImage = UIImage(named: "cross")!
     
-    public static func popUp(withTitle title: String, withMessage message: String, withAlert alert: Alert){
+    public static func popUp(withTitle title: String, withMessage message: String, withAlert alert: Alert, completion: @escaping () -> Void){
+        print("display popup")
+        
         // Create the title and description attributes
         let title = EKProperty.LabelContent(
             text: title,
@@ -49,13 +52,15 @@ class PopUpUtil {
             backgroundColor: .init(.mainColor),
             highlightedBackgroundColor: .init(.darkGray)
         ) {
+            print("Button pressed")
+            completion()
             SwiftEntryKit.dismiss()
         }
               
         // Optional theme image
         let themeImage = EKPopUpMessage.ThemeImage(
             image: EKProperty.ImageContent(
-                image: alert == .warning ? warningImage : crossImage,
+                image: alert == .success ? successImage : alert == .warning ? warningImage : crossImage,
                 size: CGSize(width: 120, height: 120)
             )
         )
@@ -66,7 +71,9 @@ class PopUpUtil {
             title: title,
             description: description,
             button: button,
-            action: { }
+            action: {
+                print("Popup action triggered")
+            }
         )
               
         // Create the attributes for the popup message

@@ -49,6 +49,13 @@
 		528C63F32C55E8D5009FD199 /* AuthScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */; };
 		528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F62C55EAAA009FD199 /* Main.storyboard */; };
 		52DEE79E2C57E9E200E0BC60 /* ScreenTitles.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52DEE79C2C57E9E200E0BC60 /* ScreenTitles.strings */; };
+		52EEB9532C58A35D004354DD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9522C58A35D004354DD /* Endpoint.swift */; };
+		52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9552C58A44B004354DD /* AuthResponseData.swift */; };
+		52EEB9592C590E98004354DD /* DataValidation .swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9582C590E98004354DD /* DataValidation .swift */; };
+		52EEB95B2C59107C004354DD /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EEB95A2C59107C004354DD /* HomeScreen.storyboard */; };
+		52EEB95E2C5910A3004354DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB95D2C5910A3004354DD /* HomeViewController.swift */; };
+		52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB95F2C591289004354DD /* UIApplication + Ext.swift */; };
+		52EEB9622C5912AA004354DD /* UIWindow + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9612C5912AA004354DD /* UIWindow + Ext.swift */; };
 		EFAC3B2C2408D091C6F1C64B /* Pods_online_course_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +108,13 @@
 		528C63F62C55EAAA009FD199 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52DEE79D2C57E9E200E0BC60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
 		52DEE79F2C57E9E700E0BC60 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
+		52EEB9522C58A35D004354DD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		52EEB9552C58A44B004354DD /* AuthResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseData.swift; sourceTree = "<group>"; };
+		52EEB9582C590E98004354DD /* DataValidation .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataValidation .swift"; sourceTree = "<group>"; };
+		52EEB95A2C59107C004354DD /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
+		52EEB95D2C5910A3004354DD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		52EEB95F2C591289004354DD /* UIApplication + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Ext.swift"; sourceTree = "<group>"; };
+		52EEB9612C5912AA004354DD /* UIWindow + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Ext.swift"; sourceTree = "<group>"; };
 		6D775617AA3B7A6C2FD0AABB /* Pods-online-course-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-online-course-app.debug.xcconfig"; path = "Target Support Files/Pods-online-course-app/Pods-online-course-app.debug.xcconfig"; sourceTree = "<group>"; };
 		9E056F04E4F1CC2E2D04B1CB /* Pods_online_course_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_online_course_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE95B5D8139851594791A6A9 /* Pods-online-course-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-online-course-app.release.xcconfig"; path = "Target Support Files/Pods-online-course-app/Pods-online-course-app.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +143,7 @@
 		5255C9202C580A7E007FE420 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
+				52EEB9582C590E98004354DD /* DataValidation .swift */,
 			);
 			path = Validation;
 			sourceTree = "<group>";
@@ -175,6 +190,8 @@
 				526EBA602C563923005F54DA /* UIColor + Ext.swift */,
 				5255C9252C580F4E007FE420 /* NSNotification.Name + Ext.swift */,
 				5255C94F2C58224F007FE420 /* UIFont + Ext.swift */,
+				52EEB95F2C591289004354DD /* UIApplication + Ext.swift */,
+				52EEB9612C5912AA004354DD /* UIWindow + Ext.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -182,7 +199,9 @@
 		526EBA642C5659AD005F54DA /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				52EEB9542C58A437004354DD /* Response */,
 				526EBA652C5659CD005F54DA /* AuthAPIService.swift */,
+				52EEB9522C58A35D004354DD /* Endpoint.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -250,6 +269,7 @@
 		528C63ED2C55E862009FD199 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				52EEB95C2C59108A004354DD /* HomeController */,
 				526EBA702C5664A6005F54DA /* GeneralController */,
 				526EBA6D2C566417005F54DA /* AuthController */,
 			);
@@ -270,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */,
+				52EEB95A2C59107C004354DD /* HomeScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -288,6 +309,22 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		52EEB9542C58A437004354DD /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				52EEB9552C58A44B004354DD /* AuthResponseData.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		52EEB95C2C59108A004354DD /* HomeController */ = {
+			isa = PBXGroup;
+			children = (
+				52EEB95D2C5910A3004354DD /* HomeViewController.swift */,
+			);
+			path = HomeController;
 			sourceTree = "<group>";
 		};
 		ACAE0637094B90330EBF0EFA /* Pods */ = {
@@ -374,6 +411,7 @@
 				5255C9422C582225007FE420 /* KhmerOSMetalchrieng.ttf in Resources */,
 				5255C94D2C582225007FE420 /* KhmerOSContent-Regular.ttf in Resources */,
 				5255C9412C582225007FE420 /* KhmerOSDangrek.ttf in Resources */,
+				52EEB95B2C59107C004354DD /* HomeScreen.storyboard in Resources */,
 				528C63E32C55E72D009FD199 /* Assets.xcassets in Resources */,
 				5255C91C2C5804B9007FE420 /* Generals.strings in Resources */,
 				5255C93F2C582225007FE420 /* KhmerOSNew-Bold.ttf in Resources */,
@@ -450,8 +488,11 @@
 				526EBA6C2C56640F005F54DA /* VerifyCodeViewController.swift in Sources */,
 				526EBA632C564723005F54DA /* LoginViewController.swift in Sources */,
 				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
+				52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */,
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
 				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
+				52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */,
+				52EEB9592C590E98004354DD /* DataValidation .swift in Sources */,
 				5255C9222C580AAF007FE420 /* Alert.swift in Sources */,
 				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,
 				526EBA682C565CB6005F54DA /* RegisterViewController.swift in Sources */,
@@ -459,8 +500,11 @@
 				526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */,
 				526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */,
 				5255C9262C580F4E007FE420 /* NSNotification.Name + Ext.swift in Sources */,
+				52EEB95E2C5910A3004354DD /* HomeViewController.swift in Sources */,
+				52EEB9622C5912AA004354DD /* UIWindow + Ext.swift in Sources */,
 				5255C9282C581833007FE420 /* PopUpUtil.swift in Sources */,
 				5255C9502C58224F007FE420 /* UIFont + Ext.swift in Sources */,
+				52EEB9532C58A35D004354DD /* Endpoint.swift in Sources */,
 				5255C9192C58019B007FE420 /* LoadingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
