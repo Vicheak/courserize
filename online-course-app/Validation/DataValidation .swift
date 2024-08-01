@@ -16,9 +16,7 @@ class DataValidation {
             if !fieldName.isEmpty {
                 alertMessage = "\(fieldName) is required!"
             }
-            PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: alertMessage, withAlert: .warning) {
-                print("testing")
-            }
+            PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: alertMessage, withAlert: .warning) { }
             return false
         }
         

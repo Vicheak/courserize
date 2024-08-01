@@ -122,6 +122,7 @@ class RegisterViewController: UIViewController {
     @objc func registerButtonTapped(){
         let username = usernameTextField.text ?? ""
         let email = emailTextField.text ?? ""
+        //validate phone number format
         let phoneNumber = phoneNumberTextField.text ?? ""
         let gender = selectedGender ?? genders[0]
         let birthDate = RegisterViewController.dateFormatter.string(from: birthDatePicker.date)
@@ -156,7 +157,9 @@ class RegisterViewController: UIViewController {
                                 let verifyCodeViewController = storyboard.instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
                                 verifyCodeViewController.modalPresentationStyle = .fullScreen
                                 verifyCodeViewController.email = email
-                                present(verifyCodeViewController, animated: true)
+                                present(verifyCodeViewController, animated: true) {
+                                    self.navigationController?.popToRootViewController(animated: true)
+                                }
                             }
                         case .failure(let error):
                             print("Response failure :", error)
@@ -207,6 +210,15 @@ extension RegisterViewController: UITextFieldDelegate, UIPickerViewDelegate, UIP
             textField.layer.borderColor = UIColor.clear.cgColor
             textField.layer.borderWidth = 0.0
         }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == phoneNumberTextField {
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+        }
+        return true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

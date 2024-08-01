@@ -17,6 +17,9 @@ class LoadingViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         modalPresentationStyle = .overCurrentContext
         modalTransitionStyle = .crossDissolve
+        
+        //dismiss the keyboard
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
     required init?(coder: NSCoder) {

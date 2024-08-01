@@ -301,7 +301,7 @@
                                                                     <constraint firstAttribute="height" constant="38" id="4sc-CP-YBy"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ជ្រើសរើសភេទរបស់អ្នក" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHG-fU-MtB">
                                                                 <rect key="frame" x="0.0" y="144" width="373" height="18"/>
@@ -321,11 +321,14 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="Jd5-95-PMm">
+                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd5-95-PMm">
                                                                 <rect key="frame" x="0.0" y="279.99999999999994" width="373" height="55"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="55" id="HcD-5W-u4W"/>
                                                                 </constraints>
+                                                                <date key="date" timeIntervalSinceReferenceDate="-31647599.086650968">
+                                                                    <!--1999-12-31 17:00:00 +0000-->
+                                                                </date>
                                                             </datePicker>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lh4-0S-nk7" userLabel="Inner View">
                                                                 <rect key="frame" x="0.0" y="344.99999999999994" width="373" height="36"/>
