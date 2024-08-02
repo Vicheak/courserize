@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5254BBCA2C5CB1C400B7D4B8 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5254BBC92C5CB1C400B7D4B8 /* SettingTableViewCell.swift */; };
+		5254BBCC2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5254BBCB2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift */; };
+		5254BBCE2C5CCB0E00B7D4B8 /* SettingScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5254BBCD2C5CCB0E00B7D4B8 /* SettingScreen.storyboard */; };
+		5254BBD12C5CCB3600B7D4B8 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5254BBD02C5CCB3600B7D4B8 /* AboutUsViewController.swift */; };
+		5254BBD32C5CCF3300B7D4B8 /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5254BBD22C5CCF3300B7D4B8 /* LanguageViewController.swift */; };
 		5255C90F2C57ECFD007FE420 /* InputFields.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5255C90D2C57ECFD007FE420 /* InputFields.strings */; };
 		5255C9122C57ED16007FE420 /* ButtonTitles.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5255C9102C57ED16007FE420 /* ButtonTitles.strings */; };
 		5255C9172C58017D007FE420 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C9162C58017D007FE420 /* LoadingView.swift */; };
@@ -60,6 +65,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5254BBC92C5CB1C400B7D4B8 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		5254BBCB2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		5254BBCD2C5CCB0E00B7D4B8 /* SettingScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingScreen.storyboard; sourceTree = "<group>"; };
+		5254BBD02C5CCB3600B7D4B8 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		5254BBD22C5CCF3300B7D4B8 /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
 		5255C90E2C57ECFD007FE420 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/InputFields.strings; sourceTree = "<group>"; };
 		5255C9112C57ED16007FE420 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/ButtonTitles.strings; sourceTree = "<group>"; };
 		5255C9132C57ED1C007FE420 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InputFields.strings; sourceTree = "<group>"; };
@@ -132,10 +142,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5254BBCF2C5CCB1800B7D4B8 /* SettingController */ = {
+			isa = PBXGroup;
+			children = (
+				5254BBD02C5CCB3600B7D4B8 /* AboutUsViewController.swift */,
+				5254BBD22C5CCF3300B7D4B8 /* LanguageViewController.swift */,
+			);
+			path = SettingController;
+			sourceTree = "<group>";
+		};
 		5255C9152C580171007FE420 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				5255C9162C58017D007FE420 /* LoadingView.swift */,
+				5254BBC92C5CB1C400B7D4B8 /* SettingTableViewCell.swift */,
+				5254BBCB2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +290,7 @@
 		528C63ED2C55E862009FD199 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				5254BBCF2C5CCB1800B7D4B8 /* SettingController */,
 				52EEB95C2C59108A004354DD /* HomeController */,
 				526EBA702C5664A6005F54DA /* GeneralController */,
 				526EBA6D2C566417005F54DA /* AuthController */,
@@ -291,6 +313,7 @@
 			children = (
 				528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */,
 				52EEB95A2C59107C004354DD /* HomeScreen.storyboard */,
+				5254BBCD2C5CCB0E00B7D4B8 /* SettingScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -426,6 +449,7 @@
 				5255C9492C582225007FE420 /* KhmerOSBassac.ttf in Resources */,
 				5255C93D2C582225007FE420 /* KhmerOS.ttf in Resources */,
 				528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */,
+				5254BBCE2C5CCB0E00B7D4B8 /* SettingScreen.storyboard in Resources */,
 				5255C94C2C582225007FE420 /* KhmerOSBattambang-Regular.ttf in Resources */,
 				5255C90F2C57ECFD007FE420 /* InputFields.strings in Resources */,
 				5255C9442C582225007FE420 /* KhmerOSMoulLight.ttf in Resources */,
@@ -489,9 +513,13 @@
 				526EBA632C564723005F54DA /* LoginViewController.swift in Sources */,
 				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
 				52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */,
+				5254BBD12C5CCB3600B7D4B8 /* AboutUsViewController.swift in Sources */,
+				5254BBCA2C5CB1C400B7D4B8 /* SettingTableViewCell.swift in Sources */,
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
 				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
 				52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */,
+				5254BBD32C5CCF3300B7D4B8 /* LanguageViewController.swift in Sources */,
+				5254BBCC2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift in Sources */,
 				52C11F092C5B4A4A00986229 /* Alert.swift in Sources */,
 				52EEB9592C590E98004354DD /* DataValidation .swift in Sources */,
 				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,

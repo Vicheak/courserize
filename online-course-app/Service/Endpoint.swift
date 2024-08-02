@@ -14,6 +14,9 @@ enum Endpoint: String {
     case login
     case register
     case verifyCode
+    case resendCode
+    case forgetPassword
+    case resetPassword
     
     var rawValue: String {
         switch self {
@@ -23,6 +26,12 @@ enum Endpoint: String {
             return Endpoint.endpoint + "auth/register"
         case .verifyCode:
             return Endpoint.endpoint + "auth/verify"
+        case .resendCode:
+            return Endpoint.endpoint + "auth/send-verification-code"
+        case .forgetPassword:
+            return Endpoint.endpoint + "auth/forget-password"
+        case .resetPassword:
+            return Endpoint.endpoint + "auth/reset-password"
         }
     }
     

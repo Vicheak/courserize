@@ -157,6 +157,7 @@ class RegisterViewController: UIViewController {
                                 let verifyCodeViewController = storyboard.instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
                                 verifyCodeViewController.modalPresentationStyle = .fullScreen
                                 verifyCodeViewController.email = email
+                                verifyCodeViewController.forgetPassword = false
                                 present(verifyCodeViewController, animated: true) {
                                     self.navigationController?.popToRootViewController(animated: true)
                                 }
@@ -168,6 +169,8 @@ class RegisterViewController: UIViewController {
                                     PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseData.errors[0].message, withAlert: .warning) {}
                                 } else if errorResponseData.code == 401 {
                                     PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .cross) {}
+                                } else {
+                                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .warning) {}
                                 }
                             } else if let errorResponseMessage = error as? ErrorResponseMessage {
                                 if errorResponseMessage.code == 409 {

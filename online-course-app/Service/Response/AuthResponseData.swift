@@ -121,3 +121,8 @@ struct ErrorResponseMessage: Codable, Error {
         errors = try container.decode(String.self, forKey: .errors)
     }
 }
+
+struct ForgetPasswordResponseData: Codable {
+    var message: String
+    var token: String
+}

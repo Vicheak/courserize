@@ -9,6 +9,6 @@ import UIKit
 
 extension NSNotification.Name {
     
-    static let closeAlert = NSNotification.Name.init("closeAlert")
+    static let dismissVerifyCodeScreen = NSNotification.Name.init("dismissVerifyCodeScreen")
     
 }

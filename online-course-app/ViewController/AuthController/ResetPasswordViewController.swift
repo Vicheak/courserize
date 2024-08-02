@@ -27,12 +27,17 @@ class ResetPasswordViewController: UIViewController {
     let eyeShowIcon = UIImage(named: "eye-show-icon")!
     let eyeHideIcon = UIImage(named: "eye-hide-icon")!
     
+    var email: String!
+    var passwordToken: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpViews()
         
         self.setText()
+        
+        emailTextField.text = email
 
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
@@ -95,7 +100,51 @@ class ResetPasswordViewController: UIViewController {
     }
     
     @objc func resetPasswordButtonTapped(){
+        let password = passwordTextField.text ?? ""
+        let passwordConfirmation = passwordConfirmationTextField.text ?? ""
         
+        if DataValidation.validateRequired(field: password, fieldName: "Password") &&
+            DataValidation.validateRequired(field: passwordConfirmation, fieldName: "Password Confirmation"){
+            if password.count < 8 {
+                PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: "The password must be at least 8 characters!", withAlert: .warning) {}
+                return
+            }
+            if password != passwordConfirmation {
+                PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: "The password confirmation does not match", withAlert: .warning) {}
+                return
+            }
+            
+            let alertController = LoadingViewController()
+            present(alertController, animated: true) {
+                AuthAPIService.shared.resetPassword(email: self.email, token: self.passwordToken, password: password) { response in
+                    alertController.dismiss(animated: true) {
+                        switch response {
+                        case .success(let result):
+                            print("Response success :", result)
+                            PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { [weak self] in
+                                guard let self = self else { return }
+                                dismiss(animated: true) {
+                                    NotificationCenter.default.post(name: NSNotification.Name.dismissVerifyCodeScreen, object: nil)
+                                }
+                            }
+                        case .failure(let error):
+                            print("Response failure :", error)
+                            if let errorResponseData = error as? ErrorResponseData {
+                                if errorResponseData.code == 400 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseData.errors[0].message, withAlert: .warning) {}
+                                } else {
+                                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .warning) {}
+                                }
+                            } else if let errorResponseMessage = error as? ErrorResponseMessage {
+                                if errorResponseMessage.code == 401 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseMessage.errors, withAlert: .warning) {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

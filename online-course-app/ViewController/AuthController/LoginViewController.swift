@@ -137,6 +137,8 @@ class LoginViewController: UIViewController {
                                 PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors[0].message, withAlert: .warning) {}
                             } else if error.code == 401 {
                                 PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: error.message, withAlert: .cross) {}
+                            } else {
+                                PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
                             }
                         }
                     }

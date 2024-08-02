@@ -27,6 +27,8 @@ class VerifyCodeViewController: UIViewController {
     var keyboardUtil: KeyboardUtil!
     
     var email: String!
+    var forgetPassword: Bool!
+    var passwordToken: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +81,27 @@ class VerifyCodeViewController: UIViewController {
     }
     
     @objc func sendCodeButtonTapped(){
-        
+        let alertController = LoadingViewController()
+        present(alertController, animated: true) {
+            AuthAPIService.shared.resendCode(email: self.email) { response in
+                alertController.dismiss(animated: true) {
+                    switch response {
+                    case .success(let result):
+                        print("Response success :", result)
+                        PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { }
+                    case .failure(let error):
+                        print("Response failure :", error)
+                        if error.code == 400 {
+                            PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors[0].message, withAlert: .warning) {}
+                        } else if error.code == 401 {
+                            PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: error.message, withAlert: .cross) {}
+                        } else {
+                            PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @objc func closeButtonTapped(){
@@ -115,13 +137,27 @@ class VerifyCodeViewController: UIViewController {
                             print("Response success :", result)
                             PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { [weak self] in
                                 guard let self = self else { return }
-                                dismiss(animated: true)
+                                if forgetPassword {
+                                    //reset password view controller
+                                    let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
+                                    let resetPasswordViewController = storyboard.instantiateViewController(withIdentifier: "ResetPasswordViewController") as! ResetPasswordViewController
+                                    resetPasswordViewController.modalPresentationStyle = .fullScreen
+                                    resetPasswordViewController.email = email
+                                    resetPasswordViewController.passwordToken = passwordToken!
+                                    present(resetPasswordViewController, animated: true){
+                                        NotificationCenter.default.addObserver(self, selector: #selector(self.closeButtonTapped), name: NSNotification.Name.dismissVerifyCodeScreen, object: nil)
+                                    }
+                                } else {
+                                    dismiss(animated: true)
+                                }
                             }
                         case .failure(let error):
                             print("Response failure :", error)
                             if let errorResponseData = error as? ErrorResponseData {
                                 if errorResponseData.code == 400 {
                                     PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseData.errors[0].message, withAlert: .warning) {}
+                                } else {
+                                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .warning) {}
                                 }
                             } else if let errorResponseMessage = error as? ErrorResponseMessage {
                                 if errorResponseMessage.code == 401 {

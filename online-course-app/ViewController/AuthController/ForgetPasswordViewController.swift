@@ -66,7 +66,49 @@ class ForgetPasswordViewController: UIViewController {
     }
     
     @objc func continueButtonTapped(){
-
+        let email = emailTextField.text ?? ""
+        
+        if DataValidation.validateRequired(field: email, fieldName: "Email") {
+            let alertController = LoadingViewController()
+            present(alertController, animated: true) {
+                AuthAPIService.shared.forgetPassword(email: email) { response in
+                    alertController.dismiss(animated: true) {
+                        switch response {
+                        case .success(let result):
+                            print("Response success :", result)
+                            PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { [weak self] in
+                                guard let self = self else { return }
+                                //verify code screen
+                                let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
+                                let verifyCodeViewController = storyboard.instantiateViewController(withIdentifier: "VerifyCodeViewController") as! VerifyCodeViewController
+                                verifyCodeViewController.modalPresentationStyle = .fullScreen
+                                verifyCodeViewController.email = email
+                                verifyCodeViewController.forgetPassword = true
+                                verifyCodeViewController.passwordToken = result.token
+                                present(verifyCodeViewController, animated: true) {
+                                    self.navigationController?.popToRootViewController(animated: true)
+                                }
+                            }
+                        case .failure(let error):
+                            print("Response failure :", error)
+                            if let errorResponseData = error as? ErrorResponseData {
+                                if errorResponseData.code == 400 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseData.errors[0].message, withAlert: .warning) {}
+                                } else if errorResponseData.code == 401 {
+                                    PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .cross) {}
+                                } else {
+                                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: errorResponseData.message, withAlert: .warning) {}
+                                }
+                            } else if let errorResponseMessage = error as? ErrorResponseMessage {
+                                if errorResponseMessage.code == 404 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: errorResponseMessage.errors, withAlert: .warning) {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
