@@ -24,6 +24,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var guestUserButton: UIBarButtonItem!
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var changeLocalizeButton: UIButton!
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var passwordInnerView: UIView!
     
     var keyboardUtil: KeyboardUtil!
     
@@ -54,6 +56,9 @@ class LoginViewController: UIViewController {
         eyeToggleButton.addTarget(self, action: #selector(togglePasswordShow), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         changeLocalizeButton.addTarget(self, action: #selector(changeLocalizeButtonTapped), for: .touchUpInside)
+        
+        self.setColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +68,6 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func setText(){
@@ -104,6 +108,29 @@ class LoginViewController: UIViewController {
         guestUserButton.tintColor = .black
         settingButton.image = UIImage(systemName: "gear")
         settingButton.tintColor = .black
+    }
+    
+    @objc func setColor() {
+        let theme = ThemeManager.shared.theme
+        view.backgroundColor = theme.view.backgroundColor
+        containerView.backgroundColor = theme.view.backgroundColor
+        passwordInnerView.backgroundColor = theme.view.backgroundColor
+        titleLabel.textColor = theme.label.primaryColor
+        emailTextField.backgroundColor = theme.textField.backgroundColor
+        emailTextField.textColor = theme.label.primaryColor
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: theme.textField.placeholderColor
+        ]
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email".localized(using: "InputFields"), attributes: attributes)
+        passwordTextField.backgroundColor = theme.textField.backgroundColor
+        passwordTextField.textColor = theme.label.primaryColor
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password".localized(using: "InputFields"), attributes: attributes)
+        eyeToggleButton.tintColor = theme.label.primaryColor
+        
+        forgetPasswordButton.setTitleColor(theme.label.primaryColor, for: .normal)
+        registerButton.setTitleColor(theme.label.primaryColor, for: .normal)
+        guestUserButton.tintColor = theme.imageView.tintColor
+        settingButton.tintColor = theme.imageView.tintColor
     }
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){
@@ -175,7 +202,8 @@ class LoginViewController: UIViewController {
             let displayName = Localize.displayNameForLanguage(language)
             let languageAction = UIAlertAction(title: displayName, style: .default, handler: {
                 (alert: UIAlertAction!) -> Void in
-                    Localize.setCurrentLanguage(language)
+                Localize.setCurrentLanguage(language)
+                UserDefaults.standard.setValue(language, forKey: "language")
             })
             actionSheet.addAction(languageAction)
         }

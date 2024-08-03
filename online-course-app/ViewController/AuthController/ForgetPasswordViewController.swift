@@ -16,6 +16,7 @@ class ForgetPasswordViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
+    @IBOutlet weak var containerView: UIView!
     
     var keyboardUtil: KeyboardUtil!
     
@@ -32,6 +33,9 @@ class ForgetPasswordViewController: UIViewController {
         
         gesture.addTarget(self, action: #selector(tapGestureRecognizerTapped))
         continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
+        
+        self.setColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,7 +45,6 @@ class ForgetPasswordViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func setText(){
@@ -59,6 +62,20 @@ class ForgetPasswordViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         emailTextField.layer.cornerRadius = 5
         continueButton.layer.cornerRadius = 5
+    }
+    
+    @objc func setColor() {
+        let theme = ThemeManager.shared.theme
+        view.backgroundColor = theme.view.backgroundColor
+        containerView.backgroundColor = theme.view.backgroundColor
+        titleLabel.textColor = theme.label.primaryColor
+        emailTextField.backgroundColor = theme.textField.backgroundColor
+        emailTextField.textColor = theme.label.primaryColor
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: theme.textField.placeholderColor
+        ]
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email".localized(using: "InputFields"), attributes: attributes)
+        continueButton.setTitleColor(theme.label.primaryColor, for: .normal)
     }
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){

@@ -21,20 +21,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
-        let loginViewController = storyboard.instantiateInitialViewController()
-        window?.rootViewController = loginViewController
-        window?.makeKeyAndVisible()
+        if let mode = UserDefaults.standard.string(forKey: "mode") {
+            if mode == Theme.day.rawValue {
+                ThemeManager.shared.applyTheme(type: .day)
+            } else if mode == Theme.night.rawValue {
+                ThemeManager.shared.applyTheme(type: .night)
+            } else if mode == Theme.system.rawValue {
+                ThemeManager.shared.applyTheme(type: .system)
+            }
+        } else {
+            ThemeManager.shared.applyTheme(type: .system)
+        }
         
-        let khmerLanguageCode = "km"
-        if Localize.currentLanguage() != khmerLanguageCode {
-            Localize.setCurrentLanguage(khmerLanguageCode)
+        if let language = UserDefaults.standard.string(forKey: "language") {
+            Localize.setCurrentLanguage(language)
+        } else {
+            Localize.setCurrentLanguage("km")
+            UserDefaults.standard.setValue("km", forKey: "language")
         }
         
         UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Regular.ttf", bundle: Bundle.main)
         UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Bold.ttf", bundle: Bundle.main)
         
-        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -1000, vertical: 0), for: .default)
+        let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        let navBarController = BaseNavigationController(rootViewController: viewController)
+        window?.rootViewController = navBarController
+        window?.makeKeyAndVisible()
         
         return true
     }

@@ -1,5 +1,5 @@
 //
-//  LanguageViewController.swift
+//  ThemeViewController.swift
 //  online-course-app
 //
 //  Created by @suonvicheakdev on 2/8/24.
@@ -8,14 +8,14 @@
 import UIKit
 import Localize_Swift
 
-class LanguageViewController: UIViewController {
-    
+class ThemeViewController: UIViewController {
+
     let titleLabel = UILabel()
     @IBOutlet weak var tableView: UITableView!
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpViews()
         
         self.setText()
@@ -38,7 +38,7 @@ class LanguageViewController: UIViewController {
     }
     
     @objc func setText(){
-        titleLabel.text = "Language".localized(using: "Generals")
+        titleLabel.text = "Theme".localized(using: "Generals")
         titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 18)
         titleLabel.textAlignment = .center
         titleLabel.sizeToFit()
@@ -64,47 +64,58 @@ class LanguageViewController: UIViewController {
 
 }
 
-extension LanguageViewController: UITableViewDelegate {
+extension ThemeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            Localize.setCurrentLanguage("km")
-            UserDefaults.standard.setValue("km", forKey: "language")
+            ThemeManager.shared.applyTheme(type: .night)
+            UserDefaults.standard.setValue(Theme.night.rawValue, forKey: "mode")
         } else if indexPath.row == 1 {
-            Localize.setCurrentLanguage("en")
-            UserDefaults.standard.setValue("en", forKey: "language")
+            ThemeManager.shared.applyTheme(type: .day)
+            UserDefaults.standard.setValue(Theme.day.rawValue, forKey: "mode")
+        } else if indexPath.row == 2 {
+            ThemeManager.shared.applyTheme(type: .system)
+            UserDefaults.standard.setValue(Theme.system.rawValue, forKey: "mode")
         }
+        
+        tableView.reloadData()
     }
     
 }
 
-extension LanguageViewController: UITableViewDataSource {
+extension ThemeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as? LanguageTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as? ThemeTableViewCell else { return UITableViewCell() }
         let theme = ThemeManager.shared.theme
+        let themeType = ThemeManager.shared.themeType
         cell.contentView.backgroundColor = theme.view.backgroundColor
         cell.innerView.backgroundColor = theme.view.backgroundColor
-        cell.languageTitle.textColor = theme.label.primaryColor
-        cell.languageImageView.tintColor = theme.imageView.tintColor
-        cell.languageImageViewCheck.tintColor = theme.imageView.tintColor
+        cell.themeTitle.textColor = theme.label.primaryColor
+        cell.themeImageView.tintColor = theme.imageView.tintColor
+        cell.themeImageViewCheck.tintColor = theme.imageView.tintColor
         if indexPath.row == 0 {
-            cell.languageImageView.image = UIImage(named: "cambodia-logo")!
-            cell.languageTitle.text = "Khmer".localized(using: "Generals")
-            cell.languageImageViewCheck.image = Localize.currentLanguage() == "km" ? UIImage(systemName: "checkmark") : nil
+            cell.themeImageView.image = UIImage(systemName: "moon")
+            cell.themeTitle.text = "Dark".localized(using: "Generals")
+            cell.themeImageViewCheck.image = themeType == .night ? UIImage(systemName: "checkmark") : nil
             return cell
         } else if indexPath.row == 1 {
-            cell.languageImageView.image = UIImage(named: "usa-logo")!
-            cell.languageTitle.text = "English".localized(using: "Generals")
-            cell.languageImageViewCheck.image = Localize.currentLanguage() == "en" ? UIImage(systemName: "checkmark") : nil
+            cell.themeImageView.image = UIImage(systemName: "sun.min")
+            cell.themeTitle.text = "Light".localized(using: "Generals")
+            cell.themeImageViewCheck.image = themeType == .day ? UIImage(systemName: "checkmark") : nil
+            return cell
+        } else if indexPath.row == 2 {
+            cell.themeImageView.image = UIImage(systemName: "laptopcomputer")
+            cell.themeTitle.text = "System".localized(using: "Generals")
+            cell.themeImageViewCheck.image = themeType == .system ? UIImage(systemName: "checkmark") : nil
             return cell
         } else {
             return UITableViewCell()
@@ -112,3 +123,4 @@ extension LanguageViewController: UITableViewDataSource {
     }
     
 }
+

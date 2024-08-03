@@ -26,6 +26,9 @@ class RegisterViewController: UIViewController {
     @IBOutlet var gesture: UITapGestureRecognizer!
     @IBOutlet weak var chooseGenderLabel: UILabel!
     @IBOutlet weak var chooseBirthDateLabel: UILabel!
+    @IBOutlet weak var passwordInnerView: UIView!
+    @IBOutlet weak var passwordConfirmInnerView: UIView!
+    @IBOutlet weak var containerView: UIView!
     
     var keyboardUtil: KeyboardUtil!
     
@@ -60,6 +63,9 @@ class RegisterViewController: UIViewController {
         eyeToggleButton.addTarget(self, action: #selector(togglePasswordShow), for: .touchUpInside)
         eyeToggleConfirmButton.addTarget(self, action: #selector(togglePasswordConfirmShow), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
+        
+        self.setColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,7 +75,6 @@ class RegisterViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func setText(){
@@ -103,6 +108,40 @@ class RegisterViewController: UIViewController {
         passwordTextField.layer.cornerRadius = 5
         passwordConfirmTextField.layer.cornerRadius = 5
         registerButton.layer.cornerRadius = 5
+    }
+    
+    @objc func setColor() {
+        let theme = ThemeManager.shared.theme
+        view.backgroundColor = theme.view.backgroundColor
+        containerView.backgroundColor = theme.view.backgroundColor
+        passwordInnerView.backgroundColor = theme.view.backgroundColor
+        passwordConfirmInnerView.backgroundColor = theme.view.backgroundColor
+        titleLabel.textColor = theme.label.primaryColor
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: theme.textField.placeholderColor
+        ]
+        usernameTextField.backgroundColor = theme.textField.backgroundColor
+        usernameTextField.textColor = theme.label.primaryColor
+        usernameTextField.attributedPlaceholder = NSAttributedString(string: "Enter your username".localized(using: "InputFields"), attributes: attributes)
+        emailTextField.backgroundColor = theme.textField.backgroundColor
+        emailTextField.textColor = theme.label.primaryColor
+        emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email".localized(using: "InputFields"), attributes: attributes)
+        phoneNumberTextField.backgroundColor = theme.textField.backgroundColor
+        phoneNumberTextField.textColor = theme.label.primaryColor
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "Enter phone number".localized(using: "InputFields"), attributes: attributes)
+        passwordTextField.backgroundColor = theme.textField.backgroundColor
+        passwordTextField.textColor = theme.label.primaryColor
+        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter password".localized(using: "InputFields"), attributes: attributes)
+        passwordConfirmTextField.backgroundColor = theme.textField.backgroundColor
+        passwordConfirmTextField.textColor = theme.label.primaryColor
+        passwordConfirmTextField.attributedPlaceholder = NSAttributedString(string: "Enter password confirmation".localized(using: "InputFields"), attributes: attributes)
+        chooseGenderLabel.textColor = theme.label.primaryColor
+        chooseBirthDateLabel.textColor = theme.label.primaryColor
+        let textColor = theme.label.primaryColor
+        birthDatePicker.setValue(textColor, forKey: "textColor")
+        eyeToggleButton.tintColor = theme.label.primaryColor
+        eyeToggleConfirmButton.tintColor = theme.label.primaryColor
+        registerButton.setTitleColor(theme.label.primaryColor, for: .normal)
     }
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){
@@ -224,6 +263,10 @@ extension RegisterViewController: UITextFieldDelegate, UIPickerViewDelegate, UIP
         return true
     }
     
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 35
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -240,6 +283,20 @@ extension RegisterViewController: UITextFieldDelegate, UIPickerViewDelegate, UIP
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 //        print(genders[row])
         selectedGender = genders[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label: UILabel
+        if let reusedLabel = view as? UILabel {
+            label = reusedLabel
+        } else {
+            label = UILabel()
+        }
+        label.textColor = ThemeManager.shared.theme.label.primaryColor
+        label.textAlignment = .center
+        let khmerLanguageCode = "km"
+        label.text = Localize.currentLanguage() == khmerLanguageCode ? row == 0 ? "ប្រុស" : "ស្រី" : genders[row];
+        return label
     }
     
     @objc func dateChanged(){
