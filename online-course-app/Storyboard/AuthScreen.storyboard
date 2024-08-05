@@ -211,7 +211,7 @@
         <!--SettingViewController-->
         <scene sceneID="CB6-ya-fts">
             <objects>
-                <viewController storyboardIdentifier="SettingViewController" title="SettingViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ie-Uy-6uK" customClass="SettingViewController" customModule="online_course_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingViewController" title="SettingViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Ie-Uy-6uK" customClass="SettingViewController" customModule="online_course_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XPZ-aS-YNI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

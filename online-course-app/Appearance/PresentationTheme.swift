@@ -73,6 +73,16 @@ public final class PresentationThemePopUpView {
     }
 }
 
+public final class PresentationThemeTabBar {
+    public let barTintColor: UIColor
+    public let tintColor: UIColor
+    
+    init(barTintColor: UIColor, tintColor: UIColor) {
+        self.barTintColor = barTintColor
+        self.tintColor = tintColor
+    }
+}
+
 public final class PresentationTheme {
     public let view: PresentationThemeView
     public let label: PresentationThemeLabel
@@ -80,13 +90,15 @@ public final class PresentationTheme {
     public let textField: PresentationThemeTextField
     public let navigationBar: PresentationThemeNavigationBar
     public let popUpView: PresentationThemePopUpView
+    public let tabBar: PresentationThemeTabBar
     
-    init(view: PresentationThemeView, label: PresentationThemeLabel, imageView: PresentationThemeImageView, textField: PresentationThemeTextField, navigationBar: PresentationThemeNavigationBar, popUpView: PresentationThemePopUpView) {
+    init(view: PresentationThemeView, label: PresentationThemeLabel, imageView: PresentationThemeImageView, textField: PresentationThemeTextField, navigationBar: PresentationThemeNavigationBar, popUpView: PresentationThemePopUpView, tabBar: PresentationThemeTabBar) {
         self.view = view
         self.label = label
         self.imageView = imageView
         self.textField = textField
         self.navigationBar = navigationBar
         self.popUpView = popUpView
+        self.tabBar = tabBar
     }
 }

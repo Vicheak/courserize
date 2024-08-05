@@ -27,12 +27,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.setUpLanguage()
         self.registerFont()
         
-        let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-        let navBarController = BaseNavigationController(rootViewController: viewController)
-        window?.rootViewController = navBarController
-        window?.makeKeyAndVisible()
-        
+        let isLogin = UserDefaults.standard.bool(forKey: "isLogin")
+        if isLogin {
+            let tabBarController = BaseTabBarViewController()
+            window?.rootViewController = tabBarController
+        } else {
+            UIApplication.shared.showLoginViewController()
+        }
+    
         return true
     }
     
@@ -60,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.overrideUserInterfaceStyle = .light
         } else if themeType == Theme.night {
             window?.overrideUserInterfaceStyle = .dark
-        } 
+        }
     }
     
     private func setUpLanguage(){

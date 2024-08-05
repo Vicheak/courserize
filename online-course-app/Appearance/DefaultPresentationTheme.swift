@@ -14,8 +14,9 @@ private func makeDefaultPresentationTheme() -> PresentationTheme {
     let textField = PresentationThemeTextField(backgroundColor: .white, placeholderColor: UIColor(rgb: 0x000000, alpha: 0.4))
     let navigationBar = PresentationThemeNavigationBar(barTintColor: .white, tintColor: .black)
     let popUpView = PresentationThemePopUpView(entryBackgroundColor: .white, titleLabelColor: .black, descriptionLabelColor: .black, buttonLabelColor: .white, buttonBackgroundColor: .mainColor)
+    let tabBar = PresentationThemeTabBar(barTintColor: .white, tintColor: .black)
     
-    return PresentationTheme(view: view, label: label, imageView: imageView, textField: textField, navigationBar: navigationBar, popUpView: popUpView)
+    return PresentationTheme(view: view, label: label, imageView: imageView, textField: textField, navigationBar: navigationBar, popUpView: popUpView, tabBar: tabBar)
 }
 
 public let defaultPresentationTheme = makeDefaultPresentationTheme()

@@ -100,6 +100,7 @@ class LoginViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         emailTextField.layer.cornerRadius = 5
         loginButton.layer.cornerRadius = 5
+        guestUserButton.title = "Guest Login"
         guestUserButton.image = UIImage(systemName: "person.circle.fill")
         guestUserButton.tintColor = .black
         settingButton.image = UIImage(systemName: "gear")
@@ -162,14 +163,7 @@ class LoginViewController: UIViewController {
     }
     
     func proceedHomeScreen(email: String, accessToken: String, refreshToken: String) {
-        let tabBarController = UITabBarController()
-        let storyboard = UIStoryboard(name: "HomeScreen", bundle: nil)
-        let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
-        let navController = UINavigationController(rootViewController: homeViewController)
-        navController.tabBarItem.title = "Course"
-        navController.tabBarItem.image = UIImage(systemName: "book.fill")
-        tabBarController.viewControllers = [navController]
-        tabBarController.modalPresentationStyle = .fullScreen
+        let tabBarController = BaseTabBarViewController()
         
         emailTextField.text = ""
         passwordTextField.text = ""

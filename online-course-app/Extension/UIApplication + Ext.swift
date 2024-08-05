@@ -12,7 +12,8 @@ extension UIApplication {
     func showLoginViewController() {
         let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
         let loginViewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-        setRootViewController(loginViewController)
+        let navController = BaseNavigationController(rootViewController: loginViewController)
+        setRootViewController(navController)
     }
     
     func setRootViewController(_ viewController: UIViewController, animated: Bool = true) {

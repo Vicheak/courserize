@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5234D7C92C608767006B70CE /* PasswordTextFieldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7C82C608767006B70CE /* PasswordTextFieldManager.swift */; };
+		5234D7CB2C6096E5006B70CE /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7CA2C6096E5006B70CE /* BaseTabBarViewController.swift */; };
+		5234D7CD2C609781006B70CE /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7CC2C609781006B70CE /* CategoryViewController.swift */; };
+		5234D7CF2C6097C8006B70CE /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7CE2C6097C8006B70CE /* VideoViewController.swift */; };
+		5234D7D12C6097DD006B70CE /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */; };
+		5234D7D32C60A967006B70CE /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7D22C60A967006B70CE /* UserViewController.swift */; };
 		5251E3752C5CF7480036480A /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251E3742C5CF7480036480A /* ThemeViewController.swift */; };
 		5251E3782C5CFD480036480A /* DefaultPresentationTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251E3772C5CFD480036480A /* DefaultPresentationTheme.swift */; };
 		5251E37A2C5CFD670036480A /* DefaultDarkPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251E3792C5CFD670036480A /* DefaultDarkPresentation.swift */; };
@@ -67,7 +72,7 @@
 		52EEB9532C58A35D004354DD /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9522C58A35D004354DD /* Endpoint.swift */; };
 		52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9552C58A44B004354DD /* AuthResponseData.swift */; };
 		52EEB9592C590E98004354DD /* DataValidation .swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9582C590E98004354DD /* DataValidation .swift */; };
-		52EEB95B2C59107C004354DD /* HomeScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EEB95A2C59107C004354DD /* HomeScreen.storyboard */; };
+		52EEB95B2C59107C004354DD /* CoreScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EEB95A2C59107C004354DD /* CoreScreen.storyboard */; };
 		52EEB95E2C5910A3004354DD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB95D2C5910A3004354DD /* HomeViewController.swift */; };
 		52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB95F2C591289004354DD /* UIApplication + Ext.swift */; };
 		52EEB9622C5912AA004354DD /* UIWindow + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEB9612C5912AA004354DD /* UIWindow + Ext.swift */; };
@@ -76,6 +81,11 @@
 
 /* Begin PBXFileReference section */
 		5234D7C82C608767006B70CE /* PasswordTextFieldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldManager.swift; sourceTree = "<group>"; };
+		5234D7CA2C6096E5006B70CE /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
+		5234D7CC2C609781006B70CE /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		5234D7CE2C6097C8006B70CE /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
+		5234D7D22C60A967006B70CE /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		5251E3742C5CF7480036480A /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		5251E3772C5CFD480036480A /* DefaultPresentationTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPresentationTheme.swift; sourceTree = "<group>"; };
 		5251E3792C5CFD670036480A /* DefaultDarkPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDarkPresentation.swift; sourceTree = "<group>"; };
@@ -141,7 +151,7 @@
 		52EEB9522C58A35D004354DD /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		52EEB9552C58A44B004354DD /* AuthResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponseData.swift; sourceTree = "<group>"; };
 		52EEB9582C590E98004354DD /* DataValidation .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataValidation .swift"; sourceTree = "<group>"; };
-		52EEB95A2C59107C004354DD /* HomeScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeScreen.storyboard; sourceTree = "<group>"; };
+		52EEB95A2C59107C004354DD /* CoreScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoreScreen.storyboard; sourceTree = "<group>"; };
 		52EEB95D2C5910A3004354DD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		52EEB95F2C591289004354DD /* UIApplication + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Ext.swift"; sourceTree = "<group>"; };
 		52EEB9612C5912AA004354DD /* UIWindow + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Ext.swift"; sourceTree = "<group>"; };
@@ -329,7 +339,7 @@
 			children = (
 				52A964472C5E5D5500427630 /* BaseController */,
 				5254BBCF2C5CCB1800B7D4B8 /* SettingController */,
-				52EEB95C2C59108A004354DD /* HomeController */,
+				52EEB95C2C59108A004354DD /* CoreController */,
 				526EBA702C5664A6005F54DA /* GeneralController */,
 				526EBA6D2C566417005F54DA /* AuthController */,
 			);
@@ -350,7 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				528C63F22C55E8D5009FD199 /* AuthScreen.storyboard */,
-				52EEB95A2C59107C004354DD /* HomeScreen.storyboard */,
+				52EEB95A2C59107C004354DD /* CoreScreen.storyboard */,
 				5254BBCD2C5CCB0E00B7D4B8 /* SettingScreen.storyboard */,
 			);
 			path = Storyboard;
@@ -360,6 +370,7 @@
 			isa = PBXGroup;
 			children = (
 				52A964482C5E5D8100427630 /* BaseNavigationController.swift */,
+				5234D7CA2C6096E5006B70CE /* BaseTabBarViewController.swift */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -388,12 +399,16 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
-		52EEB95C2C59108A004354DD /* HomeController */ = {
+		52EEB95C2C59108A004354DD /* CoreController */ = {
 			isa = PBXGroup;
 			children = (
 				52EEB95D2C5910A3004354DD /* HomeViewController.swift */,
+				5234D7CC2C609781006B70CE /* CategoryViewController.swift */,
+				5234D7CE2C6097C8006B70CE /* VideoViewController.swift */,
+				5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */,
+				5234D7D22C60A967006B70CE /* UserViewController.swift */,
 			);
-			path = HomeController;
+			path = CoreController;
 			sourceTree = "<group>";
 		};
 		ACAE0637094B90330EBF0EFA /* Pods */ = {
@@ -480,7 +495,7 @@
 				5255C9422C582225007FE420 /* KhmerOSMetalchrieng.ttf in Resources */,
 				5255C94D2C582225007FE420 /* KhmerOSContent-Regular.ttf in Resources */,
 				5255C9412C582225007FE420 /* KhmerOSDangrek.ttf in Resources */,
-				52EEB95B2C59107C004354DD /* HomeScreen.storyboard in Resources */,
+				52EEB95B2C59107C004354DD /* CoreScreen.storyboard in Resources */,
 				528C63E32C55E72D009FD199 /* Assets.xcassets in Resources */,
 				5255C91C2C5804B9007FE420 /* Generals.strings in Resources */,
 				5255C93F2C582225007FE420 /* KhmerOSNew-Bold.ttf in Resources */,
@@ -556,9 +571,12 @@
 			files = (
 				526EBA6F2C566471005F54DA /* ResetPasswordViewController.swift in Sources */,
 				5251E37C2C5CFD8B0036480A /* PresentationTheme.swift in Sources */,
+				5234D7D32C60A967006B70CE /* UserViewController.swift in Sources */,
 				5254BBD72C5CE90B00B7D4B8 /* ContactViewController.swift in Sources */,
 				526EBA6C2C56640F005F54DA /* VerifyCodeViewController.swift in Sources */,
 				526EBA632C564723005F54DA /* LoginViewController.swift in Sources */,
+				5234D7CF2C6097C8006B70CE /* VideoViewController.swift in Sources */,
+				5234D7D12C6097DD006B70CE /* SubscriptionViewController.swift in Sources */,
 				5234D7C92C608767006B70CE /* PasswordTextFieldManager.swift in Sources */,
 				5251E37A2C5CFD670036480A /* DefaultDarkPresentation.swift in Sources */,
 				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
@@ -567,6 +585,7 @@
 				5254BBD12C5CCB3600B7D4B8 /* AboutUsViewController.swift in Sources */,
 				5254BBCA2C5CB1C400B7D4B8 /* SettingTableViewCell.swift in Sources */,
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
+				5234D7CB2C6096E5006B70CE /* BaseTabBarViewController.swift in Sources */,
 				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
 				52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */,
 				5254BBD32C5CCF3300B7D4B8 /* LanguageViewController.swift in Sources */,
@@ -575,6 +594,7 @@
 				52C11F092C5B4A4A00986229 /* Alert.swift in Sources */,
 				52EEB9592C590E98004354DD /* DataValidation .swift in Sources */,
 				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,
+				5234D7CD2C609781006B70CE /* CategoryViewController.swift in Sources */,
 				526EBA682C565CB6005F54DA /* RegisterViewController.swift in Sources */,
 				526EBA6A2C5660FE005F54DA /* ForgetPasswordViewController.swift in Sources */,
 				526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */,
