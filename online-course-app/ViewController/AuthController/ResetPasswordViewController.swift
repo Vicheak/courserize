@@ -15,20 +15,15 @@ class ResetPasswordViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmationTextField: UITextField!
-    @IBOutlet weak var eyeToggleButton: UIButton!
-    @IBOutlet weak var eyeToggleConfirmationButton: UIButton!
     @IBOutlet weak var resetPasswordButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
     @IBOutlet weak var verifyEmailLabel: UILabel!
-    @IBOutlet weak var passwordInnerView: UIView!
-    @IBOutlet weak var passwordConfirmInnerView: UIView!
     @IBOutlet weak var containerView: UIView!
     
+    var passwordManager: PasswordTextFieldManager!
+    var passwordConfirmationManager: PasswordTextFieldManager!
     var keyboardUtil: KeyboardUtil!
-    
-    let eyeShowIcon = UIImage(named: "eye-show-icon")!
-    let eyeHideIcon = UIImage(named: "eye-hide-icon")!
     
     var email: String!
     var passwordToken: String!
@@ -42,14 +37,14 @@ class ResetPasswordViewController: UIViewController {
         
         emailTextField.text = email
 
+        passwordManager = PasswordTextFieldManager(passwordTextField: passwordTextField)
+        passwordConfirmationManager = PasswordTextFieldManager(passwordTextField: passwordConfirmationTextField)
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
         passwordTextField.delegate = self
         passwordConfirmationTextField.delegate = self
         
         gesture.addTarget(self, action: #selector(tapGestureRecognizerTapped))
-        eyeToggleButton.addTarget(self, action: #selector(togglePasswordShow), for: .touchUpInside)
-        eyeToggleConfirmationButton.addTarget(self, action: #selector(togglePasswordConfirmShow), for: .touchUpInside)
         resetPasswordButton.addTarget(self, action: #selector(resetPasswordButtonTapped), for: .touchUpInside)
         
         self.setColor()
@@ -94,8 +89,6 @@ class ResetPasswordViewController: UIViewController {
         let theme = ThemeManager.shared.theme
         view.backgroundColor = theme.view.backgroundColor
         containerView.backgroundColor = theme.view.backgroundColor
-        passwordInnerView.backgroundColor = theme.view.backgroundColor
-        passwordConfirmInnerView.backgroundColor = theme.view.backgroundColor
         titleLabel.textColor = theme.label.primaryColor
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: theme.textField.placeholderColor
@@ -103,30 +96,13 @@ class ResetPasswordViewController: UIViewController {
         emailTextField.backgroundColor = theme.textField.backgroundColor
         emailTextField.textColor = theme.label.primaryColor
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Enter your email".localized(using: "InputFields"), attributes: attributes)
-        passwordTextField.backgroundColor = theme.textField.backgroundColor
-        passwordTextField.textColor = theme.label.primaryColor
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter password".localized(using: "InputFields"), attributes: attributes)
-        passwordConfirmationTextField.backgroundColor = theme.textField.backgroundColor
-        passwordConfirmationTextField.textColor = theme.label.primaryColor
         passwordConfirmationTextField.attributedPlaceholder = NSAttributedString(string: "Enter password confirmation".localized(using: "InputFields"), attributes: attributes)
-        eyeToggleButton.tintColor = theme.label.primaryColor
-        eyeToggleConfirmationButton.tintColor = theme.label.primaryColor
         verifyEmailLabel.textColor = theme.label.primaryColor
-        resetPasswordButton.setTitleColor(theme.label.primaryColor, for: .normal)
     }
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){
         view.endEditing(true)
-    }
-    
-    @objc func togglePasswordShow(){
-        eyeToggleButton.setImage(passwordTextField.isSecureTextEntry ? eyeHideIcon : eyeShowIcon, for: .normal)
-        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
-    }
-    
-    @objc func togglePasswordConfirmShow(){
-        eyeToggleConfirmationButton.setImage(passwordConfirmationTextField.isSecureTextEntry ? eyeHideIcon : eyeShowIcon, for: .normal)
-        passwordConfirmationTextField.isSecureTextEntry = !passwordConfirmationTextField.isSecureTextEntry
     }
     
     @objc func resetPasswordButtonTapped(){

@@ -75,7 +75,6 @@ class ForgetPasswordViewController: UIViewController {
             .foregroundColor: theme.textField.placeholderColor
         ]
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email".localized(using: "InputFields"), attributes: attributes)
-        continueButton.setTitleColor(theme.label.primaryColor, for: .normal)
     }
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){

@@ -10,7 +10,7 @@ import SwiftEntryKit
 
 class PopUpUtil {
         
-    static let successImage = UIImage(named: "logo")!
+    static let successImage = UIImage(named: "logo-preview-screen")!
     static let warningImage = UIImage(named: "warning")!
     static let crossImage = UIImage(named: "cross")!
     
@@ -18,12 +18,14 @@ class PopUpUtil {
         //dismiss the keyboard
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         
+        let theme = ThemeManager.shared.theme
+        
         // Create the title and description attributes
         let title = EKProperty.LabelContent(
             text: title,
             style: .init(
                 font: UIFont(name: "KhmerOSBattambang-Bold", size: 18)!,
-                color: .black,
+                color: theme.popUpView.titleLabelColor,
                 alignment: .center
             )
         )
@@ -32,7 +34,7 @@ class PopUpUtil {
             text: message,
             style: .init(
                 font: .systemFont(ofSize: 16),
-                color: .black,
+                color: theme.popUpView.descriptionLabelColor,
                 alignment: .center
             )
         )
@@ -40,7 +42,7 @@ class PopUpUtil {
         // Create the button attributes
         let buttonLabelStyle = EKProperty.LabelStyle(
             font: .systemFont(ofSize: 16),
-            color: .white
+            color: theme.popUpView.buttonLabelColor
         )
         
         let buttonLabel = EKProperty.LabelContent(
@@ -50,7 +52,7 @@ class PopUpUtil {
         
         let button = EKProperty.ButtonContent(
             label: buttonLabel,
-            backgroundColor: .init(.mainColor),
+            backgroundColor: .init(theme.popUpView.buttonBackgroundColor),
             highlightedBackgroundColor: .init(.darkGray)
         ) { }
         
@@ -79,7 +81,7 @@ class PopUpUtil {
         attributes.position = .center
         attributes.positionConstraints.verticalOffset = 10
         attributes.displayDuration = .infinity
-        attributes.entryBackground = .color(color: .init(UIColor.white))
+        attributes.entryBackground = .color(color: .init(theme.popUpView.entryBackgroundColor))
         attributes.screenBackground = .color(color: .init(UIColor.black.withAlphaComponent(0.5)))
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 8))
         attributes.roundCorners = .all(radius: 10)

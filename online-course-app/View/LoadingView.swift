@@ -32,7 +32,7 @@ class LoadingView: UIView {
     }
     
     private func setUpViews() {
-        backgroundColor = .white
+        backgroundColor = ThemeManager.shared.theme.view.backgroundColor
         addSubview(indicatorView)
         addSubview(textLabel)
         

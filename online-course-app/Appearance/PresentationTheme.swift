@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftEntryKit
 
 public final class PresentationThemeView {
     public let backgroundColor: UIColor
@@ -56,18 +57,36 @@ public final class PresentationThemeNavigationBar {
     }
 }
 
+public final class PresentationThemePopUpView {
+    public let entryBackgroundColor: UIColor
+    public let titleLabelColor: EKColor
+    public let descriptionLabelColor: EKColor
+    public let buttonLabelColor: EKColor
+    public let buttonBackgroundColor: UIColor
+    
+    init(entryBackgroundColor: UIColor, titleLabelColor: EKColor, descriptionLabelColor: EKColor, buttonLabelColor: EKColor, buttonBackgroundColor: UIColor) {
+        self.entryBackgroundColor = entryBackgroundColor
+        self.titleLabelColor = titleLabelColor
+        self.descriptionLabelColor = descriptionLabelColor
+        self.buttonLabelColor = buttonLabelColor
+        self.buttonBackgroundColor = buttonBackgroundColor
+    }
+}
+
 public final class PresentationTheme {
     public let view: PresentationThemeView
     public let label: PresentationThemeLabel
     public let imageView: PresentationThemeImageView
     public let textField: PresentationThemeTextField
     public let navigationBar: PresentationThemeNavigationBar
+    public let popUpView: PresentationThemePopUpView
     
-    init(view: PresentationThemeView, label: PresentationThemeLabel, imageView: PresentationThemeImageView, textField: PresentationThemeTextField, navigationBar: PresentationThemeNavigationBar) {
+    init(view: PresentationThemeView, label: PresentationThemeLabel, imageView: PresentationThemeImageView, textField: PresentationThemeTextField, navigationBar: PresentationThemeNavigationBar, popUpView: PresentationThemePopUpView) {
         self.view = view
         self.label = label
         self.imageView = imageView
         self.textField = textField
         self.navigationBar = navigationBar
+        self.popUpView = popUpView
     }
 }

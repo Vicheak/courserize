@@ -19,21 +19,16 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var birthDatePicker: UIDatePicker!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordConfirmTextField: UITextField!
-    @IBOutlet weak var eyeToggleButton: UIButton!
-    @IBOutlet weak var eyeToggleConfirmButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
     @IBOutlet weak var chooseGenderLabel: UILabel!
     @IBOutlet weak var chooseBirthDateLabel: UILabel!
-    @IBOutlet weak var passwordInnerView: UIView!
-    @IBOutlet weak var passwordConfirmInnerView: UIView!
     @IBOutlet weak var containerView: UIView!
     
+    var passwordManager: PasswordTextFieldManager!
+    var passwordConfirmationManager: PasswordTextFieldManager!
     var keyboardUtil: KeyboardUtil!
-    
-    let eyeShowIcon = UIImage(named: "eye-show-icon")!
-    let eyeHideIcon = UIImage(named: "eye-hide-icon")!
     
     let genders = ["male", "female"]
     var selectedGender: String?
@@ -45,6 +40,8 @@ class RegisterViewController: UIViewController {
         
         self.setText()
 
+        passwordManager = PasswordTextFieldManager(passwordTextField: passwordTextField)
+        passwordConfirmationManager = PasswordTextFieldManager(passwordTextField: passwordConfirmTextField)
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
         usernameTextField.delegate = self
@@ -60,8 +57,6 @@ class RegisterViewController: UIViewController {
         passwordConfirmTextField.delegate = self
         
         gesture.addTarget(self, action: #selector(tapGestureRecognizerTapped))
-        eyeToggleButton.addTarget(self, action: #selector(togglePasswordShow), for: .touchUpInside)
-        eyeToggleConfirmButton.addTarget(self, action: #selector(togglePasswordConfirmShow), for: .touchUpInside)
         registerButton.addTarget(self, action: #selector(registerButtonTapped), for: .touchUpInside)
         
         self.setColor()
@@ -105,8 +100,6 @@ class RegisterViewController: UIViewController {
         usernameTextField.layer.cornerRadius = 5
         emailTextField.layer.cornerRadius = 5
         phoneNumberTextField.layer.cornerRadius = 5
-        passwordTextField.layer.cornerRadius = 5
-        passwordConfirmTextField.layer.cornerRadius = 5
         registerButton.layer.cornerRadius = 5
     }
     
@@ -114,8 +107,6 @@ class RegisterViewController: UIViewController {
         let theme = ThemeManager.shared.theme
         view.backgroundColor = theme.view.backgroundColor
         containerView.backgroundColor = theme.view.backgroundColor
-        passwordInnerView.backgroundColor = theme.view.backgroundColor
-        passwordConfirmInnerView.backgroundColor = theme.view.backgroundColor
         titleLabel.textColor = theme.label.primaryColor
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: theme.textField.placeholderColor
@@ -129,33 +120,14 @@ class RegisterViewController: UIViewController {
         phoneNumberTextField.backgroundColor = theme.textField.backgroundColor
         phoneNumberTextField.textColor = theme.label.primaryColor
         phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: "Enter phone number".localized(using: "InputFields"), attributes: attributes)
-        passwordTextField.backgroundColor = theme.textField.backgroundColor
-        passwordTextField.textColor = theme.label.primaryColor
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Enter password".localized(using: "InputFields"), attributes: attributes)
-        passwordConfirmTextField.backgroundColor = theme.textField.backgroundColor
-        passwordConfirmTextField.textColor = theme.label.primaryColor
         passwordConfirmTextField.attributedPlaceholder = NSAttributedString(string: "Enter password confirmation".localized(using: "InputFields"), attributes: attributes)
         chooseGenderLabel.textColor = theme.label.primaryColor
         chooseBirthDateLabel.textColor = theme.label.primaryColor
-        let textColor = theme.label.primaryColor
-        birthDatePicker.setValue(textColor, forKey: "textColor")
-        eyeToggleButton.tintColor = theme.label.primaryColor
-        eyeToggleConfirmButton.tintColor = theme.label.primaryColor
-        registerButton.setTitleColor(theme.label.primaryColor, for: .normal)
     }
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){
         view.endEditing(true)
-    }
-    
-    @objc func togglePasswordShow(){
-        eyeToggleButton.setImage(passwordTextField.isSecureTextEntry ? eyeHideIcon : eyeShowIcon, for: .normal)
-        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
-    }
-    
-    @objc func togglePasswordConfirmShow(){
-        eyeToggleConfirmButton.setImage(passwordConfirmTextField.isSecureTextEntry ? eyeHideIcon : eyeShowIcon, for: .normal)
-        passwordConfirmTextField.isSecureTextEntry = !passwordConfirmTextField.isSecureTextEntry
     }
     
     @objc func registerButtonTapped(){

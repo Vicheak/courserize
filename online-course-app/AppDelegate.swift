@@ -21,27 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        if let mode = UserDefaults.standard.string(forKey: "mode") {
-            if mode == Theme.day.rawValue {
-                ThemeManager.shared.applyTheme(type: .day)
-            } else if mode == Theme.night.rawValue {
-                ThemeManager.shared.applyTheme(type: .night)
-            } else if mode == Theme.system.rawValue {
-                ThemeManager.shared.applyTheme(type: .system)
-            }
-        } else {
-            ThemeManager.shared.applyTheme(type: .system)
-        }
-        
-        if let language = UserDefaults.standard.string(forKey: "language") {
-            Localize.setCurrentLanguage(language)
-        } else {
-            Localize.setCurrentLanguage("km")
-            UserDefaults.standard.setValue("km", forKey: "language")
-        }
-        
-        UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Regular.ttf", bundle: Bundle.main)
-        UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Bold.ttf", bundle: Bundle.main)
+        self.setUpThemeMode()
+        NotificationCenter.default.addObserver(self, selector: #selector(changeSystemInterfaceStyle), name: .changeTheme, object: nil)
+            
+        self.setUpLanguage()
+        self.registerFont()
         
         let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
@@ -50,6 +34,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         return true
+    }
+    
+    private func setUpThemeMode(){
+        if let mode = UserDefaults.standard.string(forKey: "mode") {
+            if mode == Theme.day.rawValue {
+                ThemeManager.shared.applyTheme(type: .day)
+                window?.overrideUserInterfaceStyle = .light
+            } else if mode == Theme.night.rawValue {
+                ThemeManager.shared.applyTheme(type: .night)
+                window?.overrideUserInterfaceStyle = .dark
+            } else if mode == Theme.system.rawValue {
+                ThemeManager.shared.applyTheme(type: .system)
+                window?.overrideUserInterfaceStyle = .light
+            }
+        } else {
+            ThemeManager.shared.applyTheme(type: .system)
+            window?.overrideUserInterfaceStyle = .light
+        }
+    }
+    
+    @objc func changeSystemInterfaceStyle(){
+        let themeType = ThemeManager.shared.themeType
+        if themeType == Theme.day || themeType == Theme.system {
+            window?.overrideUserInterfaceStyle = .light
+        } else if themeType == Theme.night {
+            window?.overrideUserInterfaceStyle = .dark
+        } 
+    }
+    
+    private func setUpLanguage(){
+        if let language = UserDefaults.standard.string(forKey: "language") {
+            Localize.setCurrentLanguage(language)
+        } else {
+            Localize.setCurrentLanguage("km")
+            UserDefaults.standard.setValue("km", forKey: "language")
+        }
+    }
+    
+    private func registerFont(){
+        UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Regular.ttf", bundle: Bundle.main)
+        UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Bold.ttf", bundle: Bundle.main)
     }
 
 }

@@ -72,6 +72,18 @@ class VerifyCodeViewController: UIViewController {
         confirmButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Regular", size: 14)
         sendCodeButton.titleLabel?.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
         
+        codeTextField1.backgroundColor = .white
+        codeTextField1.textColor = .black
+        codeTextField2.backgroundColor = .white
+        codeTextField2.textColor = .black
+        codeTextField3.backgroundColor = .white
+        codeTextField3.textColor = .black
+        codeTextField4.backgroundColor = .white
+        codeTextField4.textColor = .black
+        codeTextField5.backgroundColor = .white
+        codeTextField5.textColor = .black
+        codeTextField6.backgroundColor = .white
+        codeTextField6.textColor = .black
         confirmButton.layer.cornerRadius = 5
     }
     

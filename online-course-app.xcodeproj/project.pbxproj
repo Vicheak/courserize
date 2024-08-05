@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5234D7C92C608767006B70CE /* PasswordTextFieldManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7C82C608767006B70CE /* PasswordTextFieldManager.swift */; };
 		5251E3752C5CF7480036480A /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251E3742C5CF7480036480A /* ThemeViewController.swift */; };
 		5251E3782C5CFD480036480A /* DefaultPresentationTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251E3772C5CFD480036480A /* DefaultPresentationTheme.swift */; };
 		5251E37A2C5CFD670036480A /* DefaultDarkPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5251E3792C5CFD670036480A /* DefaultDarkPresentation.swift */; };
@@ -74,6 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5234D7C82C608767006B70CE /* PasswordTextFieldManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordTextFieldManager.swift; sourceTree = "<group>"; };
 		5251E3742C5CF7480036480A /* ThemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		5251E3772C5CFD480036480A /* DefaultPresentationTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPresentationTheme.swift; sourceTree = "<group>"; };
 		5251E3792C5CFD670036480A /* DefaultDarkPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDarkPresentation.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				5254BBCB2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift */,
 				5254BBD42C5CD2D100B7D4B8 /* LanguageTableViewCell.swift */,
 				5251E37F2C5D26860036480A /* ThemeTableViewCell.swift */,
+				5234D7C82C608767006B70CE /* PasswordTextFieldManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				5254BBD72C5CE90B00B7D4B8 /* ContactViewController.swift in Sources */,
 				526EBA6C2C56640F005F54DA /* VerifyCodeViewController.swift in Sources */,
 				526EBA632C564723005F54DA /* LoginViewController.swift in Sources */,
+				5234D7C92C608767006B70CE /* PasswordTextFieldManager.swift in Sources */,
 				5251E37A2C5CFD670036480A /* DefaultDarkPresentation.swift in Sources */,
 				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
 				52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */,

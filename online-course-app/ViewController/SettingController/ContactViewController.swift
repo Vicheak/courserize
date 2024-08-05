@@ -70,8 +70,13 @@ class ContactViewController: UIViewController {
     @objc func setColor() {
         let theme = ThemeManager.shared.theme
         view.backgroundColor = theme.view.backgroundColor
+        mainView.backgroundColor = .white
         titleLabel.textColor = theme.label.primaryColor
         containerView.backgroundColor = theme.view.backgroundColor
+        phoneLabel.textColor = .black
+        emailLabel.textColor = .black
+        locationLabel.textColor = .black
+        socialLabel.textColor = .black
     }
     
     @objc func telegramLinkTap(_ sender: UITapGestureRecognizer) {

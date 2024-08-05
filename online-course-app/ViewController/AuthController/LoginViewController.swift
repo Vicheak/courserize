@@ -15,7 +15,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var eyeToggleButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var forgetPasswordButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
@@ -25,15 +24,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var changeLocalizeButton: UIButton!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var passwordInnerView: UIView!
+    @IBOutlet weak var loginImageView: UIImageView!
     
+    var passwordManager: PasswordTextFieldManager!
     var keyboardUtil: KeyboardUtil!
     
-    @IBOutlet weak var loginImageView: UIImageView!
     let loginFormBg1 = UIImage(named: "login-form-background")!
     let loginFormBg2 = UIImage(named: "login-form-bg2")!
-    let eyeShowIcon = UIImage(named: "eye-show-icon")!
-    let eyeHideIcon = UIImage(named: "eye-hide-icon")!
     let khmerLanguageIcon = UIImage(named: "cambodia-logo")!
     let englishLanguageIcon = UIImage(named: "usa-logo")!
     
@@ -47,13 +44,13 @@ class LoginViewController: UIViewController {
         
         self.setText()
 
+        passwordManager = PasswordTextFieldManager(passwordTextField: passwordTextField)
         keyboardUtil = KeyboardUtil(view: view, bottomConstraint: bottomConstraint)
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
         gesture.addTarget(self, action: #selector(tapGestureRecognizerTapped))
-        eyeToggleButton.addTarget(self, action: #selector(togglePasswordShow), for: .touchUpInside)
         loginButton.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
         changeLocalizeButton.addTarget(self, action: #selector(changeLocalizeButtonTapped), for: .touchUpInside)
         
@@ -102,7 +99,6 @@ class LoginViewController: UIViewController {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         emailTextField.layer.cornerRadius = 5
-        passwordTextField.layer.cornerRadius = 5
         loginButton.layer.cornerRadius = 5
         guestUserButton.image = UIImage(systemName: "person.circle.fill")
         guestUserButton.tintColor = .black
@@ -114,7 +110,6 @@ class LoginViewController: UIViewController {
         let theme = ThemeManager.shared.theme
         view.backgroundColor = theme.view.backgroundColor
         containerView.backgroundColor = theme.view.backgroundColor
-        passwordInnerView.backgroundColor = theme.view.backgroundColor
         titleLabel.textColor = theme.label.primaryColor
         emailTextField.backgroundColor = theme.textField.backgroundColor
         emailTextField.textColor = theme.label.primaryColor
@@ -122,10 +117,7 @@ class LoginViewController: UIViewController {
             .foregroundColor: theme.textField.placeholderColor
         ]
         emailTextField.attributedPlaceholder = NSAttributedString(string: "Email".localized(using: "InputFields"), attributes: attributes)
-        passwordTextField.backgroundColor = theme.textField.backgroundColor
-        passwordTextField.textColor = theme.label.primaryColor
         passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password".localized(using: "InputFields"), attributes: attributes)
-        eyeToggleButton.tintColor = theme.label.primaryColor
         
         forgetPasswordButton.setTitleColor(theme.label.primaryColor, for: .normal)
         registerButton.setTitleColor(theme.label.primaryColor, for: .normal)
@@ -135,11 +127,6 @@ class LoginViewController: UIViewController {
     
     @objc func tapGestureRecognizerTapped(sender: UITapGestureRecognizer){
         view.endEditing(true)
-    }
-    
-    @objc func togglePasswordShow(){
-        eyeToggleButton.setImage(passwordTextField.isSecureTextEntry ? eyeHideIcon : eyeShowIcon, for: .normal)
-        passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
     }
     
     @objc func loginButtonTapped(){
