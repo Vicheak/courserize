@@ -21,9 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        self.setUpThemeMode()
-        NotificationCenter.default.addObserver(self, selector: #selector(changeSystemInterfaceStyle), name: .changeTheme, object: nil)
-            
+        if #available(iOS 13.0, *) {
+            self.setUpThemeMode()
+            NotificationCenter.default.addObserver(self, selector: #selector(changeSystemInterfaceStyle), name: .changeTheme, object: nil)
+        }
+
         self.setUpLanguage()
         self.registerFont()
         
@@ -38,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    @available(iOS 13.0, *)
     private func setUpThemeMode(){
         if let mode = UserDefaults.standard.string(forKey: "mode") {
             if mode == Theme.day.rawValue {
@@ -56,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    @available(iOS 13.0, *)
     @objc func changeSystemInterfaceStyle(){
         let themeType = ThemeManager.shared.themeType
         if themeType == Theme.day || themeType == Theme.system {
@@ -77,6 +81,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func registerFont(){
         UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Regular.ttf", bundle: Bundle.main)
         UIFont.registerFont(withFilenameString: "KhmerOSBattambang-Bold.ttf", bundle: Bundle.main)
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        //remove all files from tmp directory
+        FileUtil.deleteAllTmpFile()
     }
 
 }

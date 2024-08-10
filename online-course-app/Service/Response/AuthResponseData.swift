@@ -30,12 +30,6 @@ struct ErrorResponseData: Codable, Error {
         case errors
     }
     
-    static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        return dateFormatter
-    }()
-    
     init(isSuccess: Bool, code: Int, message: String, timestamp: Date, errors: [FieldError]){
         self.isSuccess = isSuccess
         self.code = code
@@ -50,7 +44,7 @@ struct ErrorResponseData: Codable, Error {
         code = try container.decode(Int.self, forKey: .code)
         message = try container.decode(String.self, forKey: .message)
         let timestampValue = try container.decode(String.self, forKey: .timestamp)
-        timestamp = ErrorResponseData.dateFormatter.date(from: timestampValue) ?? Date()
+        timestamp = DateUtil.dateTimeFormatter.date(from: timestampValue) ?? Date()
         errors = try container.decode([FieldError].self, forKey: .errors)
     }
 }
@@ -117,7 +111,7 @@ struct ErrorResponseMessage: Codable, Error {
         code = try container.decode(Int.self, forKey: .code)
         message = try container.decode(String.self, forKey: .message)
         let timestampValue = try container.decode(String.self, forKey: .timestamp)
-        timestamp = ErrorResponseData.dateFormatter.date(from: timestampValue) ?? Date()
+        timestamp = DateUtil.dateTimeFormatter.date(from: timestampValue) ?? Date()
         errors = try container.decode(String.self, forKey: .errors)
     }
 }

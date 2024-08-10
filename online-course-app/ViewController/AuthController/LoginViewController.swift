@@ -9,6 +9,7 @@ import UIKit
 import Localize_Swift
 import KeychainSwift
 
+@available(iOS 13.0, *)
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -145,6 +146,21 @@ class LoginViewController: UIViewController {
                         switch response {
                         case .success(let result):
                             print("Response success :", result)
+                            //request to server to get user profile
+                            UserAPIService.shared.userProfile(token: result.accessToken) { response in
+                                switch response {
+                                case .success(let result):
+                                    print("Get user profile :", result)
+                                    //must encode the result before set it to user default
+                                    let encoder = JSONEncoder()
+                                    if let userProfileResponse = try? encoder.encode(result) {
+                                        UserDefaults.standard.set(userProfileResponse, forKey: "userProfileResponse")
+                                    }
+                                case .failure(let error):
+                                    print("Cannot get user profile :", error.message)
+                                }
+                            }
+                            
                             proceedHomeScreen(email: email, accessToken: result.accessToken, refreshToken: result.refreshToken)
                         case .failure(let error):
                             print("Response failure :", error)
@@ -169,7 +185,6 @@ class LoginViewController: UIViewController {
         passwordTextField.text = ""
         
         UserDefaults.standard.setValue(true, forKey: "isLogin")
-        UserDefaults.standard.setValue(email, forKey: "email")
         let keychain = KeychainSwift()
         keychain.set(accessToken, forKey: "accessToken")
         keychain.set(refreshToken, forKey: "refreshToken")
@@ -197,6 +212,7 @@ class LoginViewController: UIViewController {
     
 }
 
+@available(iOS 13.0, *)
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

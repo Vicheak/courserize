@@ -23,14 +23,16 @@ class BaseNavigationController: UINavigationController {
         navigationBar.tintColor = theme.navigationBar.tintColor
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: textColor]
         
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = theme.navigationBar.barTintColor
-        appearance.titleTextAttributes = [.foregroundColor: textColor]
-        appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-        appearance.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: -1000, vertical: 0) 
-        navigationBar.standardAppearance = appearance
-        navigationBar.scrollEdgeAppearance = appearance
+        if #available(iOS 13.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithTransparentBackground()
+            appearance.backgroundColor = theme.navigationBar.barTintColor
+            appearance.titleTextAttributes = [.foregroundColor: textColor]
+            appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
+            appearance.backButtonAppearance.normal.titlePositionAdjustment = UIOffset(horizontal: -1000, vertical: 0)
+            navigationBar.standardAppearance = appearance
+            navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     
 }

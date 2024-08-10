@@ -103,19 +103,25 @@ extension ThemeViewController: UITableViewDataSource {
         cell.themeImageView.tintColor = theme.imageView.tintColor
         cell.themeImageViewCheck.tintColor = theme.imageView.tintColor
         if indexPath.row == 0 {
-            cell.themeImageView.image = UIImage(systemName: "moon")
+            if #available(iOS 13.0, *) {
+                cell.themeImageView.image = UIImage(systemName: "moon")
+                cell.themeImageViewCheck.image = themeType == .night ? UIImage(systemName: "checkmark") : nil
+            }
             cell.themeTitle.text = "Dark".localized(using: "Generals")
-            cell.themeImageViewCheck.image = themeType == .night ? UIImage(systemName: "checkmark") : nil
             return cell
         } else if indexPath.row == 1 {
-            cell.themeImageView.image = UIImage(systemName: "sun.min")
+            if #available(iOS 13.0, *) {
+                cell.themeImageView.image = UIImage(systemName: "sun.min")
+                cell.themeImageViewCheck.image = themeType == .day ? UIImage(systemName: "checkmark") : nil
+            }
             cell.themeTitle.text = "Light".localized(using: "Generals")
-            cell.themeImageViewCheck.image = themeType == .day ? UIImage(systemName: "checkmark") : nil
             return cell
         } else if indexPath.row == 2 {
-            cell.themeImageView.image = UIImage(systemName: "laptopcomputer")
+            if #available(iOS 13.0, *) {
+                cell.themeImageView.image = UIImage(systemName: "laptopcomputer")
+                cell.themeImageViewCheck.image = themeType == .system ? UIImage(systemName: "checkmark") : nil
+            }
             cell.themeTitle.text = "System".localized(using: "Generals")
-            cell.themeImageViewCheck.image = themeType == .system ? UIImage(systemName: "checkmark") : nil
             return cell
         } else {
             return UITableViewCell()

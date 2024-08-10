@@ -8,6 +8,7 @@
 import UIKit
 import Localize_Swift
 
+@available(iOS 13.0, *)
 class ResetPasswordViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -155,6 +156,7 @@ class ResetPasswordViewController: UIViewController {
 
 }
 
+@available(iOS 13.0, *)
 extension ResetPasswordViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

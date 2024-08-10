@@ -22,19 +22,27 @@ class BaseTabBarViewController: UITabBarController {
         
         let homeViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController")
         navHomeViewController = BaseNavigationController(rootViewController: homeViewController)
-        navHomeViewController.tabBarItem.image = UIImage(systemName: "book.fill")
+        if #available(iOS 13.0, *) {
+            navHomeViewController.tabBarItem.image = UIImage(systemName: "book.fill")
+        }
         
         let categoryViewController = storyboard.instantiateViewController(withIdentifier: "CategoryViewController")
         navCategoryViewController = BaseNavigationController(rootViewController: categoryViewController)
-        navCategoryViewController.tabBarItem.image = UIImage(systemName: "list.bullet.clipboard")
+        if #available(iOS 13.0, *) {
+            navCategoryViewController.tabBarItem.image = UIImage(systemName: "list.bullet.clipboard")
+        }
         
         let videoViewController  = storyboard.instantiateViewController(withIdentifier: "VideoViewController")
         navVideoViewController = BaseNavigationController(rootViewController: videoViewController)
-        navVideoViewController.tabBarItem.image = UIImage(systemName: "video.fill")
+        if #available(iOS 13.0, *) {
+            navVideoViewController.tabBarItem.image = UIImage(systemName: "video.fill")
+        }
         
         let subscriptionViewController = storyboard.instantiateViewController(withIdentifier: "SubscriptionViewController")
         navSubscriptionViewController = BaseNavigationController(rootViewController: subscriptionViewController)
-        navSubscriptionViewController.tabBarItem.image = UIImage(systemName: "purchased.circle")
+        if #available(iOS 13.0, *) {
+            navSubscriptionViewController.tabBarItem.image = UIImage(systemName: "purchased.circle")
+        }
         
         setViewControllers([navHomeViewController, navCategoryViewController, navVideoViewController, navSubscriptionViewController], animated: true)
         selectedViewController = navHomeViewController
@@ -69,12 +77,14 @@ class BaseTabBarViewController: UITabBarController {
         tabBar.barTintColor = theme.tabBar.barTintColor
         tabBar.tintColor = theme.tabBar.tintColor
         
-        let appearance = UITabBarAppearance()
-        appearance.configureWithDefaultBackground()
-        appearance.backgroundColor = theme.tabBar.barTintColor
-        tabBar.standardAppearance = appearance
-        if #available(iOS 15.0, *) {
-            tabBar.scrollEdgeAppearance = appearance
+        if #available(iOS 13.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = theme.tabBar.barTintColor
+            tabBar.standardAppearance = appearance
+            if #available(iOS 15.0, *) {
+                tabBar.scrollEdgeAppearance = appearance
+            }
         }
     }
 

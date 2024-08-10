@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class KeyboardUtil {
+public class KeyboardUtil {
         
     var view: UIView
     var bottomConstraint: NSLayoutConstraint

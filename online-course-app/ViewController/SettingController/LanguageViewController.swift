@@ -99,12 +99,16 @@ extension LanguageViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             cell.languageImageView.image = UIImage(named: "cambodia-logo")!
             cell.languageTitle.text = "Khmer".localized(using: "Generals")
-            cell.languageImageViewCheck.image = Localize.currentLanguage() == "km" ? UIImage(systemName: "checkmark") : nil
+            if #available(iOS 13.0, *) {
+                cell.languageImageViewCheck.image = Localize.currentLanguage() == "km" ? UIImage(systemName: "checkmark") : nil
+            }
             return cell
         } else if indexPath.row == 1 {
             cell.languageImageView.image = UIImage(named: "usa-logo")!
             cell.languageTitle.text = "English".localized(using: "Generals")
-            cell.languageImageViewCheck.image = Localize.currentLanguage() == "en" ? UIImage(systemName: "checkmark") : nil
+            if #available(iOS 13.0, *) {
+                cell.languageImageViewCheck.image = Localize.currentLanguage() == "en" ? UIImage(systemName: "checkmark") : nil
+            }
             return cell
         } else {
             return UITableViewCell()

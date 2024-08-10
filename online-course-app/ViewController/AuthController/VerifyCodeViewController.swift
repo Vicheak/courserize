@@ -49,7 +49,9 @@ class VerifyCodeViewController: UIViewController {
         gesture.addTarget(self, action: #selector(tapGestureRecognizerTapped))
         sendCodeButton.addTarget(self, action: #selector(sendCodeButtonTapped), for: .touchUpInside)
         closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
-        confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        if #available(iOS 13.0, *) {
+            confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        } 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,6 +121,7 @@ class VerifyCodeViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @available(iOS 13.0, *)
     @objc func confirmButtonTapped(){
         let code1 = codeTextField1.text ?? ""
         let code2 = codeTextField2.text ?? ""

@@ -1184,13 +1184,16 @@ i+GeouGfkuGek+GegA
                                                     </view>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDk-wr-ea1">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zDk-wr-ea1">
                                                 <rect key="frame" x="353" y="60" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="IeZ-c3-jGF"/>
                                                     <constraint firstAttribute="width" constant="30" id="jZA-76-IGN"/>
                                                 </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="xmark.app.fill" catalog="system">
+                                                    <color key="baseForegroundColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </buttonConfiguration>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="IeZ-c3-jGF"/>
@@ -1337,6 +1340,7 @@ i+GeouGfkuGek+GegA
         <image name="login-form-bg2" width="450" height="450"/>
         <image name="preview-screen-background" width="360" height="640"/>
         <image name="register-form-background" width="256" height="256"/>
+        <image name="xmark.app.fill" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

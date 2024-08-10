@@ -111,7 +111,9 @@ extension SettingViewController: UITableViewDataSource {
             cell.contentView.backgroundColor = theme.view.backgroundColor
             cell.titleLabel.textColor = theme.label.primaryColor
             cell.settingImageView.tintColor = theme.imageView.tintColor
-            cell.settingImageView.image = UIImage(systemName: "envelope.open")
+            if #available(iOS 13.0, *) {
+                cell.settingImageView.image = UIImage(systemName: "envelope.open")
+            }
             cell.titleLabel.text = "Notification".localized(using: "Generals")
             return cell
         } else if indexPath.row == 2  {
@@ -119,7 +121,9 @@ extension SettingViewController: UITableViewDataSource {
             cell.contentView.backgroundColor = theme.view.backgroundColor
             cell.titleLabel.textColor = theme.label.primaryColor
             cell.settingImageView.tintColor = theme.imageView.tintColor
-            cell.settingImageView.image = UIImage(systemName: "textformat")
+            if #available(iOS 13.0, *) {
+                cell.settingImageView.image = UIImage(systemName: "textformat")
+            }
             cell.titleLabel.text = "Language".localized(using: "Generals")
             return cell
         } else if indexPath.row == 3  {
@@ -127,7 +131,9 @@ extension SettingViewController: UITableViewDataSource {
             cell.contentView.backgroundColor = theme.view.backgroundColor
             cell.titleLabel.textColor = theme.label.primaryColor
             cell.settingImageView.tintColor = theme.imageView.tintColor
-            cell.settingImageView.image = UIImage(systemName: "sun.min")
+            if #available(iOS 13.0, *) {
+                cell.settingImageView.image = UIImage(systemName: "sun.min")
+            }
             cell.titleLabel.text = "Theme".localized(using: "Generals")
             return cell
         } else if indexPath.row == 4  {
@@ -135,7 +141,9 @@ extension SettingViewController: UITableViewDataSource {
             cell.contentView.backgroundColor = theme.view.backgroundColor
             cell.titleLabel.textColor = theme.label.primaryColor
             cell.settingImageView.tintColor = theme.imageView.tintColor
-            cell.settingImageView.image = UIImage(systemName: "phone.bubble")
+            if #available(iOS 13.0, *) {
+                cell.settingImageView.image = UIImage(systemName: "phone.bubble")
+            } 
             cell.titleLabel.text = "Contact".localized(using: "Generals")
             return cell
         } else {

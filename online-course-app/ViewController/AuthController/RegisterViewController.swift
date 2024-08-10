@@ -8,6 +8,7 @@
 import UIKit
 import Localize_Swift
 
+@available(iOS 13.0, *)
 class RegisterViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -197,6 +198,7 @@ class RegisterViewController: UIViewController {
 
 }
 
+@available(iOS 13.0, *)
 extension RegisterViewController: UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
