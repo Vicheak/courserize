@@ -196,8 +196,18 @@ class UserViewController: UIViewController {
     }
     
     private func setUpProfile(_ userProfile: UserProfileResponse){
-        emailLabel.text = userProfile.payload.email
-        
+        let payload = userProfile.payload
+        userUsername.text = payload.username
+        userPhone.text = payload.phoneNumber
+        userEmail.text = payload.email
+        userGender.text = payload.gender
+        userBirthDate.text = DateUtil.dateFormatter.string(from: payload.dateOfBirth)
+        userJoinedDate.text = DateUtil.dateFormatter.string(from: payload.joinDate)
+        var concatenateRole: String = ""
+        for userRole in payload.userRoles {
+            concatenateRole = userRole.role.name + " "
+        }
+        userRoles.text = concatenateRole
     }
     
     @objc func setColor() {
