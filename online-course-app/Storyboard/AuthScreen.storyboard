@@ -179,7 +179,6 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="FWP-Kf-5GS">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="QEo-7k-FF3"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="OdJ-D0-J1O">
                             <connections>
                                 <segue destination="9Ie-Uy-6uK" kind="show" id="RHc-tX-NNw"/>
@@ -193,7 +192,6 @@
                         <outlet property="emailTextField" destination="4Jo-Se-5KU" id="DE8-f0-DkD"/>
                         <outlet property="forgetPasswordButton" destination="EuQ-O4-V61" id="9oC-Qq-yer"/>
                         <outlet property="gesture" destination="qez-8Z-1X8" id="z0B-JK-7Y0"/>
-                        <outlet property="guestUserButton" destination="QEo-7k-FF3" id="F56-X9-HqL"/>
                         <outlet property="loginButton" destination="aVc-Q3-Nl5" id="Z55-Hb-bmj"/>
                         <outlet property="loginImageView" destination="33h-su-bsk" id="bnI-1m-IX8"/>
                         <outlet property="passwordTextField" destination="qnf-qw-ckX" id="CLH-BF-XoP"/>

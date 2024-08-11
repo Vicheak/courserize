@@ -5,7 +5,7 @@
 //  Created by @suonvicheakdev on 10/8/24.
 //
 
-import Foundation
+import UIKit
 
 public class FileUtil {
 
@@ -37,6 +37,14 @@ public class FileUtil {
         } catch {
             print("Error deleting files : \(error)")
         }
+    }
+    
+    
+    static func loadImageFromDocumentDirectory(fileName: String) -> UIImage? {
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        return UIImage(contentsOfFile: fileURL.path)
     }
     
 }

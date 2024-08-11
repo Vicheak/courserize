@@ -7,6 +7,8 @@
 
 import UIKit
 import Alamofire
+import KeychainSwift
+import Localize_Swift
 
 class AuthAPIService {
     
@@ -34,6 +36,84 @@ class AuthAPIService {
                     isSuccess: false,
                     code: statusCode,
                     message: "Incorrect email or password or you are unauthorized!",
+                    timestamp: Date(),
+                    errors: []
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(unauthorizedError))
+                }
+                return
+            }
+            switch responseData.result {
+            case .success(let data):
+                print("Success :", data)
+                do {
+                    // Try to decode as a success response
+                    let successResponse = try JSONDecoder().decode(LoginResponseData.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(.success(successResponse))
+                    }
+                } catch {
+                    do {
+                        // Try to decode as an error response
+                        let errorResponse = try JSONDecoder().decode(ErrorResponseData.self, from: data)
+                        DispatchQueue.main.async {
+                            completion(.failure(errorResponse))
+                        }
+                    } catch {
+                        // If both decoding attempts fail, print the error and provide a generic error response
+                        print("Decoding error : \(error.localizedDescription)")
+                        let genericError = ErrorResponseData(
+                            isSuccess: false,
+                            code: statusCode,
+                            message: "An unknown error occurred",
+                            timestamp: Date(),
+                            errors: []
+                        )
+                        DispatchQueue.main.async {
+                            completion(.failure(genericError))
+                        }
+                    }
+                }
+            case .failure(let error):
+                print("Error :", error)
+                let networkError = ErrorResponseData(
+                    isSuccess: false,
+                    code: (error as NSError).code,
+                    message: "Cannot get response from server",
+                    timestamp: Date(),
+                    errors: []
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(networkError))
+                }
+            }
+        }
+        return
+    }
+    
+    func doRefreshToken(refreshToken: String, completion: @escaping (Result<LoginResponseData, ErrorResponseData>) -> Void) {
+        let params = ["refreshToken": refreshToken]
+        AF.request(Endpoint.refreshToken.rawValue, method: .post, parameters: params, encoding: JSONEncoding.default).responseData { responseData in
+            guard let statusCode = responseData.response?.statusCode else {
+                let error = ErrorResponseData(
+                    isSuccess: false,
+                    code: (responseData.error! as NSError).code,
+                    message: "The Internet connection appears to be offline.",
+                    timestamp: Date(),
+                    errors: []
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            if statusCode == 401 {
+                let unauthorizedError = ErrorResponseData(
+                    isSuccess: false,
+                    code: statusCode,
+                    message: "You are unauthorized!",
                     timestamp: Date(),
                     errors: []
                 )
@@ -476,6 +556,30 @@ class AuthAPIService {
             }
         }
         return
+    }
+    
+    public func shouldRefreshToken() {
+        let keychain = KeychainSwift()
+        let refreshToken = keychain.get("refreshToken")!
+//        let accessToken = keychain.get("accessToken")!
+        doRefreshToken(refreshToken: refreshToken) { response in
+            switch response {
+            case .success(let result):
+//                print("Response success :", result)
+                let keychain = KeychainSwift()
+                keychain.set(result.accessToken, forKey: "accessToken")
+                keychain.set(result.refreshToken, forKey: "refreshToken")
+            case .failure(let error):
+                print("Response failure :", error)
+                if error.code == 400 {
+                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors[0].message, withAlert: .warning) {}
+                } else if error.code == 401 {
+                    PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: error.message, withAlert: .cross) {}
+                } else {
+                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
+                }
+            }
+        }
     }
     
 }

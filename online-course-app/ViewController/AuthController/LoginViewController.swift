@@ -21,7 +21,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet var gesture: UITapGestureRecognizer!
-    @IBOutlet weak var guestUserButton: UIBarButtonItem!
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var changeLocalizeButton: UIButton!
     @IBOutlet weak var containerView: UIView!
@@ -101,9 +100,6 @@ class LoginViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         emailTextField.layer.cornerRadius = 5
         loginButton.layer.cornerRadius = 5
-        guestUserButton.title = "Guest Login"
-        guestUserButton.image = UIImage(systemName: "person.circle.fill")
-        guestUserButton.tintColor = .black
         settingButton.image = UIImage(systemName: "gear")
         settingButton.tintColor = .black
     }
@@ -123,7 +119,6 @@ class LoginViewController: UIViewController {
         
         forgetPasswordButton.setTitleColor(theme.label.primaryColor, for: .normal)
         registerButton.setTitleColor(theme.label.primaryColor, for: .normal)
-        guestUserButton.tintColor = theme.imageView.tintColor
         settingButton.tintColor = theme.imageView.tintColor
     }
     
@@ -146,21 +141,6 @@ class LoginViewController: UIViewController {
                         switch response {
                         case .success(let result):
                             print("Response success :", result)
-                            //request to server to get user profile
-                            UserAPIService.shared.userProfile(token: result.accessToken) { response in
-                                switch response {
-                                case .success(let result):
-                                    print("Get user profile :", result)
-                                    //must encode the result before set it to user default
-                                    let encoder = JSONEncoder()
-                                    if let userProfileResponse = try? encoder.encode(result) {
-                                        UserDefaults.standard.set(userProfileResponse, forKey: "userProfileResponse")
-                                    }
-                                case .failure(let error):
-                                    print("Cannot get user profile :", error.message)
-                                }
-                            }
-                            
                             proceedHomeScreen(email: email, accessToken: result.accessToken, refreshToken: result.refreshToken)
                         case .failure(let error):
                             print("Response failure :", error)

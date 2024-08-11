@@ -31,6 +31,15 @@ struct UserProfileResponse: Codable {
         self.payload = payload
     }
     
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.isSuccess, forKey: .isSuccess)
+        try container.encode(self.code, forKey: .code)
+        try container.encode(self.message, forKey: .message)
+        try container.encode(DateUtil.dateTimeFormatter.string(from: self.timestamp), forKey: .timestamp)
+        try container.encode(self.payload, forKey: .payload)
+    }
+    
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isSuccess = try container.decode(Bool.self, forKey: .isSuccess)
@@ -50,6 +59,7 @@ struct UserProfilePayload: Codable {
     var phoneNumber: String
     var dateOfBirth: Date
     var joinDate: Date
+    var photoUri: String?
     var isVerified: Bool
     var isEnabled: Bool
     var userRoles: [UserRole]
@@ -62,12 +72,13 @@ struct UserProfilePayload: Codable {
         case phoneNumber
         case dateOfBirth
         case joinDate
+        case photoUri
         case isVerified
         case isEnabled
         case userRoles
     }
     
-    init(uuid: String, username: String, email: String, gender: String, phoneNumber: String, dateOfBirth: Date, joinDate: Date, isVerified: Bool, isEnabled: Bool, userRoles: [UserRole]) {
+    init(uuid: String, username: String, email: String, gender: String, phoneNumber: String, dateOfBirth: Date, joinDate: Date, photoUri: String, isVerified: Bool, isEnabled: Bool, userRoles: [UserRole]) {
         self.uuid = uuid
         self.username = username
         self.email = email
@@ -75,9 +86,25 @@ struct UserProfilePayload: Codable {
         self.phoneNumber = phoneNumber
         self.dateOfBirth = dateOfBirth
         self.joinDate = joinDate
+        self.photoUri = photoUri
         self.isVerified = isVerified
         self.isEnabled = isEnabled
         self.userRoles = userRoles
+    }
+    
+    func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.uuid, forKey: .uuid)
+        try container.encode(self.username, forKey: .username)
+        try container.encode(self.email, forKey: .email)
+        try container.encode(self.gender, forKey: .gender)
+        try container.encode(self.phoneNumber, forKey: .phoneNumber)
+        try container.encode(DateUtil.dateFormatter.string(from: self.dateOfBirth), forKey: .dateOfBirth)
+        try container.encode(DateUtil.dateTimeFormatter.string(from: self.joinDate), forKey: .joinDate)
+        try? container.encode(self.photoUri, forKey: .photoUri)
+        try container.encode(self.isVerified, forKey: .isVerified)
+        try container.encode(self.isEnabled, forKey: .isEnabled)
+        try container.encode(self.userRoles, forKey: .userRoles)
     }
     
     init(from decoder: any Decoder) throws {
@@ -91,6 +118,7 @@ struct UserProfilePayload: Codable {
         dateOfBirth = DateUtil.dateFormatter.date(from: dateOfBirthValue) ?? Date()
         let joinDateValue = try container.decode(String.self, forKey: .joinDate)
         joinDate = DateUtil.dateTimeFormatter.date(from: joinDateValue) ?? Date()
+        photoUri = try? container.decode(String.self, forKey: .photoUri)
         isVerified = try container.decode(Bool.self, forKey: .isVerified)
         isEnabled = try container.decode(Bool.self, forKey: .isEnabled)
         userRoles = try container.decode([UserRole].self, forKey: .userRoles)

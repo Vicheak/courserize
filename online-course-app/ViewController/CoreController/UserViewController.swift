@@ -12,8 +12,6 @@ import KeychainSwift
 class UserViewController: UIViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userUsername: UILabel!
     @IBOutlet weak var userPhone: UILabel!
@@ -45,15 +43,24 @@ class UserViewController: UIViewController {
     @IBOutlet weak var updateProfileImageView: UIImageView!
     @IBOutlet weak var changePasswordImageView: UIImageView!
     @IBOutlet weak var logoutImageView: UIImageView!
+    @IBOutlet weak var closeButton: UIBarButtonItem!
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var userProfileContainer: UIView!
+    @IBOutlet weak var profilePhoneContainer: UIView!
+    let titleLabel = UILabel()
+    
+    var userProfileResponse: UserProfileResponse?
+    
+    var alertCotroller = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        closeButton.target = self
+        closeButton.action = #selector(closeButtonTapped)
         
         setUpViews()
         
         self.setText()
-
-        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         
         self.setColor()
         NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
@@ -82,6 +89,10 @@ class UserViewController: UIViewController {
     
     @objc func setText() {
         titleLabel.text = "Account".localized(using: "Generals")
+        titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 18)
+        titleLabel.textAlignment = .center
+        titleLabel.sizeToFit()
+        navigationItem.titleView = titleLabel
         profileLabel.text = "   " + "Profile".localized(using: "Generals")
         emailLabel.text = "Email".localized(using: "Generals")
         genderLabel.text = "Gender".localized(using: "Generals")
@@ -99,7 +110,6 @@ class UserViewController: UIViewController {
     }
 
     private func setUpViews(){
-        titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 18)
         profileLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 22)
         uploadProfileTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
         updateProflieTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
@@ -108,80 +118,6 @@ class UserViewController: UIViewController {
         
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        
-        toImageCircleBound()
-        //load image from document directory
-        let imageName = UserDefaults.standard.string(forKey: "imageName")
-        if let imageName = imageName {
-            let fileManager = FileManager.default
-            let directoryPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let filePath = directoryPath.appendingPathComponent(imageName)
-
-            if let image = UIImage(contentsOfFile: filePath.path) {
-                UIView.transition(with: userImageView, duration: 1.5, options: [.transitionFlipFromLeft]) { [weak self] in
-                    guard let self = self else { return }
-                    userImageView.image = image
-                } completion: { _ in }
-                
-            } else {
-                //handle image loading failure (e.g., file not found, invalid format)
-                print("Error : could not load image from document directory : \(filePath)")
-                 
-                UIView.transition(with: userImageView, duration: 1.5, options: [.transitionFlipFromLeft]) { [weak self] in
-                    guard let self = self else { return }
-                    if #available(iOS 13.0, *) {
-                        userImageView.image = UIImage(systemName: "person.circle.fill")
-                    }
-                } completion: { _ in }
-            }
-        } else {
-            print("No image is found in user defaults")
-        
-            //set the default ui image
-            UIView.transition(with: userImageView, duration: 1.5, options: [.transitionFlipFromLeft]) { [weak self] in
-                guard let self = self else { return }
-                if #available(iOS 13.0, *) {
-                    userImageView.image = UIImage(systemName: "person.circle.fill")
-                }
-            } completion: { _ in }
-        }
-        
-        if let userProfileResponseData = UserDefaults.standard.data(forKey: "userProfileResponse")  {
-            let decoder = JSONDecoder()
-//            if let userProfileResponse = try? decoder.decode(UserProfileResponse.self, from: userProfileResponseData) {
-//                print(userProfileResponseData)
-//                setUpProfile(userProfileResponse)
-//            } else {
-//                print("error decoding")
-//            }
-            
-            let userProfileString = String(data: userProfileResponseData, encoding: .utf8)
-            print(userProfileString)
-            do {
-                let userProfileResponse = try decoder.decode(UserProfileResponse.self, from: userProfileResponseData)
-                print(userProfileResponseData)
-            } catch {
-                print(error.localizedDescription)
-            }
-        } else {
-            //request to server again to get user profile
-            let keychain = KeychainSwift()
-            let accessToken = keychain.get("accessToken")!
-            UserAPIService.shared.userProfile(token: accessToken) { [weak self] response in
-                guard let self = self else { return }
-                switch response {
-                case .success(let result):
-                    print("Get user profile :", result)
-                    let encoder = JSONEncoder()
-                    if let userProfileResponse = try? encoder.encode(result) {
-                        UserDefaults.standard.setValue(userProfileResponse, forKey: "userProfileResponse")
-                    }
-                    setUpProfile(result)
-                case .failure(let error):
-                    print("Cannot get user profile :", error.message)
-                }
-            }
-        }
         
         profileContainer.layer.cornerRadius = 6
         profileContainer.layer.borderWidth = 0.3
@@ -193,6 +129,42 @@ class UserViewController: UIViewController {
         changePasswordTab.layer.borderWidth = 0.3
         logoutTab.layer.cornerRadius = 6
         logoutTab.layer.borderWidth = 0.3
+        
+        toImageCircleBound()
+    
+        setUpUserView()
+    }
+    
+    private func setUpUserView(){
+        //request to server again to get user profile
+        let keychain = KeychainSwift()
+        let accessToken = keychain.get("accessToken")!
+        UserAPIService.shared.userProfile(token: accessToken) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let result):
+                userProfileResponse = result
+                setUpProfile(result)
+                if let photoUri = result.payload.photoUri {
+                    setUpProfileImage(photoUri: photoUri)
+                } else {
+                    //set to user image view
+                    if #available(iOS 13.0, *) {
+                        userImageView.image = UIImage(systemName: "person.circle.fill")
+                    }
+                }
+            case .failure(let error):
+                print("Cannot get user profile :", error.message)
+                if error.code == 401 {
+                    DispatchQueue.main.async {
+                        AuthAPIService.shared.shouldRefreshToken()
+                        self.setUpUserView()
+                    }
+                } else {
+                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
+                }
+            }
+        }
     }
     
     private func setUpProfile(_ userProfile: UserProfileResponse){
@@ -205,14 +177,45 @@ class UserViewController: UIViewController {
         userJoinedDate.text = DateUtil.dateFormatter.string(from: payload.joinDate)
         var concatenateRole: String = ""
         for userRole in payload.userRoles {
-            concatenateRole = userRole.role.name + " "
+            concatenateRole += userRole.role.name + " "
         }
         userRoles.text = concatenateRole
+    }
+    
+    private func setUpProfileImage(photoUri: String){
+        //load image from document directory
+        let fileURL = URL(string: photoUri)!
+        if let profileImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
+            //set to user image view
+            UIView.transition(with: userImageView, duration: 1.5, options: [.transitionFlipFromLeft]) { [weak self] in
+                guard let self = self else { return }
+                userImageView.image = profileImage
+            } completion: { _ in }
+    
+            toImageCircleBound()
+        } else {
+            FileAPIService.shared.downloadImageAndSave(fileURL: photoUri) { [weak self] response in
+                guard let self = self else { return }
+                switch response {
+                case .success(let url):
+                    setUpProfileImage(photoUri: url.absoluteString)
+                case .failure(let error):
+                    print("Error :", error)
+                    //set to user image view
+                    if #available(iOS 13.0, *) {
+                        userImageView.image = UIImage(systemName: "person.circle.fill")
+                    }
+                }
+            }
+        }
     }
     
     @objc func setColor() {
         let theme = ThemeManager.shared.theme
         view.backgroundColor = theme.view.backgroundColor
+        mainView.backgroundColor = theme.view.backgroundColor
+        userProfileContainer.backgroundColor = theme.view.backgroundColor
+        profilePhoneContainer.backgroundColor = theme.view.backgroundColor
         profileContainer.layer.borderColor = theme.label.primaryColor.cgColor
         uploadProfileTab.layer.borderColor = theme.label.primaryColor.cgColor
         updateProfileTab.layer.borderColor = theme.label.primaryColor.cgColor
@@ -262,11 +265,73 @@ class UserViewController: UIViewController {
     }
     
     @objc func updateProfileTapped(){
-        
+        alertCotroller = UIAlertController(title: "Update".localized(using: "Generals"), message: "Please fill in your information".localized(using: "Generals"), preferredStyle: .alert)
+        alertCotroller.addTextField { textField in
+            textField.placeholder = "Enter your username here".localized(using: "Generals")
+            textField.clearButtonMode = .whileEditing
+        }
+        alertCotroller.addTextField { textField in
+            textField.placeholder = "Enter your phone number here".localized(using: "Generals")
+            textField.keyboardType = .phonePad
+            textField.clearButtonMode = .whileEditing
+            textField.delegate = self
+        }
+        alertCotroller.addAction(UIAlertAction(title: "Cancel".localized(using: "Generals"), style: .cancel))
+        alertCotroller.addAction(UIAlertAction(title: "Update".localized(using: "Generals"), style: .default, handler: { [weak self] _ in
+            guard let self = self else { return }
+            if let username = alertCotroller.textFields?[0].text,
+               let phoneNumber = alertCotroller.textFields?[1].text {
+                let alertController = LoadingViewController()
+                
+                if DataValidation.validateRequired(field: username, fieldName: "Username") &&
+                    DataValidation.validateRequired(field: phoneNumber, fieldName: "Phone number") {
+                    present(alertController, animated: true) {
+                        alertController.dismiss(animated: true) { [weak self] in
+                            guard let self = self else { return }
+                            let keychain = KeychainSwift()
+                            let accessToken = keychain.get("accessToken")!
+                            if let userProfileResponse = userProfileResponse {
+                                UserAPIService.shared.updateUserProfileByUuid(token: accessToken, username: username, phoneNumber: phoneNumber, uuid: userProfileResponse.payload.uuid) { response in
+                                    switch response {
+                                    case .success(let result):
+                                        PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) {
+                                            self.userUsername.text = username
+                                            self.userPhone.text = phoneNumber
+                                        }
+                                    case .failure(let error):
+                                        print("Error :", error)
+                                        if error.code == 401 {
+                                            PopUpUtil.popUp(withTitle: "Error".localized(using: "Generals"), withMessage: error.message, withAlert: .cross) {}
+                                        } else if error.code == 409 {
+                                            PopUpUtil.popUp(withTitle: "Invalid".localized(using: "Generals"), withMessage: error.errors, withAlert: .cross) {}
+                                        } else {
+                                            PopUpUtil.popUp(withTitle: "Error".localized(using: "Generals"), withMessage: error.message, withAlert: .cross) {}
+                                        }
+                                    }
+                                }
+                            } else {
+                                PopUpUtil.popUp(withTitle: "Error".localized(using: "Generals"), withMessage: "Something went wrong!", withAlert: .warning) {}
+                            }
+                        }
+                    }
+                }
+            }
+        }))
+        present(alertCotroller, animated: true)
     }
     
     @objc func changePasswordTapped(){
-        
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        if #available(iOS 13.0, *) {
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
+            
+            if let userProfileResponse = userProfileResponse {
+                viewController.userUuid = userProfileResponse.payload.uuid
+                navigationController?.pushViewController(viewController, animated: true)
+            } else {
+                PopUpUtil.popUp(withTitle: "Error".localized(using: "Generals"), withMessage: "Something went wrong!", withAlert: .warning) {}
+            }
+        }
     }
     
     @objc func logoutTapped(){
@@ -290,25 +355,28 @@ extension UserViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
-        if let image = info[.originalImage] as? UIImage {
-            //save the seleted image as JPEG file
-            let fileName = UUID().uuidString + ".jpg"
-            if let savedURL = ImageUtil.saveImageAsJPEG(image, to: .documentDirectory, withName: fileName, compressionQuality: 0.8){
-                print("Save image URL : \(savedURL)")
-                
-                //set to user image view
-                UIView.transition(with: userImageView, duration: 1.5, options: [.transitionFlipFromLeft]) { [weak self] in
+        if let imageURL =  info[.imageURL] as? URL {
+            //upload file to server
+            let alertController = LoadingViewController()
+            present(alertController, animated: true) {
+                alertController.dismiss(animated: true) { [weak self] in
                     guard let self = self else { return }
-                    userImageView.image = image
-                } completion: { _ in }
-        
-                toImageCircleBound()
-                
-                //store image name in user defaults
-                //and if user uploads new image, overwrite the filename to new image name
-                UserDefaults.standard.set(fileName, forKey: "imageName")
-                
-                //upload file to server
+                    let keychain = KeychainSwift()
+                    let accessToken = keychain.get("accessToken")!
+                    if let userProfileResponse = userProfileResponse {
+                        UserAPIService.shared.uploadUserPhotoByUuid(token: accessToken, uuid: userProfileResponse.payload.uuid, fileURL: imageURL) { response in
+                            switch response {
+                            case .success(let fileResponse):
+                                self.setUpProfileImage(photoUri: fileResponse.uri)
+                            case .failure(let error):
+                                print("Error :", error)
+                                PopUpUtil.popUp(withTitle: "Error".localized(using: "Generals"), withMessage: error.errors, withAlert: .warning) {}
+                            }
+                        }
+                    } else {
+                        PopUpUtil.popUp(withTitle: "Error".localized(using: "Generals"), withMessage: "Something went wrong!", withAlert: .warning) {}
+                    }
+                }
             }
         }
     }
@@ -322,6 +390,16 @@ extension UserViewController: UIImagePickerControllerDelegate, UINavigationContr
         userImageView.layer.cornerRadius = userImageView.frame.width / 2
         userImageView.clipsToBounds = true
         userImageView.contentMode = .scaleAspectFill
+    }
+    
+}
+
+extension UserViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        return allowedCharacters.isSuperset(of: characterSet)
     }
     
 }
