@@ -933,12 +933,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="122"/>
-        <image name="laptopcomputer" catalog="system" width="128" height="71"/>
+        <image name="gear" catalog="system" width="32" height="32"/>
+        <image name="laptopcomputer" catalog="system" width="32" height="32"/>
         <image name="lock.rotation" catalog="system" width="128" height="112"/>
         <image name="login-form-bg2" width="450" height="450"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="person.circle.fill" catalog="system" width="32" height="32"/>
         <image name="phone.fill" catalog="system" width="128" height="114"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="pip.exit" catalog="system" width="128" height="98"/>

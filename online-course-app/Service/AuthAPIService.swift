@@ -558,17 +558,16 @@ class AuthAPIService {
         return
     }
     
-    public func shouldRefreshToken() {
+    public func shouldRefreshToken(completion: @escaping (Bool) -> Void) {
         let keychain = KeychainSwift()
         let refreshToken = keychain.get("refreshToken")!
-//        let accessToken = keychain.get("accessToken")!
         doRefreshToken(refreshToken: refreshToken) { response in
             switch response {
             case .success(let result):
-//                print("Response success :", result)
                 let keychain = KeychainSwift()
                 keychain.set(result.accessToken, forKey: "accessToken")
                 keychain.set(result.refreshToken, forKey: "refreshToken")
+                completion(true)
             case .failure(let error):
                 print("Response failure :", error)
                 if error.code == 400 {
@@ -578,6 +577,7 @@ class AuthAPIService {
                 } else {
                     PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
                 }
+                completion(false)
             }
         }
     }

@@ -157,8 +157,13 @@ class UserViewController: UIViewController {
                 print("Cannot get user profile :", error.message)
                 if error.code == 401 {
                     DispatchQueue.main.async {
-                        AuthAPIService.shared.shouldRefreshToken()
-                        self.setUpUserView()
+                        AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
+                            if didReceiveToken {
+                                self.setUpUserView()
+                            } else {
+                                print("Cannot refresh the token, something went wrong!")
+                            }
+                        }
                     }
                 } else {
                     PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
@@ -339,8 +344,6 @@ class UserViewController: UIViewController {
         alertCotroller.addAction(UIAlertAction(title: "Cancel".localized(using: "Generals"), style: .destructive))
         alertCotroller.addAction(UIAlertAction(title: "Log out".localized(using: "Generals"), style: .default, handler: { _ in
             UserDefaults.standard.setValue(false, forKey: "isLogin")
-            UserDefaults.standard.setValue("", forKey: "userProfileResponse")
-            UserDefaults.standard.set("", forKey: "imageName")
             let keychain = KeychainSwift()
             keychain.delete("accessToken")
             keychain.delete("refreshToken")
