@@ -47,7 +47,6 @@ class PasswordTextFieldManager  {
         passwordTextField.isSecureTextEntry.toggle()
     }
     
-    
     @objc func setColor() {
         let theme = ThemeManager.shared.theme
         passwordTextField.backgroundColor = theme.textField.backgroundColor

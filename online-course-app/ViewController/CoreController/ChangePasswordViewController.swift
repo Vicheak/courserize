@@ -93,8 +93,6 @@ class ChangePasswordViewController: UIViewController {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: theme.textField.placeholderColor
         ]
-        oldPasswordTextField.backgroundColor = theme.textField.backgroundColor
-        oldPasswordTextField.textColor = theme.label.primaryColor
         oldPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your previous password".localized(using: "InputFields"), attributes: attributes)
         newPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Enter your new password".localized(using: "InputFields"), attributes: attributes)
         newPasswordConfirmTextField.attributedPlaceholder = NSAttributedString(string:  "Enter your new password confirmation".localized(using: "InputFields"), attributes: attributes)

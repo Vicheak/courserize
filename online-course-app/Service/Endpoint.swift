@@ -22,6 +22,7 @@ enum Endpoint: String {
     case uploadUserPhotoByUuid
     case updateUserProfileByUuid
     case changePassword
+    case loadCoursesWithCategory
     
     var rawValue: String {
         switch self {
@@ -47,6 +48,8 @@ enum Endpoint: String {
             return Endpoint.endpoint + "users/"
         case .changePassword:
             return Endpoint.endpoint + "users/change-password/"
+        case .loadCoursesWithCategory:
+            return Endpoint.endpoint + "categories/"
         }
     }
     

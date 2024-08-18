@@ -13,5 +13,6 @@ target 'online-course-app' do
   source 'https://github.com/CocoaPods/Specs.git'
   pod 'Localize-Swift', '~> 3.2'
   pod 'SwiftEntryKit', '2.0.0'
+  pod 'SkeletonView'
 
 end

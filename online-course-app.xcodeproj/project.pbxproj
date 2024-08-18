@@ -74,6 +74,9 @@
 		528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F62C55EAAA009FD199 /* Main.storyboard */; };
 		52A964492C5E5D8100427630 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A964482C5E5D8100427630 /* BaseNavigationController.swift */; };
 		52C11F092C5B4A4A00986229 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C11F082C5B4A4A00986229 /* Alert.swift */; };
+		52CE3BBE2C7225350091BFEB /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3BBD2C7225350091BFEB /* CourseCollectionViewCell.swift */; };
+		52CE3BC02C722F390091BFEB /* CourseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3BBF2C722F390091BFEB /* CourseResponse.swift */; };
+		52CE3BC22C7231ED0091BFEB /* CourseAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3BC12C7231ED0091BFEB /* CourseAPIService.swift */; };
 		52DEE79E2C57E9E200E0BC60 /* ScreenTitles.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52DEE79C2C57E9E200E0BC60 /* ScreenTitles.strings */; };
 		52E8A2382C68560900805D89 /* FileResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8A2372C68560900805D89 /* FileResponseDto.swift */; };
 		52E8A23A2C6862DC00805D89 /* FileAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8A2392C6862DC00805D89 /* FileAPIService.swift */; };
@@ -162,6 +165,9 @@
 		528C63F62C55EAAA009FD199 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		52A964482C5E5D8100427630 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		52C11F082C5B4A4A00986229 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		52CE3BBD2C7225350091BFEB /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
+		52CE3BBF2C722F390091BFEB /* CourseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseResponse.swift; sourceTree = "<group>"; };
+		52CE3BC12C7231ED0091BFEB /* CourseAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseAPIService.swift; sourceTree = "<group>"; };
 		52DEE79D2C57E9E200E0BC60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
 		52DEE79F2C57E9E700E0BC60 /* km */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = km; path = km.lproj/ScreenTitles.strings; sourceTree = "<group>"; };
 		52E8A2372C68560900805D89 /* FileResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileResponseDto.swift; sourceTree = "<group>"; };
@@ -224,6 +230,7 @@
 				5251E37F2C5D26860036480A /* ThemeTableViewCell.swift */,
 				5234D7C82C608767006B70CE /* PasswordTextFieldManager.swift */,
 				52E8A23D2C68BD1F00805D89 /* CategoryCollectionViewCell.swift */,
+				52CE3BBD2C7225350091BFEB /* CourseCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +299,7 @@
 				52EEB9522C58A35D004354DD /* Endpoint.swift */,
 				52476C882C6778CC00566927 /* UserAPIService.swift */,
 				52E8A2392C6862DC00805D89 /* FileAPIService.swift */,
+				52CE3BC12C7231ED0091BFEB /* CourseAPIService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -424,6 +432,7 @@
 				52476C842C6773A000566927 /* UserProfileResponse.swift */,
 				52476C8A2C677B0400566927 /* ErrorResponse.swift */,
 				52E8A2372C68560900805D89 /* FileResponseDto.swift */,
+				52CE3BBF2C722F390091BFEB /* CourseResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -611,6 +620,7 @@
 				5234D7D12C6097DD006B70CE /* SubscriptionViewController.swift in Sources */,
 				5234D7C92C608767006B70CE /* PasswordTextFieldManager.swift in Sources */,
 				5251E37A2C5CFD670036480A /* DefaultDarkPresentation.swift in Sources */,
+				52CE3BC02C722F390091BFEB /* CourseResponse.swift in Sources */,
 				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
 				52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */,
 				52A964492C5E5D8100427630 /* BaseNavigationController.swift in Sources */,
@@ -637,9 +647,11 @@
 				526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */,
 				526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */,
 				52E8A23E2C68BD1F00805D89 /* CategoryCollectionViewCell.swift in Sources */,
+				52CE3BC22C7231ED0091BFEB /* CourseAPIService.swift in Sources */,
 				5255C9262C580F4E007FE420 /* NSNotification.Name + Ext.swift in Sources */,
 				52EEB95E2C5910A3004354DD /* HomeViewController.swift in Sources */,
 				52E8A23A2C6862DC00805D89 /* FileAPIService.swift in Sources */,
+				52CE3BBE2C7225350091BFEB /* CourseCollectionViewCell.swift in Sources */,
 				5251E3752C5CF7480036480A /* ThemeViewController.swift in Sources */,
 				52EEB9622C5912AA004354DD /* UIWindow + Ext.swift in Sources */,
 				5251E3782C5CFD480036480A /* DefaultPresentationTheme.swift in Sources */,

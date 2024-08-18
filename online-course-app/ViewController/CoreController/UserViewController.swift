@@ -114,7 +114,7 @@ class UserViewController: UIViewController {
         uploadProfileTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
         updateProflieTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
         changePasswordTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
-        logoutTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14)
+        logoutTabTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 14) 
         
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
@@ -156,13 +156,11 @@ class UserViewController: UIViewController {
             case .failure(let error):
                 print("Cannot get user profile :", error.message)
                 if error.code == 401 {
-                    DispatchQueue.main.async {
-                        AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
-                            if didReceiveToken {
-                                self.setUpUserView()
-                            } else {
-                                print("Cannot refresh the token, something went wrong!")
-                            }
+                    AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
+                        if didReceiveToken {
+                            self.setUpUserView()
+                        } else {
+                            print("Cannot refresh the token, something went wrong!")
                         }
                     }
                 } else {
