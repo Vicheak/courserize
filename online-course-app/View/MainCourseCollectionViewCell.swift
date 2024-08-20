@@ -1,36 +1,25 @@
 //
-//  CourseCollectionViewCell.swift
+//  MainCourseCollectionViewCell.swift
 //  online-course-app
 //
-//  Created by @suonvicheakdev on 18/8/24.
+//  Created by @suonvicheakdev on 19/8/24.
 //
 
 import UIKit
 import SkeletonView
 
-class CourseCollectionViewCell: UICollectionViewCell {
-    
+class MainCourseCollectionViewCell: UICollectionViewCell {
+
     @IBOutlet weak var courseImageView: UIImageView!
     @IBOutlet weak var courseTitle: UILabel!
     @IBOutlet weak var courseShortDescription: UILabel!
     @IBOutlet weak var coursePrice: UILabel!
     @IBOutlet weak var courseDuration: UILabel!
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-          
+        // Initialization code
+        
         isSkeletonable = true
         courseImageView.isSkeletonable = true
         courseImageView.showAnimatedGradientSkeleton()
@@ -44,5 +33,5 @@ class CourseCollectionViewCell: UICollectionViewCell {
         courseDuration.isSkeletonable = true
         courseDuration.showAnimatedGradientSkeleton()
     }
-    
+
 }

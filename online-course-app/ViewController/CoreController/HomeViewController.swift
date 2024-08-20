@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import SnapKit
 import Localize_Swift
 import KeychainSwift
+import SkeletonView
 
 class HomeViewController: UIViewController {
 
@@ -20,15 +22,38 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var categoryShowAll: UILabel!
-    @IBOutlet weak var courseCollectionContainer: UIView!
-    @IBOutlet weak var courseLabel: UILabel!
-    @IBOutlet weak var courseCollectionView: UICollectionView!
-    @IBOutlet weak var courseShowAll: UILabel!
+    @IBOutlet weak var mainStackView: UIStackView!
+    //for categories
+    var courseCollectionContainer1: UIView!
+    var courseCollectionContainer2: UIView!
+    var courseCollectionContainer3: UIView!
+    var courseCollectionContainer4: UIView!
+    var courseCollectionContainer5: UIView!
+    var courseCollectionContainer6: UIView!
+    var courseCollectionContainer7: UIView!
+    var courseCollectionContainer8: UIView!
+    var courseCollectionContainer9: UIView!
+    var courseCollectionContainer10: UIView!
+    var courseCollectionContainer11: UIView!
     
-    private var featuredCourses: [CourseResponsePayload]?
+    private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //set up each category view
+        courseCollectionContainer1 = CourseContainerView(withTitle: "Programming", withCategory: "Programming")
+        courseCollectionContainer2 = CourseContainerView(withTitle: "Software Delevelopment", withCategory: "Software Delevelopment")
+        courseCollectionContainer3 = CourseContainerView(withTitle: "Trend and Modern Technologies", withCategory: "Trend and Modern Technologies")
+        courseCollectionContainer4 = CourseContainerView(withTitle: "Basic Coding", withCategory: "Basic Coding")
+        courseCollectionContainer5 = CourseContainerView(withTitle: "General Computer and Office", withCategory: "General Computer and Office")
+        courseCollectionContainer6 = CourseContainerView(withTitle: "Mathematics", withCategory: "Mathematics")
+        courseCollectionContainer7 = CourseContainerView(withTitle: "English", withCategory: "English")
+        courseCollectionContainer8 = CourseContainerView(withTitle: "Khmer", withCategory: "Khmer")
+        courseCollectionContainer9 = CourseContainerView(withTitle: "Exam Preparation", withCategory: "Exam Preparation")
+        courseCollectionContainer10 = CourseContainerView(withTitle: "General Knowledge", withCategory: "General Knowledge")
+        courseCollectionContainer11 = CourseContainerView(withTitle: "Specialization", withCategory: "Specialization")
+        
         setUpViews()
         
         self.setText()
@@ -38,11 +63,14 @@ class HomeViewController: UIViewController {
         settingButton.target = self
         settingButton.action = #selector(settingButtonTapped)
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        scrollView.addSubview(refreshControl)
+        
         self.setColor()
         NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
         
         setUpCategoryCollectionView()
-        setUpCourseCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +85,61 @@ class HomeViewController: UIViewController {
     func setUpViews(){
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer1)
+        courseCollectionContainer1.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+
+        mainStackView.addArrangedSubview(courseCollectionContainer2)
+        courseCollectionContainer2.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer3)
+        courseCollectionContainer3.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer4)
+        courseCollectionContainer4.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer5)
+        courseCollectionContainer5.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer6)
+        courseCollectionContainer6.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer7)
+        courseCollectionContainer7.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer8)
+        courseCollectionContainer8.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer9)
+        courseCollectionContainer9.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer10)
+        courseCollectionContainer10.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
+        
+        mainStackView.addArrangedSubview(courseCollectionContainer11)
+        courseCollectionContainer11.snp.makeConstraints { make in
+            make.height.equalTo(330)
+        }
     }
     
     @objc func setText(){
@@ -64,10 +147,6 @@ class HomeViewController: UIViewController {
         categoryLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 17)
         categoryShowAll.text = "Show All".localized(using: "Generals")
         categoryShowAll.font = UIFont(name: "KhmerOSBattambang-Bold", size: 17)
-        courseLabel.text = "Featured Courses".localized(using: "Generals")
-        courseLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 17)
-        courseShowAll.text = "Show All".localized(using: "Generals")
-        courseShowAll.font = UIFont(name: "KhmerOSBattambang-Bold", size: 17)
     }
     
     @objc func profileButtonTapped(){
@@ -90,10 +169,6 @@ class HomeViewController: UIViewController {
         categoryCollectionContainer.backgroundColor = theme.view.backgroundColor
         categoryCollectionView.backgroundColor = theme.view.backgroundColor
         categoryLabel.textColor = theme.label.primaryColor
-        courseCollectionContainer.backgroundColor = theme.view.backgroundColor
-        courseCollectionView.backgroundColor = theme.view.backgroundColor
-        
-        categoryCollectionView.reloadData()
     }
     
     func setUpCategoryCollectionView() {
@@ -107,79 +182,16 @@ class HomeViewController: UIViewController {
         categoryCollectionView.showsHorizontalScrollIndicator = false
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
-    }
-    
-    func setUpCourseCollectionView(){
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 200, height: 260)
         
-        courseCollectionView.collectionViewLayout = layout
-        courseCollectionView.showsHorizontalScrollIndicator = false
-        courseCollectionView.delegate = self
-        courseCollectionView.dataSource = self
-        
-        setUpCourseCollectionViewWithCategory(withCategoryName: "Programming") { [weak self] coursePayload in
-            guard let self = self else { return }
-            if !coursePayload.isEmpty {
-                featuredCourses = coursePayload
-                courseCollectionView.reloadData()
-            }
-        }
+        categoryCollectionView.reloadData()
     }
     
-    func setUpCourseCollectionViewWithCategory(withCategoryName categoryName: String, completion: @escaping ([CourseResponsePayload]) -> Void) {
-        let keychain = KeychainSwift()
-        let accessToken = keychain.get("accessToken")!
-        CourseAPIService.shared.loadCourseByCategoryName(token: accessToken, withCategoryName: categoryName) { [weak self] response in
-            guard let self = self else { return }
-            switch response {
-            case .success(let result):
-                completion(result.payload)
-            case .failure(let error):
-                print("Cannot get courses :", error.message)
-                if error.code == 401 {
-                    AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
-                        if didReceiveToken {
-                            self.setUpCourseCollectionViewWithCategory(withCategoryName: categoryName, completion: completion)
-                        } else {
-                            print("Cannot refresh the token, something went wrong!")
-                        }
-                    }
-                } else {
-                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
-                }
-            }
-        }
-    }
     
-    private func setUpCourseImage(imageUri: String, withImageView imageView: UIImageView){
-        //load image from document directory
-        let fileURL = URL(string: imageUri)!
-        if let courseImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
-            //set to user image view
-            UIView.transition(with: imageView, duration: 1.5, options: [.curveEaseInOut]) {
-                imageView.image = courseImage
-            } completion: { _ in }
-        } else {
-            FileAPIService.shared.downloadImageAndSave(fileURL: imageUri) { [weak self] response in
-                guard let self = self else { return }
-                switch response {
-                case .success(_):
-                    setUpCourseImage(imageUri: imageUri, withImageView: imageView)
-                case .failure(let error):
-                    print("Error :", error)
-                    //set to user image view
-                    if #available(iOS 13.0, *) {
-                        //set up loading
-                    }
-                }
-            }
-        }
+    @objc private func refreshData() {
+        NotificationCenter.default.post(name: NSNotification.Name.refreshData, object: nil)
+        refreshControl.endRefreshing()
     }
-    
+
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -187,8 +199,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == categoryCollectionView {
             return 11
-        } else if collectionView == courseCollectionView {
-            return featuredCourses?.count ?? 0
         }
         return 0
     }
@@ -242,28 +252,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             return cell
             
-        } else if collectionView == courseCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellPrototype2", for: indexPath) as! CourseCollectionViewCell
-            let theme = ThemeManager.shared.theme
-            cell.courseImageView.tintColor = theme.imageView.tintColor
-            cell.contentView.backgroundColor = UIColor(rgb: 0x808080, alpha: 0.05)
-            cell.contentView.layer.borderWidth = 1
-            cell.contentView.layer.borderColor = UIColor(rgb: 0x808080, alpha: 0.2).cgColor
-            cell.contentView.layer.cornerRadius = 3
-            
-            if !featuredCourses!.isEmpty {
-                let course = featuredCourses?[indexPath.row]
-                cell.courseTitle.text = course!.title
-                cell.courseShortDescription.text = course!.description
-                cell.coursePrice.text = "$\(String(describing: course!.cost))"
-                cell.courseDuration.text = "/ \(String(describing: course!.durationInHour)) Hours"
-                //set up course image
-                if let imageUri = course?.imageUri {
-                    setUpCourseImage(imageUri: imageUri, withImageView: cell.courseImageView)
-                }
-            }
-                
-            return cell
         }
         
         return UICollectionViewCell()

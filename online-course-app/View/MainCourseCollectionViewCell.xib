@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="courseCellPrototype" id="U1W-1E-0ue" customClass="MainCourseCollectionViewCell" customModule="online_course_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tmI-Uc-qVr">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oy5-E4-OjF">
+                        <rect key="frame" x="5" y="115" width="190" height="20.333333333333343"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Short Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oj8-Pz-h3a">
+                        <rect key="frame" x="5" y="145.33333333333334" width="190" height="20.333333333333343"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" systemColor="systemGreenColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weN-dZ-hcx">
+                        <rect key="frame" x="5" y="270" width="57" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="9qN-HY-czy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/ Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xB7-br-nRY">
+                        <rect key="frame" x="67" y="270" width="74.333333333333314" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="gzj-Bn-b8S"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KuF-2u-ACr">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="110"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="110" id="O6f-7Q-jwY"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="oj8-Pz-h3a" secondAttribute="trailing" constant="5" id="0Rm-r6-lyI"/>
+                    <constraint firstItem="Oy5-E4-OjF" firstAttribute="leading" secondItem="tmI-Uc-qVr" secondAttribute="leading" constant="5" id="BaA-La-Dvd"/>
+                    <constraint firstItem="KuF-2u-ACr" firstAttribute="top" secondItem="tmI-Uc-qVr" secondAttribute="top" id="IK9-Xv-BND"/>
+                    <constraint firstItem="weN-dZ-hcx" firstAttribute="leading" secondItem="tmI-Uc-qVr" secondAttribute="leading" constant="5" id="RPc-h6-RI1"/>
+                    <constraint firstItem="KuF-2u-ACr" firstAttribute="leading" secondItem="tmI-Uc-qVr" secondAttribute="leading" id="VG5-dg-4Ag"/>
+                    <constraint firstItem="Oy5-E4-OjF" firstAttribute="top" secondItem="KuF-2u-ACr" secondAttribute="bottom" constant="5" id="ZA3-8h-BWp"/>
+                    <constraint firstItem="oj8-Pz-h3a" firstAttribute="top" secondItem="Oy5-E4-OjF" secondAttribute="bottom" constant="10" id="e00-Dq-TVb"/>
+                    <constraint firstAttribute="trailing" secondItem="Oy5-E4-OjF" secondAttribute="trailing" constant="5" id="f2R-UP-dxQ"/>
+                    <constraint firstAttribute="bottom" secondItem="weN-dZ-hcx" secondAttribute="bottom" constant="10" id="jeH-mw-wu6"/>
+                    <constraint firstItem="xB7-br-nRY" firstAttribute="leading" secondItem="weN-dZ-hcx" secondAttribute="trailing" constant="5" id="vAA-EB-jjc"/>
+                    <constraint firstAttribute="bottom" secondItem="xB7-br-nRY" secondAttribute="bottom" constant="10" id="wXF-Cx-NaI"/>
+                    <constraint firstAttribute="trailing" secondItem="KuF-2u-ACr" secondAttribute="trailing" id="xoe-fc-mQc"/>
+                    <constraint firstItem="oj8-Pz-h3a" firstAttribute="leading" secondItem="tmI-Uc-qVr" secondAttribute="leading" constant="5" id="y4X-Be-BA5"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="200" height="300"/>
+            <connections>
+                <outlet property="courseDuration" destination="xB7-br-nRY" id="d8u-av-YUJ"/>
+                <outlet property="courseImageView" destination="KuF-2u-ACr" id="JHR-50-j8j"/>
+                <outlet property="coursePrice" destination="weN-dZ-hcx" id="XPu-t6-fyS"/>
+                <outlet property="courseShortDescription" destination="oj8-Pz-h3a" id="vuG-Yn-3fs"/>
+                <outlet property="courseTitle" destination="Oy5-E4-OjF" id="TJr-EX-Yis"/>
+            </connections>
+            <point key="canvasLocation" x="229" y="-17"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
