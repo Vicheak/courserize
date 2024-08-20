@@ -13,6 +13,7 @@
 		5234D7CF2C6097C8006B70CE /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7CE2C6097C8006B70CE /* VideoViewController.swift */; };
 		5234D7D12C6097DD006B70CE /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */; };
 		5234D7D32C60A967006B70CE /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5234D7D22C60A967006B70CE /* UserViewController.swift */; };
+		523E0EFD2C7472EC0071A8F4 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523E0EFC2C7472EC0071A8F4 /* CategoryTableViewCell.swift */; };
 		52476C812C676B4200566927 /* ImageUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52476C802C676B4200566927 /* ImageUtil.swift */; };
 		52476C832C676DC700566927 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52476C822C676DC700566927 /* FileUtil.swift */; };
 		52476C852C6773A000566927 /* UserProfileResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52476C842C6773A000566927 /* UserProfileResponse.swift */; };
@@ -102,6 +103,7 @@
 		5234D7CE2C6097C8006B70CE /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		5234D7D22C60A967006B70CE /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		523E0EFC2C7472EC0071A8F4 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		52476C802C676B4200566927 /* ImageUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtil.swift; sourceTree = "<group>"; };
 		52476C822C676DC700566927 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		52476C842C6773A000566927 /* UserProfileResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileResponse.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				52CE3BC32C7252080091BFEB /* CourseContainerView.swift */,
 				5297AC5A2C73A1B700BA3F33 /* MainCourseCollectionViewCell.swift */,
 				5297AC5B2C73A1B700BA3F33 /* MainCourseCollectionViewCell.xib */,
+				523E0EFC2C7472EC0071A8F4 /* CategoryTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				5234D7C92C608767006B70CE /* PasswordTextFieldManager.swift in Sources */,
 				5251E37A2C5CFD670036480A /* DefaultDarkPresentation.swift in Sources */,
 				52CE3BC02C722F390091BFEB /* CourseResponse.swift in Sources */,
+				523E0EFD2C7472EC0071A8F4 /* CategoryTableViewCell.swift in Sources */,
 				5255C9172C58017D007FE420 /* LoadingView.swift in Sources */,
 				52EEB9562C58A44B004354DD /* AuthResponseData.swift in Sources */,
 				52A964492C5E5D8100427630 /* BaseNavigationController.swift in Sources */,

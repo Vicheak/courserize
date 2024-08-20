@@ -20,6 +20,7 @@ class MainCourseCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        courseImageView.contentMode = .scaleAspectFill
         isSkeletonable = true
         courseImageView.isSkeletonable = true
         courseImageView.showAnimatedGradientSkeleton()

@@ -23,6 +23,12 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     @IBOutlet weak var categoryShowAll: UILabel!
     @IBOutlet weak var mainStackView: UIStackView!
+    @IBOutlet weak var slideshowImageView: UIImageView!
+    
+    var images: [UIImage] = []
+    var currentIndex = 0
+    var timer: Timer?
+    
     //for categories
     var courseCollectionContainer1: UIView!
     var courseCollectionContainer2: UIView!
@@ -71,6 +77,7 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
         
         setUpCategoryCollectionView()
+        setUpSlideshow()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -140,6 +147,8 @@ class HomeViewController: UIViewController {
         courseCollectionContainer11.snp.makeConstraints { make in
             make.height.equalTo(330)
         }
+        
+        slideshowImageView.contentMode = .scaleAspectFill
     }
     
     @objc func setText(){
@@ -169,6 +178,9 @@ class HomeViewController: UIViewController {
         categoryCollectionContainer.backgroundColor = theme.view.backgroundColor
         categoryCollectionView.backgroundColor = theme.view.backgroundColor
         categoryLabel.textColor = theme.label.primaryColor
+        slideshowImageView.backgroundColor = theme.imageView.backgroundColor
+        
+        categoryCollectionView.reloadData()
     }
     
     func setUpCategoryCollectionView() {
@@ -186,6 +198,65 @@ class HomeViewController: UIViewController {
         categoryCollectionView.reloadData()
     }
     
+    func setUpSlideshow() {
+        // Load images into the array
+        images = [
+            UIImage(named: "ruby")!,
+            UIImage(named: "cloud")!,
+            UIImage(named: "c++")!,
+            UIImage(named: "c")!,
+            UIImage(named: "coding")!
+        ]
+            
+        // Start the slideshow
+        startSlideshow()
+            
+        // Add swipe gestures for manual navigation
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        swipeLeft.direction = .left
+        slideshowImageView.addGestureRecognizer(swipeLeft)
+            
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        swipeRight.direction = .right
+        slideshowImageView.addGestureRecognizer(swipeRight)
+            
+        slideshowImageView.isUserInteractionEnabled = true
+    }
+    
+    func startSlideshow() {
+        slideshowImageView.image = images[currentIndex]
+        timer = Timer.scheduledTimer(timeInterval: 3.0,
+                                     target: self,
+                                     selector: #selector(nextImage),
+                                     userInfo: nil,
+                                     repeats: true)
+    }
+    
+    @objc func nextImage() {
+        currentIndex = (currentIndex + 1) % images.count
+        transitionToImage(at: currentIndex)
+    }
+       
+    @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+        timer?.invalidate() // Stop the timer when the user swipes
+           
+        if gesture.direction == .left {
+            currentIndex = (currentIndex + 1) % images.count
+        } else if gesture.direction == .right {
+            currentIndex = (currentIndex - 1 + images.count) % images.count
+        }
+           
+        transitionToImage(at: currentIndex)
+        startSlideshow() // Optionally restart the slideshow timer
+    }
+       
+    func transitionToImage(at index: Int) {
+        UIView.transition(with: slideshowImageView,
+                            duration: 1.0,
+                            options: .transitionCrossDissolve,
+                            animations: { self.slideshowImageView.image = self.images[index] },
+                            completion: nil)
+    }
     
     @objc private func refreshData() {
         NotificationCenter.default.post(name: NSNotification.Name.refreshData, object: nil)
@@ -256,7 +327,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         return UICollectionViewCell()
     }
-   
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
        
