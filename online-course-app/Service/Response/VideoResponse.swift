@@ -1,19 +1,19 @@
 //
-//  CourseResponse.swift
+//  VideoResponse.swift
 //  online-course-app
 //
-//  Created by @suonvicheakdev on 18/8/24.
+//  Created by @suonvicheakdev on 21/8/24.
 //
 
 import Foundation
 
-struct CourseResponse: Codable {
+struct VideoResponse: Codable {
     //case : 200 OK
     var isSuccess: Bool
     var code: Int
     var message: String
     var timestamp: Date
-    var payload: [CourseResponsePayload]
+    var payload: [VideoResponsePayload]
     
     enum CodingKeys: String, CodingKey {
         case isSuccess
@@ -23,7 +23,7 @@ struct CourseResponse: Codable {
         case payload
     }
     
-    init(isSuccess: Bool, code: Int, message: String, timestamp: Date, payload: [CourseResponsePayload]) {
+    init(isSuccess: Bool, code: Int, message: String, timestamp: Date, payload: [VideoResponsePayload]) {
         self.isSuccess = isSuccess
         self.code = code
         self.message = message
@@ -47,17 +47,17 @@ struct CourseResponse: Codable {
         message = try container.decode(String.self, forKey: .message)
         let timestampValue = try container.decode(String.self, forKey: .timestamp)
         timestamp = DateUtil.dateTimeFormatter.date(from: timestampValue) ?? Date()
-        payload = try container.decode([CourseResponsePayload].self, forKey: .payload)
+        payload = try container.decode([VideoResponsePayload].self, forKey: .payload)
     }
 }
 
-struct CourseResponseOne: Codable {
+struct VideoResponseOne: Codable {
     //case : 200 OK
     var isSuccess: Bool
     var code: Int
     var message: String
     var timestamp: Date
-    var payload: CourseResponsePayload
+    var payload: VideoResponsePayload
     
     enum CodingKeys: String, CodingKey {
         case isSuccess
@@ -67,7 +67,7 @@ struct CourseResponseOne: Codable {
         case payload
     }
     
-    init(isSuccess: Bool, code: Int, message: String, timestamp: Date, payload: CourseResponsePayload) {
+    init(isSuccess: Bool, code: Int, message: String, timestamp: Date, payload: VideoResponsePayload) {
         self.isSuccess = isSuccess
         self.code = code
         self.message = message
@@ -91,22 +91,17 @@ struct CourseResponseOne: Codable {
         message = try container.decode(String.self, forKey: .message)
         let timestampValue = try container.decode(String.self, forKey: .timestamp)
         timestamp = DateUtil.dateTimeFormatter.date(from: timestampValue) ?? Date()
-        payload = try container.decode(CourseResponsePayload.self, forKey: .payload)
+        payload = try container.decode(VideoResponsePayload.self, forKey: .payload)
     }
 }
 
-struct CourseResponsePayload: Codable {
+struct VideoResponsePayload: Codable {
     var uuid: String
     var title: String
     var description: String
+    var videoLink: String
     var imageUri: String?
-    var durationInHour: Int
-    var cost: Double
-    var numberOfView: Int
-    var numberOfLike: Int
-    var category: String
-    var authorUuid: String
-    var author: String
+    var course: String
     var createdAt: Date
     var updatedAt: Date
     
@@ -114,30 +109,20 @@ struct CourseResponsePayload: Codable {
         case uuid
         case title
         case description
+        case videoLink
         case imageUri
-        case durationInHour
-        case cost
-        case numberOfView
-        case numberOfLike
-        case category
-        case authorUuid
-        case author
+        case course
         case createdAt
         case updatedAt
     }
     
-    init(uuid: String, title: String, description: String, imageUri: String? = nil, durationInHour: Int, cost: Double, numberOfView: Int, numberOfLike: Int, category: String, authorUuid: String, author: String, createdAt: Date, updatedAt: Date) {
+    init(uuid: String, title: String, description: String, videoLink: String, imageUri: String? = nil, course: String, createdAt: Date, updatedAt: Date) {
         self.uuid = uuid
         self.title = title
         self.description = description
+        self.videoLink = videoLink
         self.imageUri = imageUri
-        self.durationInHour = durationInHour
-        self.cost = cost
-        self.numberOfView = numberOfView
-        self.numberOfLike = numberOfLike
-        self.category = category
-        self.authorUuid = authorUuid
-        self.author = author
+        self.course = course
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
@@ -147,14 +132,9 @@ struct CourseResponsePayload: Codable {
         try container.encode(self.uuid, forKey: .uuid)
         try container.encode(self.title, forKey: .title)
         try container.encode(self.description, forKey: .description)
+        try container.encode(self.videoLink, forKey: .videoLink)
         try container.encode(self.imageUri, forKey: .imageUri)
-        try container.encode(self.durationInHour, forKey: .durationInHour)
-        try container.encode(self.cost, forKey: .cost)
-        try? container.encode(self.numberOfView, forKey: .numberOfView)
-        try container.encode(self.numberOfLike, forKey: .numberOfLike)
-        try container.encode(self.category, forKey: .category)
-        try container.encode(self.authorUuid, forKey: .authorUuid)
-        try container.encode(self.author, forKey: .author)
+        try container.encode(self.course, forKey: .course)
         try container.encode(DateUtil.dateTimeFormatter.string(from: self.createdAt), forKey: .createdAt)
         try container.encode(DateUtil.dateTimeFormatter.string(from: self.updatedAt), forKey: .updatedAt)
     }
@@ -164,18 +144,12 @@ struct CourseResponsePayload: Codable {
         uuid = try container.decode(String.self, forKey: .uuid)
         title = try container.decode(String.self, forKey: .title)
         description = try container.decode(String.self, forKey: .description)
+        videoLink = try container.decode(String.self, forKey: .videoLink)
         imageUri = try? container.decode(String.self, forKey: .imageUri)
-        durationInHour = try container.decode(Int.self, forKey: .durationInHour)
-        cost = try container.decode(Double.self, forKey: .cost)
-        numberOfView = try container.decode(Int.self, forKey: .numberOfView)
-        numberOfLike = try container.decode(Int.self, forKey: .numberOfLike)
-        category = try container.decode(String.self, forKey: .category)
-        authorUuid = try container.decode(String.self, forKey: .authorUuid)
-        author = try container.decode(String.self, forKey: .author)
+        course = try container.decode(String.self, forKey: .course)
         let createdAtValue = try container.decode(String.self, forKey: .createdAt)
         createdAt = DateUtil.dateFormatter.date(from: createdAtValue) ?? Date()
         let updatedAtValue = try container.decode(String.self, forKey: .updatedAt)
         updatedAt = DateUtil.dateFormatter.date(from: updatedAtValue) ?? Date()
     }
-    
 }

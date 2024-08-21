@@ -12,6 +12,7 @@ import SkeletonView
 
 class CourseContainerView: UIView {
     
+    var navController: UINavigationController!
     var courseLabel = UILabel()
     var courseShowAll = UILabel()
     var courseCollectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -19,10 +20,11 @@ class CourseContainerView: UIView {
     private var category: String!
     private var courses: [CourseResponsePayload]?
     
-    init(withTitle title: String, withCategory category: String) {
+    init(withTitle title: String, withCategory category: String, withNavController navController: UINavigationController) {
         super.init(frame: .zero)
         setUpViews(withTitle: title)
         self.category = category
+        self.navController = navController
         
         // Register the cell using its nib
         let nib = UINib(nibName: "MainCourseCollectionViewCell", bundle: nil)
@@ -34,6 +36,9 @@ class CourseContainerView: UIView {
         setUpCourseCollectionView(withCategoryName: category)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name.refreshData, object: nil)
+        
+        courseShowAll.isUserInteractionEnabled = true
+        courseShowAll.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAllCoursesTapped)))
     }
     
     required init?(coder: NSCoder) {
@@ -86,13 +91,7 @@ class CourseContainerView: UIView {
         courseCollectionView.delegate = self
         courseCollectionView.dataSource = self
         
-        setUpCourseCollectionViewWithCategory(withCategoryName: categoryName) { [weak self] coursePayload in
-            guard let self = self else { return }
-            if !coursePayload.isEmpty {
-                courses = coursePayload
-            }
-            courseCollectionView.reloadData()
-        }
+        refreshData()
     }
     
     func setUpCourseCollectionViewWithCategory(withCategoryName categoryName: String, completion: @escaping ([CourseResponsePayload]) -> Void) {
@@ -124,7 +123,6 @@ class CourseContainerView: UIView {
         //load image from document directory
         let fileURL = URL(string: imageUri)!
         if let courseImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
-            //set to user image view
             UIView.transition(with: imageView, duration: 1.5, options: [.curveEaseInOut]) {
                 imageView.image = courseImage
             } completion: { _ in }
@@ -154,6 +152,14 @@ class CourseContainerView: UIView {
             }
             courseCollectionView.reloadData()
         }
+    }
+    
+    @objc func showAllCoursesTapped(){
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let categoryCourseViewController = storyboard.instantiateViewController(withIdentifier: "CategoryCourseViewController") as! CategoryCourseViewController
+        categoryCourseViewController.hidesBottomBarWhenPushed = true
+        categoryCourseViewController.category = self.category
+        self.navController.pushViewController(categoryCourseViewController, animated: true)
     }
     
 }
@@ -195,6 +201,17 @@ extension CourseContainerView: UICollectionViewDelegate, UICollectionViewDataSou
         }
             
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let courses = courses {
+            let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+            let courseDetailViewController = storyboard.instantiateViewController(withIdentifier: "CourseDetailViewController") as! CourseDetailViewController
+            let course = courses[indexPath.row]
+            courseDetailViewController.courseUuid = course.uuid
+            courseDetailViewController.modalPresentationStyle = .fullScreen
+            navController.topViewController?.present(courseDetailViewController, animated: true)
+        }
     }
     
 }

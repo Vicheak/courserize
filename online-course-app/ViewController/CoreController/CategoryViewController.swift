@@ -81,7 +81,35 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let categoryCourseViewController = storyboard.instantiateViewController(withIdentifier: "CategoryCourseViewController") as! CategoryCourseViewController
+        categoryCourseViewController.hidesBottomBarWhenPushed = true
+        if indexPath.row == 0 {
+            categoryCourseViewController.category = "Programming"
+        } else if indexPath.row == 1 {
+            categoryCourseViewController.category = "Mathematics"
+        } else if indexPath.row == 2 {
+            categoryCourseViewController.category = "English"
+        } else if indexPath.row == 3 {
+            categoryCourseViewController.category = "Khmer"
+        } else if indexPath.row == 4 {
+            categoryCourseViewController.category = "Exam Preparation"
+        } else if indexPath.row == 5 {
+            categoryCourseViewController.category = "General Knowledge"
+        } else if indexPath.row == 6 {
+            categoryCourseViewController.category = "Basic Coding"
+        } else if indexPath.row == 7 {
+            categoryCourseViewController.category = "General Computer and Office"
+        } else if indexPath.row == 8 {
+            categoryCourseViewController.category = "Specialization"
+        } else if indexPath.row == 9 {
+            categoryCourseViewController.category = "Trend and Modern Technologies"
+        } else if indexPath.row == 10 {
+            categoryCourseViewController.category = "Software Delevelopment"
+        } else {
+            categoryCourseViewController.category = "Programming"
+        }
+        navigationController?.pushViewController(categoryCourseViewController, animated: true)
     }
     
 }
@@ -99,7 +127,6 @@ extension CategoryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as? CategoryTableViewCell else { return UITableViewCell() }
         let theme = ThemeManager.shared.theme
-        let themeType = ThemeManager.shared.themeType
         cell.contentView.backgroundColor = theme.view.backgroundColor
         cell.categoryNameLabel.textColor = theme.label.primaryColor
         cell.categoryImageView.tintColor = theme.imageView.tintColor
@@ -146,7 +173,7 @@ extension CategoryViewController: UITableViewDataSource {
                 cell.categoryImageView.image = UIImage(systemName: "mosaic.fill")
                 return cell
             } else if indexPath.row == 10 {
-                cell.categoryNameLabel.text = "Software Development"
+                cell.categoryNameLabel.text = "Software Delevelopment"
                 cell.categoryImageView.image = UIImage(systemName: "laptopcomputer")
                 return cell
             } else {

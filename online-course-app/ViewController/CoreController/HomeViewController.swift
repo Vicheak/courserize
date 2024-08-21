@@ -48,17 +48,18 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         //set up each category view
-        courseCollectionContainer1 = CourseContainerView(withTitle: "Programming", withCategory: "Programming")
-        courseCollectionContainer2 = CourseContainerView(withTitle: "Software Delevelopment", withCategory: "Software Delevelopment")
-        courseCollectionContainer3 = CourseContainerView(withTitle: "Trend and Modern Technologies", withCategory: "Trend and Modern Technologies")
-        courseCollectionContainer4 = CourseContainerView(withTitle: "Basic Coding", withCategory: "Basic Coding")
-        courseCollectionContainer5 = CourseContainerView(withTitle: "General Computer and Office", withCategory: "General Computer and Office")
-        courseCollectionContainer6 = CourseContainerView(withTitle: "Mathematics", withCategory: "Mathematics")
-        courseCollectionContainer7 = CourseContainerView(withTitle: "English", withCategory: "English")
-        courseCollectionContainer8 = CourseContainerView(withTitle: "Khmer", withCategory: "Khmer")
-        courseCollectionContainer9 = CourseContainerView(withTitle: "Exam Preparation", withCategory: "Exam Preparation")
-        courseCollectionContainer10 = CourseContainerView(withTitle: "General Knowledge", withCategory: "General Knowledge")
-        courseCollectionContainer11 = CourseContainerView(withTitle: "Specialization", withCategory: "Specialization")
+        let navController = self.navigationController!
+        courseCollectionContainer1 = CourseContainerView(withTitle: "Programming", withCategory: "Programming", withNavController: navController)
+        courseCollectionContainer2 = CourseContainerView(withTitle: "Software Delevelopment", withCategory: "Software Delevelopment", withNavController: navController)
+        courseCollectionContainer3 = CourseContainerView(withTitle: "Trend and Modern Technologies", withCategory: "Trend and Modern Technologies", withNavController: navController)
+        courseCollectionContainer4 = CourseContainerView(withTitle: "Basic Coding", withCategory: "Basic Coding", withNavController: navController)
+        courseCollectionContainer5 = CourseContainerView(withTitle: "General Computer and Office", withCategory: "General Computer and Office", withNavController: navController)
+        courseCollectionContainer6 = CourseContainerView(withTitle: "Mathematics", withCategory: "Mathematics", withNavController: navController)
+        courseCollectionContainer7 = CourseContainerView(withTitle: "English", withCategory: "English", withNavController: navController)
+        courseCollectionContainer8 = CourseContainerView(withTitle: "Khmer", withCategory: "Khmer", withNavController: navController)
+        courseCollectionContainer9 = CourseContainerView(withTitle: "Exam Preparation", withCategory: "Exam Preparation", withNavController: navController)
+        courseCollectionContainer10 = CourseContainerView(withTitle: "General Knowledge", withCategory: "General Knowledge", withNavController: navController)
+        courseCollectionContainer11 = CourseContainerView(withTitle: "Specialization", withCategory: "Specialization", withNavController: navController)
         
         setUpViews()
         
@@ -148,6 +149,8 @@ class HomeViewController: UIViewController {
             make.height.equalTo(330)
         }
         
+        categoryShowAll.isUserInteractionEnabled = true
+        categoryShowAll.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showAllCategoryTapped)))
         slideshowImageView.contentMode = .scaleAspectFill
     }
     
@@ -196,6 +199,12 @@ class HomeViewController: UIViewController {
         categoryCollectionView.dataSource = self
         
         categoryCollectionView.reloadData()
+    }
+    
+    @objc func showAllCategoryTapped(){
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let categoryViewController = storyboard.instantiateViewController(withIdentifier: "CategoryViewController")
+        navigationController?.pushViewController(categoryViewController, animated: true)
     }
     
     func setUpSlideshow() {
@@ -329,7 +338,35 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let categoryCourseViewController = storyboard.instantiateViewController(withIdentifier: "CategoryCourseViewController") as! CategoryCourseViewController
+        categoryCourseViewController.hidesBottomBarWhenPushed = true
+        if indexPath.row == 0 {
+            categoryCourseViewController.category = "Programming"
+        } else if indexPath.row == 1 {
+            categoryCourseViewController.category = "Mathematics"
+        } else if indexPath.row == 2 {
+            categoryCourseViewController.category = "English"
+        } else if indexPath.row == 3 {
+            categoryCourseViewController.category = "Khmer"
+        } else if indexPath.row == 4 {
+            categoryCourseViewController.category = "Exam Preparation"
+        } else if indexPath.row == 5 {
+            categoryCourseViewController.category = "General Knowledge"
+        } else if indexPath.row == 6 {
+            categoryCourseViewController.category = "Basic Coding"
+        } else if indexPath.row == 7 {
+            categoryCourseViewController.category = "General Computer and Office"
+        } else if indexPath.row == 8 {
+            categoryCourseViewController.category = "Specialization"
+        } else if indexPath.row == 9 {
+            categoryCourseViewController.category = "Trend and Modern Technologies"
+        } else if indexPath.row == 10 {
+            categoryCourseViewController.category = "Software Delevelopment"
+        } else {
+            categoryCourseViewController.category = "Programming"
+        }
+        navigationController?.pushViewController(categoryCourseViewController, animated: true)
     }
     
 }
