@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="prototype1" rowHeight="130" id="35x-iX-Ow1" customClass="SearchCourseTableViewCell" customModule="online_course_app" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="130"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="35x-iX-Ow1" id="Tkf-Ca-O81">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="130"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QVT-id-6EH">
+                        <rect key="frame" x="10" y="10" width="160" height="110"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="LbE-yO-Sgy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Course Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9H-Yz-UdX">
+                        <rect key="frame" x="180" y="10.999999999999998" width="203" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaX-of-KeV">
+                        <rect key="frame" x="180" y="99" width="42" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="4bc-eR-D3B"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2F-yI-iVM">
+                        <rect key="frame" x="227.00000000000003" y="99" width="65.333333333333343" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="AFP-4r-8yN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QVT-id-6EH" firstAttribute="top" secondItem="Tkf-Ca-O81" secondAttribute="top" constant="10" id="4Ks-8R-FYX"/>
+                    <constraint firstItem="H9H-Yz-UdX" firstAttribute="leading" secondItem="QVT-id-6EH" secondAttribute="trailing" constant="10" id="6jJ-NI-Jrf"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="YaX-of-KeV" secondAttribute="bottom" id="8Ix-Xv-gVO"/>
+                    <constraint firstItem="QVT-id-6EH" firstAttribute="leading" secondItem="Tkf-Ca-O81" secondAttribute="leading" constant="10" id="JRk-hr-aAb"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="D2F-yI-iVM" secondAttribute="bottom" id="Jp0-4x-5MR"/>
+                    <constraint firstItem="H9H-Yz-UdX" firstAttribute="trailing" secondItem="Tkf-Ca-O81" secondAttribute="trailingMargin" constant="10" id="KhW-rH-aqW"/>
+                    <constraint firstItem="H9H-Yz-UdX" firstAttribute="top" secondItem="Tkf-Ca-O81" secondAttribute="topMargin" id="PMR-tK-4yS"/>
+                    <constraint firstAttribute="bottom" secondItem="QVT-id-6EH" secondAttribute="bottom" constant="10" id="Q6k-lo-GVl"/>
+                    <constraint firstItem="YaX-of-KeV" firstAttribute="leading" secondItem="QVT-id-6EH" secondAttribute="trailing" constant="10" id="aj5-MA-2MS"/>
+                    <constraint firstItem="D2F-yI-iVM" firstAttribute="leading" secondItem="YaX-of-KeV" secondAttribute="trailing" constant="5" id="zHq-Gz-L8j"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="courseDurationLabel" destination="D2F-yI-iVM" id="Elu-gP-PPK"/>
+                <outlet property="courseImageView" destination="QVT-id-6EH" id="Z38-K1-lb6"/>
+                <outlet property="coursePriceLabel" destination="YaX-of-KeV" id="aVa-Qu-Zaq"/>
+                <outlet property="courseTitleLabel" destination="H9H-Yz-UdX" id="h0X-AV-v04"/>
+            </connections>
+            <point key="canvasLocation" x="82" y="-118"/>
+        </tableViewCell>
+    </objects>
+</document>

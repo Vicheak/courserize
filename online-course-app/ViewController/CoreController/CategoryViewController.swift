@@ -31,6 +31,8 @@ class CategoryViewController: UIViewController {
         profileButton.action = #selector(profileButtonTapped)
         settingButton.target = self
         settingButton.action = #selector(settingButtonTapped)
+        searchButton.target = self
+        searchButton.action = #selector(searchButtonTapped)
         
         self.setColor()
         NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
@@ -65,6 +67,13 @@ class CategoryViewController: UIViewController {
     @objc func settingButtonTapped(){
         let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SettingViewController")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func searchButtonTapped(){
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SearchCourseViewController")
+        viewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -10,6 +10,7 @@ import Foundation
 enum Endpoint: String {
     
     static let endpoint = "https://api.cheakautomate.online/api/v1/"
+//    static let endpoint = "http://localhost:8080/api/v1/"
     
     case login
     case refreshToken

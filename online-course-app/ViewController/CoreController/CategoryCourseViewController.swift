@@ -59,6 +59,7 @@ class CategoryCourseViewController: UIViewController {
         titleLabel.text = self.category.localized(using: "Generals")
         titleLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 18)
         titleLabel.textAlignment = .center
+        titleLabel.sizeToFit()
         navigationItem.titleView = titleLabel
     }
     
@@ -95,31 +96,6 @@ class CategoryCourseViewController: UIViewController {
         }
     }
     
-    private func setUpCourseImage(imageUri: String, withImageView imageView: UIImageView){
-        //load image from document directory
-        let fileURL = URL(string: imageUri)!
-        if let courseImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
-            UIView.transition(with: imageView, duration: 1.5, options: [.curveEaseInOut]) {
-                imageView.image = courseImage
-            } completion: { _ in }
-        } else {
-            FileAPIService.shared.downloadImageAndSave(fileURL: imageUri) { [weak self] response in
-                guard let self = self else { return }
-                switch response {
-                case .success(_):
-                    setUpCourseImage(imageUri: imageUri, withImageView: imageView)
-                case .failure(let error):
-                    print("Error :", error)
-                    if #available(iOS 13.0, *) {
-                        //set up loading
-                        imageView.isSkeletonable = true
-                        imageView.showAnimatedGradientSkeleton()
-                    }
-                }
-            }
-        }
-    }
-    
     @objc private func refreshData() {
         setUpTableView { [weak self] coursePayload in
             guard let self = self else { return }
@@ -145,6 +121,7 @@ extension CategoryCourseViewController: UITableViewDelegate {
             let courseDetailViewController = storyboard.instantiateViewController(withIdentifier: "CourseDetailViewController") as! CourseDetailViewController
             let course = courses[indexPath.row]
             courseDetailViewController.courseUuid = course.uuid
+            courseDetailViewController.authorUuid = course.authorUuid
             courseDetailViewController.modalPresentationStyle = .fullScreen
             present(courseDetailViewController, animated: true)
         }
@@ -170,13 +147,10 @@ extension CategoryCourseViewController: UITableViewDataSource {
         cell.courseImageView.tintColor = theme.imageView.tintColor
         cell.coursePriceLabel.textColor = theme.label.primaryColor
         cell.courseDurationLabel.textColor = theme.label.primaryColor
+        cell.setUpCourseDataSkeletonView()
         
         if let courses = courses {
             if !courses.isEmpty {
-                cell.courseTitleLabel.hideSkeleton()
-                cell.coursePriceLabel.hideSkeleton()
-                cell.courseDurationLabel.hideSkeleton()
-                
                 let course = courses[indexPath.row]
                 cell.courseTitleLabel.text = course.title
                 cell.coursePriceLabel.text = "$\(String(describing: course.cost))"
@@ -184,9 +158,11 @@ extension CategoryCourseViewController: UITableViewDataSource {
                 
                 //set up course image
                 if let imageUri = course.imageUri {
-                    setUpCourseImage(imageUri: imageUri, withImageView: cell.courseImageView)
+                    FileUtil.setUpCourseImage(imageUri: imageUri, withImageView: cell.courseImageView)
                     cell.courseImageView.hideSkeleton()
                 }
+                
+                cell.hideCourseDataSkeletonView()
             }
         }
       

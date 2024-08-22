@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 public class FileUtil {
 
@@ -45,6 +46,30 @@ public class FileUtil {
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsDirectory.appendingPathComponent(fileName)
         return UIImage(contentsOfFile: fileURL.path)
+    }
+    
+    static func setUpCourseImage(imageUri: String, withImageView imageView: UIImageView){
+        //load image from document directory
+        let fileURL = URL(string: imageUri)!
+        if let courseImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
+            UIView.transition(with: imageView, duration: 1.5, options: [.curveEaseInOut]) {
+                imageView.image = courseImage
+            } completion: { _ in }
+        } else {
+            FileAPIService.shared.downloadImageAndSave(fileURL: imageUri) { response in
+                switch response {
+                case .success(_):
+                    setUpCourseImage(imageUri: imageUri, withImageView: imageView)
+                case .failure(let error):
+                    print("Error :", error)
+                    if #available(iOS 13.0, *) {
+                        //set up loading
+                        imageView.isSkeletonable = true
+                        imageView.showAnimatedGradientSkeleton()
+                    }
+                }
+            }
+        }
     }
     
 }

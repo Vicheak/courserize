@@ -21,23 +21,32 @@ class CategoryCourseTableViewCell: UITableViewCell {
         
         courseImageView.contentMode = .scaleAspectFill
         courseImageView.layer.cornerRadius = 5
-        isSkeletonable = true
-        courseImageView.isSkeletonable = true
-        courseImageView.showAnimatedGradientSkeleton()
-        courseTitleLabel.isSkeletonable = true
-        courseTitleLabel.showAnimatedGradientSkeleton()
-        coursePriceLabel.isSkeletonable = true
-        coursePriceLabel.skeletonPaddingInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -20)
-        coursePriceLabel.showAnimatedGradientSkeleton()
-        courseDurationLabel.isSkeletonable = true
-        courseDurationLabel.skeletonPaddingInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -30)
-        courseDurationLabel.showAnimatedGradientSkeleton()
+     
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    public func setUpCourseDataSkeletonView(){
+        layoutIfNeeded()
+        isSkeletonable = true
+        courseImageView.isSkeletonable = true
+        courseImageView.showAnimatedGradientSkeleton()
+        courseTitleLabel.isSkeletonable = true
+        courseTitleLabel.showAnimatedGradientSkeleton()
+        coursePriceLabel.isSkeletonable = true
+        coursePriceLabel.showAnimatedGradientSkeleton()
+        courseDurationLabel.isSkeletonable = true
+        courseDurationLabel.showAnimatedGradientSkeleton()
+    }
+    
+    public func hideCourseDataSkeletonView(){
+        courseTitleLabel.hideSkeleton()
+        coursePriceLabel.hideSkeleton()
+        courseDurationLabel.hideSkeleton()
     }
 
 }

@@ -209,6 +209,7 @@ extension CourseContainerView: UICollectionViewDelegate, UICollectionViewDataSou
             let courseDetailViewController = storyboard.instantiateViewController(withIdentifier: "CourseDetailViewController") as! CourseDetailViewController
             let course = courses[indexPath.row]
             courseDetailViewController.courseUuid = course.uuid
+            courseDetailViewController.authorUuid = course.authorUuid
             courseDetailViewController.modalPresentationStyle = .fullScreen
             navController.topViewController?.present(courseDetailViewController, animated: true)
         }

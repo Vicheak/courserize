@@ -7,6 +7,7 @@
 
 import UIKit
 import KeychainSwift
+import Localize_Swift
 import SkeletonView
 
 class CourseDetailViewController: UIViewController {
@@ -29,16 +30,36 @@ class CourseDetailViewController: UIViewController {
     @IBOutlet weak var courseDescription: UILabel!
     @IBOutlet weak var courseDescriptionReadMore: UILabel!
     @IBOutlet weak var courseAuthorImageView: UIImageView!
+    @IBOutlet weak var enrollButtonView: UIView!
+    @IBOutlet weak var enrollButton: UIButton!
     
     var courseUuid: String!
+    var authorUuid: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpViews()
         
+        self.setText()
+        
         courseDescriptionReadMore.isUserInteractionEnabled = true
         courseDescriptionReadMore.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(readMoreTapped)))
+        enrollButton.addTarget(self, action: #selector(enrollButtonTapped), for: .touchUpInside)
+        
+        self.setColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
+        
+        setUpCourseDataSkeletonView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,7 +76,7 @@ class CourseDetailViewController: UIViewController {
         courseDescription.text = ""
         
         // Set the border color with alpha
-        let borderColor = UIColor.black.withAlphaComponent(0.05).cgColor
+        let borderColor = ThemeManager.shared.theme.label.primaryColor.withAlphaComponent(0.05).cgColor
 
         // Add top border
         let topBorder = CALayer()
@@ -77,9 +98,40 @@ class CourseDetailViewController: UIViewController {
         backButton.layer.cornerRadius = minDimension / 2
         backButton.clipsToBounds = true
         
-       
-        setUpCourseDataSkeletonView()
+        enrollButton.layer.cornerRadius = 5
+        enrollButton.tintColor = .systemGreen
+        enrollButton.backgroundColor = .systemGreen
+        
         setUpCourseDetail()
+    }
+    
+    @objc func setText(){
+        courseDescriptionTitle.text = "Course Description".localized(using: "Generals")
+        courseDescriptionTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 15)
+        courseDescriptionReadMore.text = "Read More".localized(using: "Generals")
+        courseDescriptionReadMore.font = UIFont(name: "KhmerOSBattambang-Bold", size: 16)
+        let font = UIFont(name: "KhmerOSBattambang-Bold", size: 17)
+        let title = "Enroll".localized(using: "Generals")
+        let attributedString = NSAttributedString(string: title, attributes: [
+            .font: font as Any
+        ])
+        enrollButton.setAttributedTitle(attributedString, for: .normal)
+    }
+    
+    @objc func setColor() {
+        let theme = ThemeManager.shared.theme
+        view.backgroundColor = theme.view.backgroundColor
+        courseTopDetailView.backgroundColor = theme.view.backgroundColor
+        courseTitle.textColor = theme.label.primaryColor
+        coursePrice.textColor = theme.label.primaryColor
+        courseCreatedDate.textColor = theme.label.primaryColor
+        courseDuration.textColor = theme.label.primaryColor
+        courseAuthorDetailView.backgroundColor = theme.view.backgroundColor
+        courseAuthor.textColor = theme.label.primaryColor
+        courseDescriptionDetailView.backgroundColor = theme.view.backgroundColor
+        courseDescriptionTitle.textColor = theme.label.primaryColor
+        courseDescription.textColor = theme.label.primaryColor
+        enrollButtonView.backgroundColor = theme.view.backgroundColor
     }
 
     @IBAction func backButtonTapped(_ sender: UIButton) {
@@ -94,11 +146,11 @@ class CourseDetailViewController: UIViewController {
             switch response {
             case .success(let result):
                 let course = result.payload
-                hideCourseDataSkeletonView()
-                setUpCourseDetailData(course: course)
+                self.hideCourseDataSkeletonView()
+                self.setUpCourseDetailData(course: course)
                 if let imageUri = course.imageUri {
-                    courseImageView.hideSkeleton()
-                    setUpCourseImage(imageUri: imageUri)
+                    self.courseImageView.hideSkeleton()
+                    FileUtil.setUpCourseImage(imageUri: imageUri, withImageView: courseImageView)
                 }
             case .failure(let error):
                 print("Cannot get courses :", error.message)
@@ -129,32 +181,8 @@ class CourseDetailViewController: UIViewController {
         courseDescription.text = course.description
     }
     
-    private func setUpCourseImage(imageUri: String){
-        //load image from document directory
-        let fileURL = URL(string: imageUri)!
-        if let courseImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
-            UIView.transition(with: courseImageView, duration: 1.5, options: [.curveEaseInOut]) {
-                self.courseImageView.image = courseImage
-            } completion: { _ in }
-        } else {
-            FileAPIService.shared.downloadImageAndSave(fileURL: imageUri) { [weak self] response in
-                guard let self = self else { return }
-                switch response {
-                case .success(_):
-                    setUpCourseImage(imageUri: imageUri)
-                case .failure(let error):
-                    print("Error :", error)
-                    if #available(iOS 13.0, *) {
-                        //set up loading
-                        courseImageView.isSkeletonable = true
-                        courseImageView.showAnimatedGradientSkeleton()
-                    }
-                }
-            }
-        }
-    }
-    
     private func setUpCourseDataSkeletonView(){
+        view.layoutIfNeeded()
         courseImageView.isSkeletonable = true
         courseImageView.showAnimatedGradientSkeleton()
         courseTitle.isSkeletonable = true
@@ -190,6 +218,47 @@ class CourseDetailViewController: UIViewController {
         readMoreViewController.descriptionDetailText = courseDescription.text ?? ""
         readMoreViewController.modalPresentationStyle = .popover
         present(readMoreViewController, animated: true)
+    }
+    
+    @objc func enrollButtonTapped(){
+        let alertCotroller = UIAlertController(title: "Confrim".localized(using: "Generals"), message: "Are you sure to enroll?".localized(using: "Generals"), preferredStyle: .alert)
+        alertCotroller.addAction(UIAlertAction(title: "Cancel".localized(using: "Generals"), style: .destructive))
+        alertCotroller.addAction(UIAlertAction(title: "Enroll".localized(using: "Generals"), style: .default, handler: { _ in
+            self.enrollCourse()
+        }))
+        present(alertCotroller, animated: true)
+    }
+    
+    private func enrollCourse(){
+        let keychain = KeychainSwift()
+        let accessToken = keychain.get("accessToken")!
+        let alertController = LoadingViewController()
+        present(alertController, animated: true) {
+            SubscriptionAPIService.shared.enroll(token: accessToken, authorUuid: self.authorUuid, courseUuid: self.courseUuid){ response in
+                alertController.dismiss(animated: true) { [weak self] in
+                    guard let self = self else { return }
+                    switch response {
+                    case .success(let result):
+                        PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) {}
+                    case .failure(let error):
+                        print("Cannot get courses :", error.message)
+                        if error.code == 401 {
+                            AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
+                                if didReceiveToken {
+                                    self.enrollCourse()
+                                } else {
+                                    print("Cannot refresh the token, something went wrong!")
+                                }
+                            }
+                        } else if error.code == 400 || error.code == 404 || error.code == 409 {
+                            PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors, withAlert: .warning) {}
+                        } else {
+                            PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
+                        }
+                    }
+                }
+            }
+        }
     }
     
 }

@@ -69,6 +69,8 @@ class HomeViewController: UIViewController {
         profileButton.action = #selector(profileButtonTapped)
         settingButton.target = self
         settingButton.action = #selector(settingButtonTapped)
+        searchButton.target = self
+        searchButton.action = #selector(searchButtonTapped)
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
@@ -79,6 +81,8 @@ class HomeViewController: UIViewController {
         
         setUpCategoryCollectionView()
         setUpSlideshow()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(clearOnLogout), name: NSNotification.Name.logoutEvent, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -172,6 +176,13 @@ class HomeViewController: UIViewController {
     @objc func settingButtonTapped(){
         let storyboard = UIStoryboard(name: "AuthScreen", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "SettingViewController")
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func searchButtonTapped(){
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SearchCourseViewController")
+        viewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -271,7 +282,11 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.post(name: NSNotification.Name.refreshData, object: nil)
         refreshControl.endRefreshing()
     }
+    
+    @objc func clearOnLogout(){
 
+    }
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {

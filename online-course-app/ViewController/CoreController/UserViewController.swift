@@ -190,7 +190,7 @@ class UserViewController: UIViewController {
         let fileURL = URL(string: photoUri)!
         if let profileImage = FileUtil.loadImageFromDocumentDirectory(fileName: fileURL.lastPathComponent) {
             //set to user image view
-            UIView.transition(with: userImageView, duration: 1.5, options: [.transitionFlipFromLeft]) { [weak self] in
+            UIView.transition(with: userImageView, duration: 1.5, options: [.curveEaseInOut]) { [weak self] in
                 guard let self = self else { return }
                 userImageView.image = profileImage
             } completion: { _ in }
@@ -346,6 +346,7 @@ class UserViewController: UIViewController {
             keychain.delete("accessToken")
             keychain.delete("refreshToken")
             UIApplication.shared.showLoginViewController()
+            NotificationCenter.default.post(name: NSNotification.Name.logoutEvent, object: nil)
         }))
         present(alertCotroller, animated: true)
     }

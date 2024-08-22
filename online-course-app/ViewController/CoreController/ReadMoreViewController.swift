@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Localize_Swift
 
 class ReadMoreViewController: UIViewController {
 
@@ -21,11 +22,38 @@ class ReadMoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setText()
 
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
         descriptionDetail.text = descriptionDetailText
         closeButton.setTitle("", for: .normal)
+        
+        self.setColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(setText), name: NSNotification.Name(LCLLanguageChangeNotification), object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
+    @objc func setText(){
+        detailTitle.text = "Course Description".localized(using: "Generals")
+        detailTitle.font = UIFont(name: "KhmerOSBattambang-Bold", size: 20)
+    }
+    
+    @objc func setColor() {
+        let theme = ThemeManager.shared.theme
+        view.backgroundColor = theme.view.backgroundColor
+        detailTitle.textColor = theme.label.primaryColor
+        closeButton.tintColor = theme.label.primaryColor
+        descriptionDetail.textColor = theme.label.primaryColor
     }
 
     @IBAction func closeButtonTapped(_ sender: UIButton) {

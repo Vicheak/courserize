@@ -38,7 +38,7 @@ class SubscriptionAPIService {
                 let unauthorizedError = ErrorResponseMessage(
                     isSuccess: false,
                     code: statusCode,
-                    message: "Unauthorized access or incorrect password",
+                    message: "Token is invalid or expired! Unauthorized",
                     timestamp: Date(),
                     errors: "An error occurs"
                 )
@@ -48,27 +48,25 @@ class SubscriptionAPIService {
                 return
             }
             
+            if statusCode == 201 {
+                let successResponse = MessageResponseData(message: "Subscription has been completed and has been sent to the author!")
+                DispatchQueue.main.async {
+                    completion(.success(successResponse))
+                }
+                return
+            }
+            
             switch responseData.result {
             case .success(let data):
                 print("Success :", data)
                 do {
                     // Try to decode as a success response
-                    if statusCode == 400 {
+                    if statusCode == 400 || statusCode == 404 || statusCode == 409 {
                         let errorResponse = try JSONDecoder().decode(ErrorResponseMessage.self, from: data)
                         DispatchQueue.main.async {
                             completion(.failure(errorResponse))
                         }
                         return
-                    } else if statusCode == 404 {
-                        let errorResponse = try JSONDecoder().decode(ErrorResponseMessage.self, from: data)
-                        DispatchQueue.main.async {
-                            completion(.failure(errorResponse))
-                        }
-                        return
-                    }
-                    let successResponse = MessageResponseData(message: "Subscription has been completed and has been sent to the author!")
-                    DispatchQueue.main.async {
-                        completion(.success(successResponse))
                     }
                 } catch {
                     // print the error and provide a generic error response
@@ -101,7 +99,7 @@ class SubscriptionAPIService {
         return
     }
     
-    func loadSubscriptionByAuthenticatedSubscriber(token: String, completion: @escaping (Result<SubscriberSubscriptionResponse, ErrorResponse>) -> Void){
+    func loadSubscriptionByAuthenticatedSubscriber(token: String, completion: @escaping (Result<SubscriberSubscriptionResponse, ErrorResponseAPI>) -> Void){
         let bearerToken = token
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(bearerToken)",
@@ -109,7 +107,12 @@ class SubscriptionAPIService {
         ]
         AF.request(Endpoint.loadSubscriptionByAuthenticatedSubscriber.rawValue, method: .get, encoding: JSONEncoding.default, headers: headers).responseData { responseData in
             guard let statusCode = responseData.response?.statusCode else {
-                let error = ErrorResponse(code: (responseData.error! as NSError).code, message: "The Internet connection appears to be offline.")
+                let error = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: (responseData.error! as NSError).code,
+                    timestamp: Date(),
+                    errors: "The Internet connection appears to be offline."
+                )
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
@@ -117,7 +120,12 @@ class SubscriptionAPIService {
             }
             
             if statusCode == 401 {
-                let unauthorizedError = ErrorResponse(code: statusCode, message: "Token is invalid or expired! Unauthorized")
+                let unauthorizedError = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: statusCode,
+                    timestamp: Date(),
+                    errors: "Token is invalid or expired! Unauthorized"
+                )
                 DispatchQueue.main.async {
                     completion(.failure(unauthorizedError))
                 }
@@ -129,19 +137,37 @@ class SubscriptionAPIService {
                 print("Success :", data)
                 do {
                     // Try to decode as a success response
+                    if statusCode == 404 {
+                        let errorResponse = try JSONDecoder().decode(ErrorResponseAPI.self, from: data)
+                        DispatchQueue.main.async {
+                            completion(.failure(errorResponse))
+                        }
+                        return
+                    }
                     let successResponse = try JSONDecoder().decode(SubscriberSubscriptionResponse.self, from: data)
                     DispatchQueue.main.async {
                         completion(.success(successResponse))
                     }
                 } catch {
-                    let errorResponse = ErrorResponse(code: statusCode, message: "Failed to decode response from server")
+                    print("Decoding error : \(error.localizedDescription)")
+                    let genericError = ErrorResponseAPI(
+                        isSuccess: false,
+                        code: statusCode,
+                        timestamp: Date(),
+                        errors: "An error occurs"
+                    )
                     DispatchQueue.main.async {
-                        completion(.failure(errorResponse))
+                        completion(.failure(genericError))
                     }
                 }
             case .failure(let error):
                 print("Error :", error)
-                let networkError = ErrorResponse(code: (error as NSError).code, message: "Cannot get response from server")
+                let networkError = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: (error as NSError).code,
+                    timestamp: Date(),
+                    errors: "Cannot get response from server"
+                )
                 DispatchQueue.main.async {
                     completion(.failure(networkError))
                 }
@@ -150,7 +176,7 @@ class SubscriptionAPIService {
         return
     }
     
-    func loadSubscriptionByAuthenticatedAuthor(token: String, completion: @escaping (Result<AuthorSubscriptionResponse, ErrorResponse>) -> Void){
+    func loadSubscriptionByAuthenticatedAuthor(token: String, completion: @escaping (Result<AuthorSubscriptionResponse, ErrorResponseAPI>) -> Void){
         let bearerToken = token
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(bearerToken)",
@@ -158,7 +184,12 @@ class SubscriptionAPIService {
         ]
         AF.request(Endpoint.loadSubscriptionByAuthenticatedAuthor.rawValue, method: .get, encoding: JSONEncoding.default, headers: headers).responseData { responseData in
             guard let statusCode = responseData.response?.statusCode else {
-                let error = ErrorResponse(code: (responseData.error! as NSError).code, message: "The Internet connection appears to be offline.")
+                let error = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: (responseData.error! as NSError).code,
+                    timestamp: Date(),
+                    errors: "The Internet connection appears to be offline."
+                )
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
@@ -166,13 +197,23 @@ class SubscriptionAPIService {
             }
             
             if statusCode == 401 {
-                let unauthorizedError = ErrorResponse(code: statusCode, message: "Token is invalid or expired! Unauthorized")
+                let unauthorizedError = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: statusCode,
+                    timestamp: Date(),
+                    errors: "Token is invalid or expired! Unauthorized"
+                )
                 DispatchQueue.main.async {
                     completion(.failure(unauthorizedError))
                 }
                 return
             } else if statusCode == 403 {
-                let unauthorizedError = ErrorResponse(code: statusCode, message: "You must be an author to authorize, please register for an author first!")
+                let unauthorizedError = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: statusCode,
+                    timestamp: Date(),
+                    errors: "You must be an author to authorize, please register for an author first!"
+                )
                 DispatchQueue.main.async {
                     completion(.failure(unauthorizedError))
                 }
@@ -184,19 +225,37 @@ class SubscriptionAPIService {
                 print("Success :", data)
                 do {
                     // Try to decode as a success response
+                    if statusCode == 404 {
+                        let errorResponse = try JSONDecoder().decode(ErrorResponseAPI.self, from: data)
+                        DispatchQueue.main.async {
+                            completion(.failure(errorResponse))
+                        }
+                        return
+                    }
                     let successResponse = try JSONDecoder().decode(AuthorSubscriptionResponse.self, from: data)
                     DispatchQueue.main.async {
                         completion(.success(successResponse))
                     }
                 } catch {
-                    let errorResponse = ErrorResponse(code: statusCode, message: "Failed to decode response from server")
+                    print("Decoding error : \(error.localizedDescription)")
+                    let genericError = ErrorResponseAPI(
+                        isSuccess: false,
+                        code: statusCode,
+                        timestamp: Date(),
+                        errors: "An error occurs"
+                    )
                     DispatchQueue.main.async {
-                        completion(.failure(errorResponse))
+                        completion(.failure(genericError))
                     }
                 }
             case .failure(let error):
                 print("Error :", error)
-                let networkError = ErrorResponse(code: (error as NSError).code, message: "Cannot get response from server")
+                let networkError = ErrorResponseAPI(
+                    isSuccess: false,
+                    code: (error as NSError).code,
+                    timestamp: Date(),
+                    errors: "Cannot get response from server"
+                )
                 DispatchQueue.main.async {
                     completion(.failure(networkError))
                 }

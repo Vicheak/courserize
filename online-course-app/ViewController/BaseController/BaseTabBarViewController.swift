@@ -53,6 +53,8 @@ class BaseTabBarViewController: UITabBarController {
         
         self.setColor()
         NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: NSNotification.Name.changeTheme, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(clearOnLogout), name: NSNotification.Name.logoutEvent, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +88,10 @@ class BaseTabBarViewController: UITabBarController {
                 tabBar.scrollEdgeAppearance = appearance
             }
         }
+    }
+    
+    @objc func clearOnLogout(){
+    
     }
 
 }

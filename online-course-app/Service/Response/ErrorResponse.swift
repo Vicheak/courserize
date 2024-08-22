@@ -46,3 +46,33 @@ struct ErrorResponseMessage: Codable, Error {
         errors = try container.decode(String.self, forKey: .errors)
     }
 }
+
+struct ErrorResponseAPI: Codable, Error {
+    var isSuccess: Bool
+    var code: Int
+    var timestamp: Date
+    var errors: String
+    
+    enum CodingKeys: String, CodingKey {
+        case isSuccess
+        case code
+        case timestamp
+        case errors
+    }
+    
+    init(isSuccess: Bool, code: Int, timestamp: Date, errors: String){
+        self.isSuccess = isSuccess
+        self.code = code
+        self.timestamp = timestamp
+        self.errors = errors
+    }
+    
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        isSuccess = try container.decode(Bool.self, forKey: .isSuccess)
+        code = try container.decode(Int.self, forKey: .code)
+        let timestampValue = try container.decode(String.self, forKey: .timestamp)
+        timestamp = DateUtil.dateTimeFormatter.date(from: timestampValue) ?? Date()
+        errors = try container.decode(String.self, forKey: .errors)
+    }
+}

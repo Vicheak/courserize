@@ -66,6 +66,13 @@
 		5255C94D2C582225007FE420 /* KhmerOSContent-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C93B2C582225007FE420 /* KhmerOSContent-Regular.ttf */; };
 		5255C94E2C582225007FE420 /* KhmerOSBokor.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5255C93C2C582225007FE420 /* KhmerOSBokor.ttf */; };
 		5255C9502C58224F007FE420 /* UIFont + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5255C94F2C58224F007FE420 /* UIFont + Ext.swift */; };
+		52600D0C2C76D36E003170AC /* SearchCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D0B2C76D36E003170AC /* SearchCourseViewController.swift */; };
+		52600D0E2C777E71003170AC /* SubscriptionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D0D2C777E71003170AC /* SubscriptionDetailViewController.swift */; };
+		52600D102C777FAF003170AC /* SubscriptionDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D0F2C777FAF003170AC /* SubscriptionDetailTableViewCell.swift */; };
+		52600D122C778CF9003170AC /* SubscriptionAuthorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D112C778CF9003170AC /* SubscriptionAuthorViewController.swift */; };
+		52600D142C778E09003170AC /* SubscriptionAuthorDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D132C778E09003170AC /* SubscriptionAuthorDetailTableViewCell.swift */; };
+		52600D162C779090003170AC /* SubscriptionAuthorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D152C779090003170AC /* SubscriptionAuthorDetailViewController.swift */; };
+		52600D182C779218003170AC /* SubscriptionAuthorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52600D172C779218003170AC /* SubscriptionAuthorTableViewCell.swift */; };
 		526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */; };
 		526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA602C563923005F54DA /* UIColor + Ext.swift */; };
 		526EBA632C564723005F54DA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526EBA622C564723005F54DA /* LoginViewController.swift */; };
@@ -85,6 +92,8 @@
 		528C63F72C55EAAA009FD199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 528C63F62C55EAAA009FD199 /* Main.storyboard */; };
 		5297AC5C2C73A1B700BA3F33 /* MainCourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5297AC5A2C73A1B700BA3F33 /* MainCourseCollectionViewCell.swift */; };
 		5297AC5D2C73A1B700BA3F33 /* MainCourseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5297AC5B2C73A1B700BA3F33 /* MainCourseCollectionViewCell.xib */; };
+		52A0FC982C764022007DF298 /* SearchCourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A0FC962C764022007DF298 /* SearchCourseTableViewCell.swift */; };
+		52A0FC992C764022007DF298 /* SearchCourseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52A0FC972C764022007DF298 /* SearchCourseTableViewCell.xib */; };
 		52A964492C5E5D8100427630 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A964482C5E5D8100427630 /* BaseNavigationController.swift */; };
 		52C11F092C5B4A4A00986229 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C11F082C5B4A4A00986229 /* Alert.swift */; };
 		52CE3BBE2C7225350091BFEB /* CourseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CE3BBD2C7225350091BFEB /* CourseCollectionViewCell.swift */; };
@@ -169,6 +178,13 @@
 		5255C93B2C582225007FE420 /* KhmerOSContent-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KhmerOSContent-Regular.ttf"; sourceTree = "<group>"; };
 		5255C93C2C582225007FE420 /* KhmerOSBokor.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KhmerOSBokor.ttf; sourceTree = "<group>"; };
 		5255C94F2C58224F007FE420 /* UIFont + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont + Ext.swift"; sourceTree = "<group>"; };
+		52600D0B2C76D36E003170AC /* SearchCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCourseViewController.swift; sourceTree = "<group>"; };
+		52600D0D2C777E71003170AC /* SubscriptionDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailViewController.swift; sourceTree = "<group>"; };
+		52600D0F2C777FAF003170AC /* SubscriptionDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDetailTableViewCell.swift; sourceTree = "<group>"; };
+		52600D112C778CF9003170AC /* SubscriptionAuthorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionAuthorViewController.swift; sourceTree = "<group>"; };
+		52600D132C778E09003170AC /* SubscriptionAuthorDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionAuthorDetailTableViewCell.swift; sourceTree = "<group>"; };
+		52600D152C779090003170AC /* SubscriptionAuthorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionAuthorDetailViewController.swift; sourceTree = "<group>"; };
+		52600D172C779218003170AC /* SubscriptionAuthorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionAuthorTableViewCell.swift; sourceTree = "<group>"; };
 		526EBA5D2C5638E5005F54DA /* KeyboardUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUtil.swift; sourceTree = "<group>"; };
 		526EBA602C563923005F54DA /* UIColor + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Ext.swift"; sourceTree = "<group>"; };
 		526EBA622C564723005F54DA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +206,8 @@
 		528C63F62C55EAAA009FD199 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5297AC5A2C73A1B700BA3F33 /* MainCourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCourseCollectionViewCell.swift; sourceTree = "<group>"; };
 		5297AC5B2C73A1B700BA3F33 /* MainCourseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCourseCollectionViewCell.xib; sourceTree = "<group>"; };
+		52A0FC962C764022007DF298 /* SearchCourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCourseTableViewCell.swift; sourceTree = "<group>"; };
+		52A0FC972C764022007DF298 /* SearchCourseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCourseTableViewCell.xib; sourceTree = "<group>"; };
 		52A964482C5E5D8100427630 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		52C11F082C5B4A4A00986229 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		52CE3BBD2C7225350091BFEB /* CourseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -272,6 +290,11 @@
 				5297AC5B2C73A1B700BA3F33 /* MainCourseCollectionViewCell.xib */,
 				523E0EFC2C7472EC0071A8F4 /* CategoryTableViewCell.swift */,
 				52805B072C74B60900213316 /* CategoryCourseTableViewCell.swift */,
+				52A0FC962C764022007DF298 /* SearchCourseTableViewCell.swift */,
+				52A0FC972C764022007DF298 /* SearchCourseTableViewCell.xib */,
+				52600D0F2C777FAF003170AC /* SubscriptionDetailTableViewCell.swift */,
+				52600D132C778E09003170AC /* SubscriptionAuthorDetailTableViewCell.swift */,
+				52600D172C779218003170AC /* SubscriptionAuthorTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -490,12 +513,16 @@
 				52EEB95D2C5910A3004354DD /* HomeViewController.swift */,
 				5234D7CC2C609781006B70CE /* CategoryViewController.swift */,
 				5234D7CE2C6097C8006B70CE /* VideoViewController.swift */,
-				5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */,
 				5234D7D22C60A967006B70CE /* UserViewController.swift */,
 				52E8A23B2C68A47A00805D89 /* ChangePasswordViewController.swift */,
 				52805B052C74B40500213316 /* CategoryCourseViewController.swift */,
 				52805B092C74D55800213316 /* CourseDetailViewController.swift */,
 				5222DEAA2C74F4DA004C8343 /* ReadMoreViewController.swift */,
+				52600D0B2C76D36E003170AC /* SearchCourseViewController.swift */,
+				5234D7D02C6097DD006B70CE /* SubscriptionViewController.swift */,
+				52600D0D2C777E71003170AC /* SubscriptionDetailViewController.swift */,
+				52600D112C778CF9003170AC /* SubscriptionAuthorViewController.swift */,
+				52600D152C779090003170AC /* SubscriptionAuthorDetailViewController.swift */,
 			);
 			path = CoreController;
 			sourceTree = "<group>";
@@ -596,6 +623,7 @@
 				528C63F32C55E8D5009FD199 /* AuthScreen.storyboard in Resources */,
 				5255C9462C582225007FE420 /* KhmerOSFasthand.ttf in Resources */,
 				5255C9122C57ED16007FE420 /* ButtonTitles.strings in Resources */,
+				52A0FC992C764022007DF298 /* SearchCourseTableViewCell.xib in Resources */,
 				5255C9492C582225007FE420 /* KhmerOSBassac.ttf in Resources */,
 				5297AC5D2C73A1B700BA3F33 /* MainCourseCollectionViewCell.xib in Resources */,
 				5255C93D2C582225007FE420 /* KhmerOS.ttf in Resources */,
@@ -681,17 +709,22 @@
 				52A964492C5E5D8100427630 /* BaseNavigationController.swift in Sources */,
 				52476C892C6778CC00566927 /* UserAPIService.swift in Sources */,
 				52476C8B2C677B0400566927 /* ErrorResponse.swift in Sources */,
+				52600D102C777FAF003170AC /* SubscriptionDetailTableViewCell.swift in Sources */,
 				5254BBD12C5CCB3600B7D4B8 /* AboutUsViewController.swift in Sources */,
+				52600D182C779218003170AC /* SubscriptionAuthorTableViewCell.swift in Sources */,
 				5254BBCA2C5CB1C400B7D4B8 /* SettingTableViewCell.swift in Sources */,
+				52600D0E2C777E71003170AC /* SubscriptionDetailViewController.swift in Sources */,
 				52476C812C676B4200566927 /* ImageUtil.swift in Sources */,
 				528C63DA2C55E72B009FD199 /* AppDelegate.swift in Sources */,
 				5234D7CB2C6096E5006B70CE /* BaseTabBarViewController.swift in Sources */,
 				52E8A2382C68560900805D89 /* FileResponseDto.swift in Sources */,
+				52A0FC982C764022007DF298 /* SearchCourseTableViewCell.swift in Sources */,
 				526EBA662C5659CD005F54DA /* AuthAPIService.swift in Sources */,
 				52EEB9602C591289004354DD /* UIApplication + Ext.swift in Sources */,
 				5254BBD32C5CCF3300B7D4B8 /* LanguageViewController.swift in Sources */,
 				5254BBCC2C5CC8EA00B7D4B8 /* SettingNotificationTableViewCell.swift in Sources */,
 				5254BBD52C5CD2D100B7D4B8 /* LanguageTableViewCell.swift in Sources */,
+				52600D142C778E09003170AC /* SubscriptionAuthorDetailTableViewCell.swift in Sources */,
 				52C11F092C5B4A4A00986229 /* Alert.swift in Sources */,
 				52EEB9592C590E98004354DD /* DataValidation .swift in Sources */,
 				526EBA722C5664BC005F54DA /* SettingViewController.swift in Sources */,
@@ -702,8 +735,10 @@
 				526EBA5E2C5638E5005F54DA /* KeyboardUtil.swift in Sources */,
 				520D7FD42C75C9DB00B206EB /* SubscriptionAPIService.swift in Sources */,
 				5222DEAB2C74F4DA004C8343 /* ReadMoreViewController.swift in Sources */,
+				52600D162C779090003170AC /* SubscriptionAuthorDetailViewController.swift in Sources */,
 				526EBA612C563923005F54DA /* UIColor + Ext.swift in Sources */,
 				52805B0A2C74D55800213316 /* CourseDetailViewController.swift in Sources */,
+				52600D122C778CF9003170AC /* SubscriptionAuthorViewController.swift in Sources */,
 				52E8A23E2C68BD1F00805D89 /* CategoryCollectionViewCell.swift in Sources */,
 				52CE3BC22C7231ED0091BFEB /* CourseAPIService.swift in Sources */,
 				5255C9262C580F4E007FE420 /* NSNotification.Name + Ext.swift in Sources */,
@@ -717,6 +752,7 @@
 				52805B082C74B60900213316 /* CategoryCourseTableViewCell.swift in Sources */,
 				5251E3752C5CF7480036480A /* ThemeViewController.swift in Sources */,
 				52EEB9622C5912AA004354DD /* UIWindow + Ext.swift in Sources */,
+				52600D0C2C76D36E003170AC /* SearchCourseViewController.swift in Sources */,
 				5251E3782C5CFD480036480A /* DefaultPresentationTheme.swift in Sources */,
 				52E8A23C2C68A47A00805D89 /* ChangePasswordViewController.swift in Sources */,
 				5255C9282C581833007FE420 /* PopUpUtil.swift in Sources */,
