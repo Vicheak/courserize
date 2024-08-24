@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SubscriberSubscriptionResponse: Codable {
+class SubscriberSubscriptionResponse: Codable {
     //case : 200 OK
     var isSuccess: Bool
     var code: Int
@@ -40,7 +40,7 @@ struct SubscriberSubscriptionResponse: Codable {
         try container.encode(self.payload, forKey: .payload)
     }
     
-    init(from decoder: any Decoder) throws {
+    required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isSuccess = try container.decode(Bool.self, forKey: .isSuccess)
         code = try container.decode(Int.self, forKey: .code)
@@ -51,23 +51,26 @@ struct SubscriberSubscriptionResponse: Codable {
     }
 }
 
-struct SubscriberSubscriptionPayload: Codable {
+class SubscriberSubscriptionPayload: Codable {
     var subscriberUuid: String
     var subscriber: String
     var subscriberEmail: String
+    var subscriberImageUri: String?
     var subscriptionDetails: [SubscriberSubscriptionDetail]
     
     enum CodingKeys: String, CodingKey {
         case subscriberUuid
         case subscriber
         case subscriberEmail
+        case subscriberImageUri
         case subscriptionDetails
     }
     
-    init(subscriberUuid: String, subscriber: String, subscriberEmail: String, subscriptionDetails: [SubscriberSubscriptionDetail]) {
+    init(subscriberUuid: String, subscriber: String, subscriberEmail: String, subscriberImageUri: String?, subscriptionDetails: [SubscriberSubscriptionDetail]) {
         self.subscriberUuid = subscriberUuid
         self.subscriber = subscriber
         self.subscriberEmail = subscriberEmail
+        self.subscriberImageUri = subscriberImageUri
         self.subscriptionDetails = subscriptionDetails
     }
     
@@ -76,23 +79,26 @@ struct SubscriberSubscriptionPayload: Codable {
         try container.encode(self.subscriberUuid, forKey: .subscriberUuid)
         try container.encode(self.subscriber, forKey: .subscriber)
         try container.encode(self.subscriberEmail, forKey: .subscriberEmail)
+        try? container.encode(self.subscriberImageUri, forKey: .subscriberImageUri)
         try container.encode(self.subscriptionDetails, forKey: .subscriptionDetails)
     }
     
-    init(from decoder: any Decoder) throws {
+    required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.subscriberUuid = try container.decode(String.self, forKey: .subscriberUuid)
         self.subscriber = try container.decode(String.self, forKey: .subscriber)
         self.subscriberEmail = try container.decode(String.self, forKey: .subscriberEmail)
+        self.subscriberImageUri = try? container.decode(String.self, forKey: .subscriberImageUri)
         self.subscriptionDetails = try container.decode([SubscriberSubscriptionDetail].self, forKey: .subscriptionDetails)
     }
 }
 
-struct SubscriberSubscriptionDetail: Codable {
+class SubscriberSubscriptionDetail: Codable {
     var subscriptionDetailId: Int
     var courseUuid: String
     var courseTitle: String
     var coursePrice: Double
+    var courseDurationInHour: Int
     var isApproved: Bool
     
     enum CodingKeys: String, CodingKey {
@@ -100,14 +106,16 @@ struct SubscriberSubscriptionDetail: Codable {
         case courseUuid
         case courseTitle
         case coursePrice
+        case courseDurationInHour
         case isApproved
     }
     
-    init(subscriptionDetailId: Int, courseUuid: String, courseTitle: String, coursePrice: Double, isApproved: Bool) {
+    init(subscriptionDetailId: Int, courseUuid: String, courseTitle: String, coursePrice: Double, courseDurationInHour: Int, isApproved: Bool) {
         self.subscriptionDetailId = subscriptionDetailId
         self.courseUuid = courseUuid
         self.courseTitle = courseTitle
         self.coursePrice = coursePrice
+        self.courseDurationInHour = courseDurationInHour
         self.isApproved = isApproved
     }
     
@@ -117,15 +125,17 @@ struct SubscriberSubscriptionDetail: Codable {
         try container.encode(self.courseUuid, forKey: .courseUuid)
         try container.encode(self.courseTitle, forKey: .courseTitle)
         try container.encode(self.coursePrice, forKey: .coursePrice)
+        try container.encode(self.courseDurationInHour, forKey: .courseDurationInHour)
         try container.encode(self.isApproved, forKey: .isApproved)
     }
     
-    init(from decoder: any Decoder) throws {
+    required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.subscriptionDetailId = try container.decode(Int.self, forKey: .subscriptionDetailId)
         self.courseUuid = try container.decode(String.self, forKey: .courseUuid)
         self.courseTitle = try container.decode(String.self, forKey: .courseTitle)
         self.coursePrice = try container.decode(Double.self, forKey: .coursePrice)
+        self.courseDurationInHour = try container.decode(Int.self, forKey: .courseDurationInHour)
         self.isApproved = try container.decode(Bool.self, forKey: .isApproved)
     }
 }

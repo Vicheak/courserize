@@ -10,7 +10,7 @@ import SwiftEntryKit
 
 class PopUpUtil {
         
-    static let successImage = UIImage(named: "logo-preview-screen")!
+    static let successImage = UIImage(named: "success")!
     static let warningImage = UIImage(named: "warning")!
     static let crossImage = UIImage(named: "cross")!
     

@@ -1,31 +1,33 @@
 //
-//  SubscriptionAuthorViewController.swift
+//  VideoListViewController.swift
 //  online-course-app
 //
-//  Created by @suonvicheakdev on 22/8/24.
+//  Created by @suonvicheakdev on 23/8/24.
 //
 
 import UIKit
-import SnapKit
 import Localize_Swift
 import KeychainSwift
 import SkeletonView
 
-class SubscriptionAuthorViewController: UIViewController {
+class VideoListViewController: UIViewController {
 
     let navItemLabel = UILabel()
     @IBOutlet weak var tableView: UITableView!
     
-    private var subscriptions: [SubscriberSubscriptionPayload] = []
+    public var courseUuid: String!
+    public var courseTitle: String!
+    private var videos: [VideoResponsePayload] = []
     
     private var refreshControl: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpViews()
+        
         self.setText()
         
-        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -35,7 +37,6 @@ class SubscriptionAuthorViewController: UIViewController {
         
         self.setColor()
         NotificationCenter.default.addObserver(self, selector: #selector(setColor), name: .changeTheme, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name.refreshSubscription, object: nil)
         
         refreshData()
     }
@@ -49,8 +50,13 @@ class SubscriptionAuthorViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
+    private func setUpViews(){
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
+    }
+    
     @objc func setText(){
-        navItemLabel.text = "Acknowledge Subscription".localized(using: "Generals")
+        navItemLabel.text = "Video List".localized(using: "Generals") + " \(String(describing: courseTitle!))"
         navItemLabel.font = UIFont(name: "KhmerOSBattambang-Bold", size: 18)
         navItemLabel.textAlignment = .center
         navItemLabel.sizeToFit()
@@ -63,43 +69,44 @@ class SubscriptionAuthorViewController: UIViewController {
         tableView.backgroundColor = theme.view.backgroundColor
     }
     
-    
     @objc private func refreshData() {
-        loadSubscriptionDetailView { [weak self] subscriptionPayload in
+        loadVideosByCourseUuid(){ [weak self] videoResponsePayload in
             guard let self = self else { return }
-            subscriptions = subscriptionPayload
+            videos = videoResponsePayload
             tableView.reloadData()
             refreshControl.endRefreshing()
+            
+            if videos.count == 0 {
+                PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: "No videos for the course", withAlert: .warning) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     
-    private func loadSubscriptionDetailView(completion: @escaping ([SubscriberSubscriptionPayload]) -> Void){
+    private func loadVideosByCourseUuid(completion: @escaping ([VideoResponsePayload]) -> Void){
         let keychain = KeychainSwift()
         let accessToken = keychain.get("accessToken")!
         let alertController = LoadingViewController()
         present(alertController, animated: true) {
-            SubscriptionAPIService.shared.loadSubscriptionByAuthenticatedAuthor(token: accessToken){ response in
+            VideoAPIService.shared.loadVideoByCourseUuid(token: accessToken, withCourseUuid: self.courseUuid){ response in
                 alertController.dismiss(animated: true) { [weak self] in
                     guard let self = self else { return }
                     switch response {
                     case .success(let result):
-                        completion(result.payload.subscriptions)
+                        completion(result.payload)
                     case .failure(let error):
-                        print("Cannot get subscriptions :", error.errors)
+                        print("Cannot get videos :", error.message)
                         if error.code == 401 {
                             AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
                                 if didReceiveToken {
-                                    self.loadSubscriptionDetailView(completion: completion)
+                                    self.loadVideosByCourseUuid(completion: completion)
                                 } else {
                                     print("Cannot refresh the token, something went wrong!")
                                 }
                             }
-                        } else if error.code == 403 || error.code == 404 {
-                            PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors, withAlert: .warning) {
-                                self.navigationController?.popViewController(animated: true)
-                            }
                         } else {
-                            PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.errors, withAlert: .warning) {}
+                            PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
                         }
                     }
                 }
@@ -109,55 +116,44 @@ class SubscriptionAuthorViewController: UIViewController {
 
 }
 
-extension SubscriptionAuthorViewController: UITableViewDelegate {
+extension VideoListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 50
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SubscriptionAuthorDetailViewController") as! SubscriptionAuthorDetailViewController
-        let subscription = subscriptions[indexPath.row]
-        viewController.subscriptionDetails = subscription.subscriptionDetails
-        viewController.subscriberEmail = subscription.subscriberEmail
+        let viewController = storyboard.instantiateViewController(withIdentifier: "VideoDetailViewController") as! VideoDetailViewController
         viewController.hidesBottomBarWhenPushed = true
+        
+        let video = videos[indexPath.row]
+        viewController.videoUrl = video.videoLink
+        
         navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
 
-extension SubscriptionAuthorViewController: UITableViewDataSource {
+extension VideoListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return subscriptions.count
+        return videos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as? SubscriptionAuthorTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "prototype1", for: indexPath) as? VideoListTableViewCell else { return UITableViewCell() }
         let theme = ThemeManager.shared.theme
         cell.contentView.backgroundColor = theme.view.backgroundColor
-        cell.subscriberUsername.textColor = theme.label.primaryColor
-        cell.subscriberEmail.textColor = theme.label.primaryColor
-        cell.subscriberImageView.tintColor = theme.imageView.tintColor
-        if #available(iOS 13.0, *) {
-            cell.subscriberImageView.image = UIImage(systemName: "person.circle.fill")
-        }
+        cell.videoTitle.textColor = theme.label.primaryColor
+        cell.playButton.tintColor = theme.imageView.tintColor
         
-        if !subscriptions.isEmpty {
-            let subscription = subscriptions[indexPath.row]
-            cell.subscriberUsername.text = subscription.subscriber
-            cell.subscriberEmail.text = subscription.subscriberEmail
-            
-            if let imageUri = subscription.subscriberImageUri {
-                FileUtil.setUpCourseImage(imageUri: imageUri, withImageView: cell.subscriberImageView)
-                ImageUtil.toImageCircleBound(withImageView: cell.subscriberImageView)
-            }
-        }
+        let video = videos[indexPath.row]
+        cell.videoTitle.text = "\(indexPath.row + 1). " + video.title
       
         return cell
     }

@@ -30,11 +30,11 @@ class SubscriptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpViews()
         
         self.setText()
-    
+        
         profileButton.target = self
         profileButton.action = #selector(profileButtonTapped)
         settingButton.target = self
@@ -134,7 +134,40 @@ class SubscriptionViewController: UIViewController {
     }
     
     @objc func applyForAuthorViewTapped(){
-        
+        let storyboard = UIStoryboard(name: "CoreScreen", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ApplyForAuthorViewController")
+        viewController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func loadUserProfileIsAuthor(completion: @escaping (Bool) -> Void){
+        let keychain = KeychainSwift()
+        let accessToken = keychain.get("accessToken")!
+        let alertController = LoadingViewController()
+        present(alertController, animated: true) {
+            UserAPIService.shared.userProfile(token: accessToken) { response in
+                alertController.dismiss(animated: true) { [weak self] in
+                    guard let self = self else { return }
+                    switch response {
+                    case .success(let result):
+                        completion(result.payload.userRoles.contains(where: { $0.role.name == "AUTHOR" }))
+                    case .failure(let error):
+                        print("Cannot get user profile :", error.message)
+                        if error.code == 401 {
+                            AuthAPIService.shared.shouldRefreshToken { didReceiveToken in
+                                if didReceiveToken {
+                                    self.loadUserProfileIsAuthor(completion: completion)
+                                } else {
+                                    print("Cannot refresh the token, something went wrong!")
+                                }
+                            }
+                        } else {
+                            PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

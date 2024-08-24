@@ -582,4 +582,166 @@ class AuthAPIService {
         }
     }
     
+    func applyForAuthor(token: String, email: String, password: String, phoneNumber: String, completion: @escaping (Result<MessageResponseData, ErrorResponseMessage>) -> Void) {
+        let bearerToken = token
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(bearerToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        let params = ["email": email, "password": password, "phoneNumber": phoneNumber]
+        AF.request(Endpoint.applyForAuthor.rawValue, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseData { responseData in
+            guard let statusCode = responseData.response?.statusCode else {
+                let error = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: (responseData.error! as NSError).code,
+                    message: "The Internet connection appears to be offline.",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            if statusCode == 401 {
+                let unauthorizedError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: statusCode,
+                    message: "An error occurs",
+                    timestamp: Date(),
+                    errors: "Author application has been failed! Please check your information"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(unauthorizedError))
+                }
+                return
+            }
+            
+            switch responseData.result {
+            case .success(let data):
+                print("Success :", data)
+                do {
+                    if statusCode == 400 {
+                        // Try to decode as an error response
+                        let errorResponse = try JSONDecoder().decode(ErrorResponseMessage.self, from: data)
+                        DispatchQueue.main.async {
+                            completion(.failure(errorResponse))
+                        }
+                        return
+                    }
+                    // Try to decode as a success response
+                    let successResponse = try JSONDecoder().decode(MessageResponseData.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(.success(successResponse))
+                    }
+                } catch {
+                    // print the error and provide a generic error response
+                    print("Decoding error : \(error.localizedDescription)")
+                    let genericError = ErrorResponseMessage(
+                        isSuccess: false,
+                        code: statusCode,
+                        message: "An unknown error occurred",
+                        timestamp: Date(),
+                        errors: "An error occurs"
+                    )
+                    DispatchQueue.main.async {
+                        completion(.failure(genericError))
+                    }
+                }
+            case .failure(let error):
+                print("Error :", error)
+                let networkError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: (error as NSError).code,
+                    message: "Cannot get response from server",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(networkError))
+                }
+            }
+        }
+        return
+    }
+    
+    func verifyAuthor(token: String, email: String, verifiedCode: String, completion: @escaping (Result<MessageResponseData, ErrorResponseMessage>) -> Void) {
+        let bearerToken = token
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(bearerToken)",
+            "Content-Type": "application/json"
+        ]
+        
+        let params = ["email": email, "verifiedCode": verifiedCode]
+        AF.request(Endpoint.verifyAuthor.rawValue, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers).responseData { responseData in
+            guard let statusCode = responseData.response?.statusCode else {
+                let error = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: (responseData.error! as NSError).code,
+                    message: "The Internet connection appears to be offline.",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            if statusCode == 401 {
+                let unauthorizedError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: statusCode,
+                    message: "An error occurs",
+                    timestamp: Date(),
+                    errors: "Author application has been failed!"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(unauthorizedError))
+                }
+                return
+            }
+            
+            switch responseData.result {
+            case .success(let data):
+                print("Success :", data)
+                do {
+                    // Try to decode as a success response
+                    let successResponse = try JSONDecoder().decode(MessageResponseData.self, from: data)
+                    DispatchQueue.main.async {
+                        completion(.success(successResponse))
+                    }
+                } catch {
+                    // print the error and provide a generic error response
+                    print("Decoding error : \(error.localizedDescription)")
+                    let genericError = ErrorResponseMessage(
+                        isSuccess: false,
+                        code: statusCode,
+                        message: "An unknown error occurred",
+                        timestamp: Date(),
+                        errors: "An error occurs"
+                    )
+                    DispatchQueue.main.async {
+                        completion(.failure(genericError))
+                    }
+                }
+            case .failure(let error):
+                print("Error :", error)
+                let networkError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: (error as NSError).code,
+                    message: "Cannot get response from server",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(networkError))
+                }
+            }
+        }
+        return
+    }
+    
 }

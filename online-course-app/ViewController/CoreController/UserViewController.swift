@@ -130,7 +130,7 @@ class UserViewController: UIViewController {
         logoutTab.layer.cornerRadius = 6
         logoutTab.layer.borderWidth = 0.3
         
-        toImageCircleBound()
+        ImageUtil.toImageCircleBound(withImageView: userImageView)
     
         setUpUserView()
     }
@@ -195,7 +195,7 @@ class UserViewController: UIViewController {
                 userImageView.image = profileImage
             } completion: { _ in }
     
-            toImageCircleBound()
+            ImageUtil.toImageCircleBound(withImageView: userImageView)
         } else {
             FileAPIService.shared.downloadImageAndSave(fileURL: photoUri) { [weak self] response in
                 guard let self = self else { return }
@@ -338,7 +338,7 @@ class UserViewController: UIViewController {
     }
     
     @objc func logoutTapped(){
-        let alertCotroller = UIAlertController(title: "Confrim".localized(using: "Generals"), message: "Are you sure to log out?".localized(using: "Generals"), preferredStyle: .alert)
+        let alertCotroller = UIAlertController(title: "Confirm".localized(using: "Generals"), message: "Are you sure to log out?".localized(using: "Generals"), preferredStyle: .alert)
         alertCotroller.addAction(UIAlertAction(title: "Cancel".localized(using: "Generals"), style: .destructive))
         alertCotroller.addAction(UIAlertAction(title: "Log out".localized(using: "Generals"), style: .default, handler: { _ in
             UserDefaults.standard.setValue(false, forKey: "isLogin")
@@ -385,13 +385,6 @@ extension UserViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func toImageCircleBound(){
-        userImageView.layer.cornerRadius = userImageView.bounds.width / 2
-        userImageView.layer.cornerRadius = userImageView.frame.width / 2
-        userImageView.clipsToBounds = true
-        userImageView.contentMode = .scaleAspectFill
     }
     
 }

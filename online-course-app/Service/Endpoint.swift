@@ -32,10 +32,16 @@ enum Endpoint: String {
     case loadVideosByCourseUuid
     case loadCoursesByAuthenticatedAuthor
     case loadVideoByUuid
+    case createNewVideo
+    case updateVideoByUuid
+    case deleteVideoByUuid
     case enroll
     case loadSubscriptionByAuthenticatedSubscriber
     case loadSubscriptionByAuthenticatedAuthor
     case approveOrRejectSubscription
+    case removeSubscriptionDetailById
+    case applyForAuthor
+    case verifyAuthor
     
     var rawValue: String {
         switch self {
@@ -79,6 +85,12 @@ enum Endpoint: String {
             return Endpoint.endpoint + "courses/me"
         case .loadVideoByUuid:
             return Endpoint.endpoint + "videos/"
+        case .createNewVideo:
+            return Endpoint.endpoint + "videos"
+        case .updateVideoByUuid:
+            return Endpoint.endpoint + "videos/"
+        case .deleteVideoByUuid:
+            return Endpoint.endpoint + "videos/"
         case .enroll:
             return Endpoint.endpoint + "subscriptions"
         case .loadSubscriptionByAuthenticatedSubscriber:
@@ -87,6 +99,12 @@ enum Endpoint: String {
             return Endpoint.endpoint + "subscriptions/author/reports"
         case .approveOrRejectSubscription:
             return Endpoint.endpoint + "subscriptions"
+        case .removeSubscriptionDetailById:
+            return Endpoint.endpoint + "subscriptions/"
+        case .applyForAuthor:
+            return Endpoint.endpoint + "auth/applyForAuthor"
+        case .verifyAuthor:
+            return Endpoint.endpoint + "auth/verifyAuthor"
         }
     }
     

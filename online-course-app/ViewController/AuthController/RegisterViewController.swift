@@ -170,6 +170,7 @@ class RegisterViewController: UIViewController {
                                 verifyCodeViewController.modalPresentationStyle = .fullScreen
                                 verifyCodeViewController.email = email
                                 verifyCodeViewController.forgetPassword = false
+                                verifyCodeViewController.applyforAuthor = false
                                 present(verifyCodeViewController, animated: true) {
                                     self.navigationController?.popToRootViewController(animated: true)
                                 }

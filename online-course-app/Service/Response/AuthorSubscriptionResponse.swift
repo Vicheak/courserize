@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthorSubscriptionResponse: Codable {
+class AuthorSubscriptionResponse: Codable {
     //case : 200 OK
     var isSuccess: Bool
     var code: Int
@@ -40,7 +40,7 @@ struct AuthorSubscriptionResponse: Codable {
         try container.encode(self.payload, forKey: .payload)
     }
     
-    init(from decoder: any Decoder) throws {
+    required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         isSuccess = try container.decode(Bool.self, forKey: .isSuccess)
         code = try container.decode(Int.self, forKey: .code)
@@ -51,7 +51,7 @@ struct AuthorSubscriptionResponse: Codable {
     }
 }
 
-struct AuthorSubscriptionPayload: Codable {
+class AuthorSubscriptionPayload: Codable {
     var authorUuid: String
     var author: String
     var authorEmail: String
@@ -79,7 +79,7 @@ struct AuthorSubscriptionPayload: Codable {
         try container.encode(self.subscriptions, forKey: .subscriptions)
     }
     
-    init(from decoder: any Decoder) throws {
+    required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.authorUuid = try container.decode(String.self, forKey: .authorUuid)
         self.author = try container.decode(String.self, forKey: .author)

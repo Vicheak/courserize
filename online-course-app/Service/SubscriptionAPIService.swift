@@ -302,12 +302,19 @@ class SubscriptionAPIService {
                 let unauthorizedError = ErrorResponseMessage(
                     isSuccess: false,
                     code: statusCode,
-                    message: "You must be an author to authorize, please register for an author first!",
+                    message: "An error occurs",
                     timestamp: Date(),
-                    errors: "An error occurs"
+                    errors: "You must be an author to authorize, please register for an author first!"
                 )
                 DispatchQueue.main.async {
                     completion(.failure(unauthorizedError))
+                }
+                return
+            }
+            if statusCode == 200 {
+                let successResponse = MessageResponseData(message: "Action completed!")
+                DispatchQueue.main.async {
+                    completion(.success(successResponse))
                 }
                 return
             }
@@ -324,9 +331,104 @@ class SubscriptionAPIService {
                         }
                         return
                     }
-                    let successResponse = MessageResponseData(message: "Action completed!")
+                } catch {
+                    // print the error and provide a generic error response
+                    print("Decoding error : \(error.localizedDescription)")
+                    let genericError = ErrorResponseMessage(
+                        isSuccess: false,
+                        code: statusCode,
+                        message: "An unknown error occurred",
+                        timestamp: Date(),
+                        errors: "An error occurs"
+                    )
                     DispatchQueue.main.async {
-                        completion(.success(successResponse))
+                        completion(.failure(genericError))
+                    }
+                }
+            case .failure(let error):
+                print("Error :", error)
+                let networkError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: (error as NSError).code,
+                    message: "Cannot get response from server",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(networkError))
+                }
+            }
+        }
+        return
+    }
+    
+    func removeSubscriptionDetailById(token: String, subscriptionDetailId: Int, completion: @escaping (Result<MessageResponseData, ErrorResponseMessage>) -> Void){
+        let bearerToken = token
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(bearerToken)",
+            "Content-Type": "application/json"
+        ]
+
+        let apiEndpoint = Endpoint.removeSubscriptionDetailById.rawValue + "\(subscriptionDetailId)"
+        AF.request(apiEndpoint, method: .delete, encoding: JSONEncoding.default, headers: headers).responseData { responseData in
+            guard let statusCode = responseData.response?.statusCode else {
+                let error = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: (responseData.error! as NSError).code,
+                    message: "The Internet connection appears to be offline.",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+                return
+            }
+            
+            if statusCode == 401 {
+                let unauthorizedError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: statusCode,
+                    message: "Token is invalid or expired! Unauthorized",
+                    timestamp: Date(),
+                    errors: "An error occurs"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(unauthorizedError))
+                }
+                return
+            } else if statusCode == 403 {
+                let unauthorizedError = ErrorResponseMessage(
+                    isSuccess: false,
+                    code: statusCode,
+                    message: "An error occurs",
+                    timestamp: Date(),
+                    errors: "You must be an author to authorize, please register for an author first!"
+                )
+                DispatchQueue.main.async {
+                    completion(.failure(unauthorizedError))
+                }
+                return
+            }
+            if statusCode == 204 {
+                let successResponse = MessageResponseData(message: "Subscription remove successfully!")
+                DispatchQueue.main.async {
+                    completion(.success(successResponse))
+                }
+                return
+            }
+            
+            switch responseData.result {
+            case .success(let data):
+                print("Success :", data)
+                do {
+                    // Try to decode as a success response
+                    if statusCode == 404 {
+                        let errorResponse = try JSONDecoder().decode(ErrorResponseMessage.self, from: data)
+                        DispatchQueue.main.async {
+                            completion(.failure(errorResponse))
+                        }
+                        return
                     }
                 } catch {
                     // print the error and provide a generic error response

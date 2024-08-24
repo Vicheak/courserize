@@ -39,7 +39,7 @@
 "Change the latest password" = "Change the latest password";
 "Logout" = "Logout";
 "Exit from the app" = "Exit from the app";
-"Confrim" = "Confrim";
+"Confirm" = "Confirm";
 "Are you sure to log out?" = "Are you sure to log out?";
 "Cancel" = "Cancel";
 "Log out" = "Log out";
@@ -58,3 +58,18 @@
 "Read More" = "Read More";
 "Enroll" = "Enroll";
 "Are you sure to enroll?" = "Are you sure to enroll?";
+"Subscription Detail" = "Subscription Detail";
+"Check your subscription detail" = "Check your subscription detail";
+"Acknowledge Subscription" = "Acknowledge Subscription";
+"Check the subscription request" = "Check the subscription request";
+"Apply for Author" = "Apply for Author";
+"Manage courses with author permission" = "Manage courses with author permission";
+"Remove" = "Remove";
+"Are you sure to remove the subscription?" = "Are you sure to remove the subscription?";
+"Reject" = "Reject"; 
+"Approve" = "Approve";
+"Approved" = "Approved";
+"Request Pending" = "Request Pending";
+"Video List" = "Video List";
+"Manage Course" = "Manage Course";
+"Manipulate the course" = "Manipulate the course";

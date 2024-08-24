@@ -39,7 +39,7 @@
 "Change the latest password" = "ប្តូរពាក្យសម្ងាត់តម្រូវអោយចាំពាក្យសម្ងាត់ចុងក្រោយ";
 "Logout" = "ចាកចេញ";
 "Exit from the app" = "ចុចទីនេះដើម្បីចាកចេញពីកម្មវិធី";
-"Confrim" = "បញ្ជាក់";
+"Confirm" = "បញ្ជាក់";
 "Are you sure to log out?" = "តើអ្នកពិតជាចង់ចាកចេញពីកម្មវិធីនេះមែនដែរឬទេ?";
 "Cancel" = "ត្រឡប់";
 "Log out" = "ចាកចេញ";
@@ -58,3 +58,18 @@
 "Read More" = "អានបន្ថែម";
 "Enroll" = "ចុះឈ្មោះចូលរៀន";
 "Are you sure to enroll?" = "តើអ្នកពិតជាចង់ចុះឈ្មោះចូលរៀនមែនដែរឬទេ?";
+"Subscription Detail" = "ការជាវវគ្គសិក្សារបស់អ្នក";
+"Check your subscription detail" = "មើលលម្អិតនូវការជាវវគ្គសិក្សារបស់អ្នក";
+"Acknowledge Subscription" = "ការស្នើរសុំចូលរៀនវគ្គសិក្សា";
+"Check the subscription request" = "ពិនិត្យមើលការស្នើរសុំចូលរៀនវគ្គសិក្សា";
+"Apply for Author" = "ចុះឈ្មោះជាអ្នកបង្កើតវគ្គសិក្សាថ្មី";
+"Manage courses with author permission" = "ស្នើរសុំសិទ្ធគ្រប់គ្រងវគ្គសិក្សា";
+"Remove" = "លុបចេញ";
+"Are you sure to remove the subscription?" = "តើអ្នកពិតជាចង់លុបចេញនូវការជាវនេះមែនទេ?";
+"Reject" = "មិនទទួល";
+"Approve" = "យល់ព្រម";
+"Approved" = "ស្នើរសុំបានជោគជ័យ";
+"Request Pending" = "រង់ចាំការស្នើរសុំ";
+"Video List" = "បញ្ជីវីដេអូនៃវគ្គសិក្សា";
+"Manage Course" = "គ្រប់គ្រងវគ្គសិក្សា";
+"Manipulate the course" = "គ្រប់គ្រងវគ្គសិក្សា និងបង្កើតវគ្គសិក្សាថ្មី";

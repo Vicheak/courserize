@@ -81,4 +81,11 @@ public class ImageUtil {
         return image.size.width == image.size.height
     }
     
+    public static func toImageCircleBound(withImageView imageView: UIImageView){
+        imageView.layer.cornerRadius = imageView.bounds.width / 2
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
+    }
+    
 }

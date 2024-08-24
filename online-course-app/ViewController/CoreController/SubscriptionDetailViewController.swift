@@ -167,7 +167,7 @@ extension SubscriptionDetailViewController: UITableViewDataSource {
             let subscriptionDetail = subscriptionDetails[indexPath.row]
             cell.courseTitle.text = subscriptionDetail.courseTitle
             cell.coursePrice.text = "$\(String(describing: subscriptionDetail.coursePrice))"
-            cell.subscriptionStatus.text = subscriptionDetail.isApproved ? "Approved" : "Request Pending"
+            cell.subscriptionStatus.text = subscriptionDetail.isApproved ? "Approved".localized(using: "Generals") : "Request Pending".localized(using: "Generals")
             cell.subscriptionStatus.textColor = subscriptionDetail.isApproved ? .systemGreen : .systemYellow
            
             loadCourseImageUriByUuid(courseUuid: subscriptionDetail.courseUuid) { imageUri in

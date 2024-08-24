@@ -7,6 +7,7 @@
 
 import UIKit
 import Localize_Swift
+import KeychainSwift
 
 class VerifyCodeViewController: UIViewController {
 
@@ -29,6 +30,7 @@ class VerifyCodeViewController: UIViewController {
     var email: String!
     var forgetPassword: Bool!
     var passwordToken: String?
+    var applyforAuthor: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,6 +145,33 @@ class VerifyCodeViewController: UIViewController {
             print("OTP Code : \(otpCode)")
             
             let alertController = LoadingViewController()
+            if applyforAuthor {
+                let keychain = KeychainSwift()
+                let accessToken = keychain.get("accessToken")!
+                present(alertController, animated: true) {
+                    AuthAPIService.shared.verifyAuthor(token: accessToken, email: self.email, verifiedCode: otpCode) { response in
+                        alertController.dismiss(animated: true) {
+                            switch response {
+                            case .success(let result):
+                                print("Response success :", result)
+                                PopUpUtil.popUp(withTitle: "Success".localized(using: "Generals"), withMessage: result.message, withAlert: .success) { [weak self] in
+                                    guard let self = self else { return }
+                                    dismiss(animated: true)
+                                }
+                            case .failure(let error):
+                                print("Response failure :", error)
+                                if error.code == 401 {
+                                    PopUpUtil.popUp(withTitle: "Warning".localized(using: "Generals"), withMessage: error.errors, withAlert: .warning) {}
+                                } else {
+                                    PopUpUtil.popUp(withTitle: "No Connection".localized(using: "Generals"), withMessage: error.message, withAlert: .warning) {}
+                                }
+                            }
+                        }
+                    }
+                }
+                return
+            }
+            
             present(alertController, animated: true) {
                 AuthAPIService.shared.verifyCode(email: self.email, verifiedCode: otpCode) { response in
                     alertController.dismiss(animated: true) {

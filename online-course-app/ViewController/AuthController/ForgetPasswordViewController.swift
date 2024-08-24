@@ -100,6 +100,7 @@ class ForgetPasswordViewController: UIViewController {
                                 verifyCodeViewController.modalPresentationStyle = .fullScreen
                                 verifyCodeViewController.email = email
                                 verifyCodeViewController.forgetPassword = true
+                                verifyCodeViewController.applyforAuthor = false
                                 verifyCodeViewController.passwordToken = result.token
                                 present(verifyCodeViewController, animated: true) {
                                     self.navigationController?.popToRootViewController(animated: true)

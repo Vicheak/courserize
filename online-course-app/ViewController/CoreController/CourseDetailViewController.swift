@@ -221,7 +221,7 @@ class CourseDetailViewController: UIViewController {
     }
     
     @objc func enrollButtonTapped(){
-        let alertCotroller = UIAlertController(title: "Confrim".localized(using: "Generals"), message: "Are you sure to enroll?".localized(using: "Generals"), preferredStyle: .alert)
+        let alertCotroller = UIAlertController(title: "Confirm".localized(using: "Generals"), message: "Are you sure to enroll?".localized(using: "Generals"), preferredStyle: .alert)
         alertCotroller.addAction(UIAlertAction(title: "Cancel".localized(using: "Generals"), style: .destructive))
         alertCotroller.addAction(UIAlertAction(title: "Enroll".localized(using: "Generals"), style: .default, handler: { _ in
             self.enrollCourse()
