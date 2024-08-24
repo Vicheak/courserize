@@ -17,18 +17,6 @@ class VideoViewController: UIViewController {
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var settingButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    lazy var emptyImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.image = UIImage(named: "404-background")
-        return imageView
-    }()
-    lazy var emptyLabel = {
-        let label = UILabel()
-        print("rendering")
-        label.text = "You have no subscribed courses"
-        return label
-    }()
     
     private var subscriptionDetails: [SubscriberSubscriptionDetail] = []
     
@@ -72,22 +60,7 @@ class VideoViewController: UIViewController {
     }
     
     private func setUpViews(){
-        view.addSubview(emptyImageView)
-        view.addSubview(emptyLabel)
-    
-        emptyImageView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(300)
-        }
-        
-        emptyLabel.snp.makeConstraints { make in
-            make.top.equalTo(emptyImageView.snp.bottom).offset(10)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-        }
-        
-        emptyImageView.isHidden = true
-        emptyLabel.isHidden = true
+       
     }
     
     @objc func setText(){
@@ -119,6 +92,8 @@ class VideoViewController: UIViewController {
         let theme = ThemeManager.shared.theme
         view.backgroundColor = theme.view.backgroundColor
         tableView.backgroundColor = theme.view.backgroundColor
+        
+        tableView.reloadData()
     }
     
     @objc private func refreshData() {
@@ -127,16 +102,6 @@ class VideoViewController: UIViewController {
             subscriptionDetails = subscriptionPayload.subscriptionDetails
             tableView.reloadData()
             refreshControl.endRefreshing()
-            
-            if subscriptionDetails.count == 0 {
-                emptyImageView.isHidden = false
-                emptyLabel.isHidden = false
-                tableView.isHidden = true
-            } else {
-                emptyImageView.isHidden = true
-                emptyLabel.isHidden = true
-                tableView.isHidden = false
-            }
         }
     }
     
